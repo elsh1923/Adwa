@@ -96,8 +96,10 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.taytu.role':    'Strategic Architect',
     'hero.taytu.desc':    "The empress who was the mastermind behind Ethiopia's diplomatic and military strategy.",
     'hero.alula.name':    'Ras Alula',
-    'hero.alula.role':    'Military Commander',
     'hero.alula.desc':    "Ethiopia's greatest military mind, who designed the tactical formations at Adwa.",
+    'hero.mengesha.name': 'Ras Mengesha Yohannes',
+    'hero.mengesha.role': 'Governor of Tigray',
+    'hero.mengesha.desc': 'The loyal leader from Tigray who fought alongside Menelik II to defend Ethiopian sovereignty.',
 
     // Mission section
     'mission.eyebrow':  'Our Mission',
@@ -138,8 +140,9 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.menelik.desc':    'The mastermind of Ethiopian unity and modernization.',
     'chat.taytu.role':      'Strategic Advisor',
     'chat.taytu.desc':      'The fierce diplomat and brilliant tactical advisor.',
-    'chat.alula.role':      'General',
     'chat.alula.desc':      'The legendary general known as the lion of the north.',
+    'chat.mengesha.role':   'Fighter & Leader',
+    'chat.mengesha.desc':   'A key leader from Tigray who demonstrated unwavering unity for the crown.',
 
     // Strategy page
     'strategy.title':       'Battle Strategy Explainer',
@@ -254,8 +257,10 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.taytu.role':    'ስትራቴጂ አዋቂ',
     'hero.taytu.desc':    'የኢትዮጵያ ዲፕሎማሲያዊ እና ወታደራዊ ስትራቴጂ ደናቂ አንጋፋ እቴጌ።',
     'hero.alula.name':    'ራስ አሉላ',
-    'hero.alula.role':    'ወታደራዊ አዛዥ',
     'hero.alula.desc':    'በዓድዋ ወታደራዊ ሥልቶችን ቀርጾ የነደፈ፣ "የሰሜኑ አንበሳ" ተብሎ የሚጠራ የኢትዮጵያ ቀዳሚ ጄኔራል።',
+    'hero.mengesha.name': 'ራስ መንገሻ ዮሐንስ',
+    'hero.mengesha.role': 'የትግራይ ገዢ',
+    'hero.mengesha.desc': 'ለኢትዮጵያ ሉዓላዊነት ሲሉ ከዳግማዊ ምኒልክ ጋር በመሆን የተዋጉ የትግራይ ተዋጊ።',
 
     // Mission section
     'mission.eyebrow':  'ዓላማችን',
@@ -296,8 +301,9 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.menelik.desc':    'የኢትዮጵያ አንድነት እና ዘመናዊነት መስርት።',
     'chat.taytu.role':      'ስልት አዋቂ',
     'chat.taytu.desc':      'ኃይለኛ ዲፕሎማት እና ብልህ ወታደራዊ አዋቂ።',
-    'chat.alula.role':      'ጄኔራል',
     'chat.alula.desc':      '"የሰሜኑ አንበሳ" InputStream ዝነኛ ጄኔራል።',
+    'chat.mengesha.role':   'ተዋጊ እና መሪ',
+    'chat.mengesha.desc':   'ለኢትዮጵያ አንድነት ሲሉ ከምኒልክ ጋር የተሰለፉ የትግራይ መሪ።',
 
     // Strategy page
     'strategy.title':       'የውጊያ ስልት ማብራሪያ',

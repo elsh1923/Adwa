@@ -13,6 +13,7 @@ interface Leader {
   desc: string;
   color: string;
   emoji: string;
+  image: string;
 }
 
 const HeroesChat: React.FC = () => {
@@ -27,6 +28,7 @@ const HeroesChat: React.FC = () => {
       desc: t('chat.menelik.desc'),
       color: '#d4af37',
       emoji: '👑',
+      image: '/image/menelik_portrait.png',
     },
     {
       id: 'taytu',
@@ -35,6 +37,7 @@ const HeroesChat: React.FC = () => {
       desc: t('chat.taytu.desc'),
       color: '#2e8b57',
       emoji: '🌿',
+      image: '/image/taytu_portrait.jpg',
     },
     {
       id: 'alula',
@@ -43,6 +46,16 @@ const HeroesChat: React.FC = () => {
       desc: t('chat.alula.desc'),
       color: '#8b0000',
       emoji: '⚔️',
+      image: '/image/alula_portrait.jpg',
+    },
+    {
+      id: 'mengesha',
+      name: t('hero.mengesha.name'),
+      role: t('chat.mengesha.role'),
+      desc: t('chat.mengesha.desc'),
+      color: '#4169e1',
+      emoji: '🛡️',
+      image: '/image/mengesha_portrait.jpg',
     },
   ];
 
@@ -143,14 +156,19 @@ const HeroesChat: React.FC = () => {
             >
               {/* Avatar */}
               <div style={{
-                width: 80, height: 80, borderRadius: '50%',
+                width: 100, height: 100, borderRadius: '50%',
                 background: `radial-gradient(circle, ${leader.color}22, ${leader.color}08)`,
                 border: `2px solid ${leader.color}40`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '2.5rem',
                 boxShadow: `0 0 20px ${leader.color}20`,
+                overflow: 'hidden',
+                position: 'relative'
               }}>
-                {leader.emoji}
+                <img 
+                  src={leader.image} 
+                  alt={leader.name} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                />
               </div>
 
               <div>
@@ -251,8 +269,12 @@ const HeroesChat: React.FC = () => {
                 style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', gap: '0.6rem', alignItems: 'flex-end' }}
               >
                 {m.role === 'assistant' && (
-                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: `${selectedLeader.color}15`, border: `1px solid ${selectedLeader.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', flexShrink: 0 }}>
-                    {selectedLeader.emoji}
+                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: `${selectedLeader.color}15`, border: `1px solid ${selectedLeader.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, overflow: 'hidden' }}>
+                    <img 
+                      src={selectedLeader.image} 
+                      alt={selectedLeader.name} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
                   </div>
                 )}
                 <div style={{

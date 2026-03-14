@@ -55,7 +55,16 @@ const HeroesChat: React.FC = () => {
       desc: t('chat.mengesha.desc'),
       color: '#4169e1',
       emoji: '🛡️',
-      image: '/image/mengesha_portrait.jpg',
+      image: '/image/mengesha_portrait.png',
+    },
+    {
+      id: 'mikael',
+      name: t('hero.mikael.name'),
+      role: t('chat.mikael.role'),
+      desc: t('chat.mikael.desc'),
+      color: '#ffa500',
+      emoji: '🏇',
+      image: '/image/mikael_portrait.png',
     },
   ];
 

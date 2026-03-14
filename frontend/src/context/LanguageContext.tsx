@@ -100,6 +100,9 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.mengesha.name': 'Ras Mengesha Yohannes',
     'hero.mengesha.role': 'Governor of Tigray',
     'hero.mengesha.desc': 'The loyal leader from Tigray who fought alongside Menelik II to defend Ethiopian sovereignty.',
+    'hero.mikael.name':   'Ras Mikael of Wollo',
+    'hero.mikael.role':   'Commander of Wollo Force',
+    'hero.mikael.desc':   'A crucial military leader who led the powerful Wollo cavalry at the Battle of Adwa.',
 
     // Mission section
     'mission.eyebrow':  'Our Mission',
@@ -143,6 +146,8 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.alula.desc':      'The legendary general known as the lion of the north.',
     'chat.mengesha.role':   'Fighter & Leader',
     'chat.mengesha.desc':   'A key leader from Tigray who demonstrated unwavering unity for the crown.',
+    'chat.mikael.role':     'Cavalry Commander',
+    'chat.mikael.desc':     'Leader of the legendary Wollo Oromo cavalry that shattered Italian lines.',
 
     // Strategy page
     'strategy.title':       'Battle Strategy Explainer',
@@ -261,6 +266,9 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.mengesha.name': 'ራስ መንገሻ ዮሐንስ',
     'hero.mengesha.role': 'የትግራይ ገዢ',
     'hero.mengesha.desc': 'ለኢትዮጵያ ሉዓላዊነት ሲሉ ከዳግማዊ ምኒልክ ጋር በመሆን የተዋጉ የትግራይ ተዋጊ።',
+    'hero.mikael.name':   'ራስ ሚካኤል (ወሎ)',
+    'hero.mikael.role':   'የወሎ ጦር አዛዥ',
+    'hero.mikael.desc':   'በዓድዋ ውጊያ ታሪካዊውን የወሎ ፈረሰኛ ጦር የገነቡና የመሩ ታላቅ መሪ።',
 
     // Mission section
     'mission.eyebrow':  'ዓላማችን',
@@ -304,6 +312,8 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.alula.desc':      '"የሰሜኑ አንበሳ" InputStream ዝነኛ ጄኔራል።',
     'chat.mengesha.role':   'ተዋጊ እና መሪ',
     'chat.mengesha.desc':   'ለኢትዮጵያ አንድነት ሲሉ ከምኒልክ ጋር የተሰለፉ የትግራይ መሪ።',
+    'chat.mikael.role':     'የፈረሰኛ ጦር አዛዥ',
+    'chat.mikael.desc':     'የኢጣሊያን ጦር መስመር የሰባበረው ዝነኛ የወሎ ፈረሰኛ ጦር መሪ።',
 
     // Strategy page
     'strategy.title':       'የውጊያ ስልት ማብራሪያ',

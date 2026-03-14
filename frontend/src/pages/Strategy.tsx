@@ -92,9 +92,16 @@ const StrategyPage: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem', alignItems: 'start' }} className="strategy-grid">
           {/* Left panel */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem' }}>
-            <div style={{ width: 96, height: 96, borderRadius: 24, background: `${current.color}12`, border: `1px solid ${current.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              {current.icon}
-            </div>
+            {activeTab === 'ethiopian' ? (
+              <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                style={{ width: 120, height: 120, marginBottom: '0.5rem' }}>
+                <img src="/image/logo.png" alt="Ethiopian Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.4))' }} />
+              </motion.div>
+            ) : (
+              <div style={{ width: 96, height: 96, borderRadius: 24, background: `${current.color}12`, border: `1px solid ${current.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {current.icon}
+              </div>
+            )}
             <h3 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', fontWeight: 700, color: 'var(--text)', lineHeight: 1.3 }}>
               {current.title}
             </h3>

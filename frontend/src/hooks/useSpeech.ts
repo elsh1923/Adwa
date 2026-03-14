@@ -43,18 +43,28 @@ export const useSpeech = () => {
     });
 
     if (availableLocaleVoices.length > 0) {
-      // 1. First priority: High quality voices
+      // 1. First priority: High quality voices that match the gender
       let selectedVoice = availableLocaleVoices.find(v => 
-        v.name.toLowerCase().includes('natural') || 
-        v.name.toLowerCase().includes('google')
+        (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('google')) &&
+        (v.name.toLowerCase().includes(requestedGender) || 
+         (requestedGender === 'male' && (v.name.includes('David') || v.name.includes('Mark'))) ||
+         (requestedGender === 'female' && (v.name.includes('Zira') || v.name.includes('Sara'))))
       );
 
-      // 2. Second priority: Match the requested "person" gender
+      // 2. Second priority: Any voice that matches the gender
       if (!selectedVoice) {
         selectedVoice = availableLocaleVoices.find(v => 
           v.name.toLowerCase().includes(requestedGender) ||
           (requestedGender === 'male' && (v.name.includes('David') || v.name.includes('Mark'))) ||
           (requestedGender === 'female' && (v.name.includes('Zira') || v.name.includes('Sara')))
+        );
+      }
+
+      // 3. Third priority: High quality voices (any gender)
+      if (!selectedVoice) {
+        selectedVoice = availableLocaleVoices.find(v => 
+          v.name.toLowerCase().includes('natural') || 
+          v.name.toLowerCase().includes('google')
         );
       }
 

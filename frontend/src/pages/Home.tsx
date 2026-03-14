@@ -84,12 +84,18 @@ const Home: React.FC = () => {
   ];
 
   const HEROES = [
-    { key: 'menelik', color: '#d4af37', emoji: '👑',
+    { key: 'menelik', color: '#d4af37', emoji: '👑', image: '/image/menelik_portrait.png',
       name: t('hero.menelik.name'), role: t('hero.menelik.role'), desc: t('hero.menelik.desc') },
-    { key: 'taytu',   color: '#2e8b57', emoji: '🌿',
+    { key: 'taytu',   color: '#2e8b57', emoji: '🌿', image: '/image/taytu_portrait.jpg',
       name: t('hero.taytu.name'),   role: t('hero.taytu.role'),   desc: t('hero.taytu.desc') },
-    { key: 'alula',   color: '#8b0000', emoji: '⚔️',
+    { key: 'alula',   color: '#8b0000', emoji: '⚔️', image: '/image/alula_portrait.jpg',
       name: t('hero.alula.name'),   role: t('hero.alula.role'),   desc: t('hero.alula.desc') },
+    { key: 'mengesha', color: '#4169e1', emoji: '🛡️', image: '/image/mengesha_portrait.png',
+      name: t('hero.mengesha.name'), role: t('hero.mengesha.role'), desc: t('hero.mengesha.desc') },
+    { key: 'mikael',   color: '#ffa500', emoji: '🏇', image: '/image/mikael_portrait.png',
+      name: t('hero.mikael.name'),   role: t('hero.mikael.role'),   desc: t('hero.mikael.desc') },
+    { key: 'habtegiyorgis', color: '#808080', emoji: '🎖️', image: '/image/habtegiyorgis_portrait.jpg',
+      name: t('hero.habtegiyorgis.name'), role: t('hero.habtegiyorgis.role'), desc: t('hero.habtegiyorgis.desc') },
   ];
 
   return (
@@ -198,6 +204,39 @@ const Home: React.FC = () => {
           </motion.div>
         </div>
 
+        {/* Floating Heroes Gallery at bottom of Hero Section */}
+        <div style={{ position: 'absolute', bottom: '6rem', left: 0, right: 0, zIndex: 12 }}>
+          <div className="container" style={{ overflow: 'visible' }}>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(0.5rem, 2vw, 1.5rem)', flexWrap: 'wrap' }}
+            >
+              {HEROES.map((h) => (
+                <motion.div 
+                  key={h.key}
+                  whileHover={{ y: -10, scale: 1.1 }}
+                  style={{ position: 'relative', width: 'clamp(50px, 8vw, 75px)', height: 'clamp(50px, 8vw, 75px)', borderRadius: '50%', border: `2px solid ${h.color}40`, background: 'rgba(0,0,0,0.4)', overflow: 'hidden', boxShadow: `0 10px 25px rgba(0,0,0,0.3), 0 0 15px ${h.color}20`, cursor: 'pointer' }}
+                >
+                  <img src={h.image} alt={h.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${h.color}30 0%, transparent 60%)`, pointerEvents: 'none' }} />
+                </motion.div>
+              ))}
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1 }}
+              style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--text-muted)', fontFamily: amFont }}
+            >
+              {lang === 'am' ? 'የዓድዋ ጀግኖች' : 'The Heroes of Adwa'}
+            </motion.div>
+          </div>
+        </div>
+
         {/* Scroll cue */}
         <div style={{ position: 'absolute', bottom: '2.5rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem', color: 'var(--text-muted)', animation: 'floatY 2.5s ease-in-out infinite', zIndex: 2 }}>
           <ChevronDown size={18} />
@@ -287,14 +326,14 @@ const Home: React.FC = () => {
             </motion.div>
 
             <motion.div variants={stagger} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
-              {HEROES.map(({ key, name, role, desc, color, emoji }) => (
+              {HEROES.map(({ key, name, role, desc, color, image }) => (
                 <motion.div key={key} variants={fadeUp} whileHover={{ y: -6, scale: 1.01 }}
                   style={{ background: 'rgba(14,16,20,0.8)', border: `1px solid ${color}25`, borderRadius: 20, padding: '2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', transition: 'var(--transition)', cursor: 'default' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = color + '66'; (e.currentTarget as HTMLElement).style.boxShadow = `0 0 30px ${color}15`; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = color + '25'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}>
 
-                  <div style={{ width: 80, height: 80, borderRadius: '50%', background: `radial-gradient(circle, ${color}22, ${color}08)`, border: `2px solid ${color}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', boxShadow: `0 0 20px ${color}20` }}>
-                    {emoji}
+                  <div style={{ width: 100, height: 100, borderRadius: '50%', background: `radial-gradient(circle, ${color}22, ${color}08)`, border: `2px solid ${color}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: `0 0 20px ${color}20` }}>
+                    <img src={image} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <div>
                     <h3 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.2rem' }}>{name}</h3>

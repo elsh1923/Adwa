@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 /**
  * Custom hook to handle Text-to-Speech narration for English and Amharic.
- * Uses the browser's native SpeechSynthesis API.
+ * Uses the browser's native SpeechSynthesis API with enhanced selection logic.
  */
 export const useSpeech = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -10,7 +10,8 @@ export const useSpeech = () => {
 
   useEffect(() => {
     const updateVoices = () => {
-      setVoices(window.speechSynthesis.getVoices());
+      const availableVoices = window.speechSynthesis.getVoices();
+      setVoices(availableVoices);
     };
 
     window.speechSynthesis.onvoiceschanged = updateVoices;
@@ -21,28 +22,48 @@ export const useSpeech = () => {
     };
   }, []);
 
-  const speak = useCallback((text: string, lang: 'en' | 'am') => {
-    // Stop any current speech
+  const speak = useCallback((text: string, lang: 'en' | 'am', requestedGender: 'male' | 'female' = 'male') => {
     window.speechSynthesis.cancel();
 
     if (!text) return;
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    const cleanText = text.replace(/[*#]/g, '');
+    const utterance = new SpeechSynthesisUtterance(cleanText);
     
-    // Set language
+    // Set language tags - support wider range of Amharic tags
     utterance.lang = lang === 'am' ? 'am-ET' : 'en-US';
 
-    // Try to find a specific voice for the language
-    const preferredVoice = voices.find(v => 
-      v.lang.startsWith(lang === 'am' ? 'am' : 'en')
-    );
-    
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
+    // Advanced Voice Selection:
+    const availableLocaleVoices = voices.filter(v => {
+      const vLang = v.lang.toLowerCase();
+      if (lang === 'am') {
+        return vLang.startsWith('am') || vLang.includes('eth');
+      }
+      return vLang.startsWith('en');
+    });
+
+    if (availableLocaleVoices.length > 0) {
+      // 1. First priority: High quality voices
+      let selectedVoice = availableLocaleVoices.find(v => 
+        v.name.toLowerCase().includes('natural') || 
+        v.name.toLowerCase().includes('google')
+      );
+
+      // 2. Second priority: Match the requested "person" gender
+      if (!selectedVoice) {
+        selectedVoice = availableLocaleVoices.find(v => 
+          v.name.toLowerCase().includes(requestedGender) ||
+          (requestedGender === 'male' && (v.name.includes('David') || v.name.includes('Mark'))) ||
+          (requestedGender === 'female' && (v.name.includes('Zira') || v.name.includes('Sara')))
+        );
+      }
+
+      utterance.voice = selectedVoice || availableLocaleVoices[0];
     }
 
-    utterance.rate = 0.9; // Slightly slower for better historical atmosphere
-    utterance.pitch = 1.0;
+    utterance.rate = 0.82; // Deliberate narrator pace
+    utterance.pitch = requestedGender === 'male' ? 0.95 : 1.05;
+    utterance.volume = 1.0;
 
     utterance.onstart = () => setIsSpeaking(true);
     utterance.onend = () => setIsSpeaking(false);

@@ -12,6 +12,7 @@ interface Leader {
   role: string;
   desc: string;
   color: string;
+  gender: 'male' | 'female';
   emoji: string;
   image: string;
 }
@@ -27,6 +28,7 @@ const HeroesChat: React.FC = () => {
       role: t('chat.menelik.role'),
       desc: t('chat.menelik.desc'),
       color: '#d4af37',
+      gender: 'male',
       emoji: '👑',
       image: '/image/menelik_portrait.png',
     },
@@ -36,6 +38,7 @@ const HeroesChat: React.FC = () => {
       role: t('chat.taytu.role'),
       desc: t('chat.taytu.desc'),
       color: '#2e8b57',
+      gender: 'female',
       emoji: '🌿',
       image: '/image/taytu_portrait.jpg',
     },
@@ -45,6 +48,7 @@ const HeroesChat: React.FC = () => {
       role: t('chat.alula.role'),
       desc: t('chat.alula.desc'),
       color: '#8b0000',
+      gender: 'male',
       emoji: '⚔️',
       image: '/image/alula_portrait.jpg',
     },
@@ -54,6 +58,7 @@ const HeroesChat: React.FC = () => {
       role: t('chat.mengesha.role'),
       desc: t('chat.mengesha.desc'),
       color: '#4169e1',
+      gender: 'male',
       emoji: '🛡️',
       image: '/image/mengesha_portrait.png',
     },
@@ -63,6 +68,7 @@ const HeroesChat: React.FC = () => {
       role: t('chat.mikael.role'),
       desc: t('chat.mikael.desc'),
       color: '#ffa500',
+      gender: 'male',
       emoji: '🏇',
       image: '/image/mikael_portrait.png',
     },
@@ -72,6 +78,7 @@ const HeroesChat: React.FC = () => {
       role: t('chat.habtegiyorgis.role'),
       desc: t('chat.habtegiyorgis.desc'),
       color: '#808080',
+      gender: 'male',
       emoji: '🎖️',
       image: '/image/habtegiyorgis_portrait.jpg',
     },
@@ -314,7 +321,7 @@ const HeroesChat: React.FC = () => {
                   
                   {m.role === 'assistant' && (
                     <button 
-                      onClick={() => isSpeaking ? stop() : speak(m.content, lang)}
+                      onClick={() => isSpeaking ? stop() : speak(m.content, lang, selectedLeader.gender)}
                       style={{ 
                         display: 'block', 
                         marginTop: '0.5rem', 

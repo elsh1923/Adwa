@@ -103,6 +103,9 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.mikael.name':   'Ras Mikael of Wollo',
     'hero.mikael.role':   'Commander of Wollo Force',
     'hero.mikael.desc':   'A crucial military leader who led the powerful Wollo cavalry at the Battle of Adwa.',
+    'hero.habtegiyorgis.name': 'Fitawrari Habte Giyorgis',
+    'hero.habtegiyorgis.role': 'War Minister',
+    'hero.habtegiyorgis.desc': 'A legendary military commander and strategist known as "Abba Mala" for his wisdom.',
 
     // Mission section
     'mission.eyebrow':  'Our Mission',
@@ -148,6 +151,8 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.mengesha.desc':   'A key leader from Tigray who demonstrated unwavering unity for the crown.',
     'chat.mikael.role':     'Cavalry Commander',
     'chat.mikael.desc':     'Leader of the legendary Wollo Oromo cavalry that shattered Italian lines.',
+    'chat.habtegiyorgis.role': 'Commander of the Vanguard',
+    'chat.habtegiyorgis.desc': 'The brilliant field commander who led from the front at Adwa.',
 
     // Strategy page
     'strategy.title':       'Battle Strategy Explainer',
@@ -269,6 +274,9 @@ const translations: Record<Language, Record<string, string>> = {
     'hero.mikael.name':   'ራስ ሚካኤል (ወሎ)',
     'hero.mikael.role':   'የወሎ ጦር አዛዥ',
     'hero.mikael.desc':   'በዓድዋ ውጊያ ታሪካዊውን የወሎ ፈረሰኛ ጦር የገነቡና የመሩ ታላቅ መሪ።',
+    'hero.habtegiyorgis.name': 'ፊታውራሪ ሀብተ ጊዮርጊስ',
+    'hero.habtegiyorgis.role': 'የጦር ሚኒስትር',
+    'hero.habtegiyorgis.desc': 'በብልሃታቸው "አባ መላ" ተብለው የሚጠሩት ታዋቂው ወታደራዊ አዛዥ እና ስትራቴጂስት።',
 
     // Mission section
     'mission.eyebrow':  'ዓላማችን',
@@ -314,6 +322,8 @@ const translations: Record<Language, Record<string, string>> = {
     'chat.mengesha.desc':   'ለኢትዮጵያ አንድነት ሲሉ ከምኒልክ ጋር የተሰለፉ የትግራይ መሪ።',
     'chat.mikael.role':     'የፈረሰኛ ጦር አዛዥ',
     'chat.mikael.desc':     'የኢጣሊያን ጦር መስመር የሰባበረው ዝነኛ የወሎ ፈረሰኛ ጦር መሪ።',
+    'chat.habtegiyorgis.role': 'የፊት አውራሪ',
+    'chat.habtegiyorgis.desc': 'በዓድዋ ውጊያ ግንባር ቀደም ጦር ያዘመቱት ታላቅ ወታደራዊ መሪ።',
 
     // Strategy page
     'strategy.title':       'የውጊያ ስልት ማብራሪያ',

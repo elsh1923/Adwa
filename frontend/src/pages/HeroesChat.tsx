@@ -66,6 +66,15 @@ const HeroesChat: React.FC = () => {
       emoji: '🏇',
       image: '/image/mikael_portrait.png',
     },
+    {
+      id: 'habtegiyorgis',
+      name: t('hero.habtegiyorgis.name'),
+      role: t('chat.habtegiyorgis.role'),
+      desc: t('chat.habtegiyorgis.desc'),
+      color: '#808080',
+      emoji: '🎖️',
+      image: '/image/habtegiyorgis_portrait.jpg',
+    },
   ];
 
   const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);

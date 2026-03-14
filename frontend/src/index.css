@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+Ethiopic:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ─── Design Tokens ─── */
+:root {
+  --bg:             #080a0c;
+  --bg-alt:         #0e1014;
+  --panel:          rgba(18, 20, 24, 0.85);
+  --gold:           #d4af37;
+  --gold-light:     #f0d060;
+  --gold-dim:       #a88820;
+  --crimson:        #8b0000;
+  --crimson-soft:   #a01010;
+  --green-eth:      #1a5c38;
+  --green-soft:     #2e8b57;
+  --text:           #f0ead8;
+  --text-dim:       #9b9280;
+  --text-muted:     #605a4e;
+  --border:         rgba(212, 175, 55, 0.12);
+  --border-subtle:  rgba(255, 255, 255, 0.06);
+  --glow-gold:      0 0 30px rgba(212, 175, 55, 0.25), 0 0 60px rgba(212, 175, 55, 0.08);
+  --glow-crimson:   0 0 30px rgba(139, 0, 0, 0.3);
+  --ease:           cubic-bezier(0.4, 0, 0.2, 1);
+  --transition:     all 0.35s var(--ease);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', system-ui, sans-serif;
+  background-color: var(--bg);
+
+/* Amharic font override */
+body.lang-am {
+  font-family: 'Noto Serif Ethiopic', 'Outfit', system-ui, sans-serif;
+}
+body.lang-am h1, body.lang-am h2, body.lang-am h3 {
+  font-family: 'Noto Serif Ethiopic', Georgia, serif;
+}
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Typography ─── */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  transition: var(--transition);
+}
+
+/* ─── Layout ─── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ─── Glass Morphism ─── */
+.glass {
+  background: var(--panel);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+.glass-card {
+  background: rgba(18, 20, 24, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: var(--transition);
+}
+
+.glass-card:hover {
+  border-color: var(--border);
+  background: rgba(26, 24, 18, 0.75);
+  box-shadow: var(--glow-gold), 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+}
+
+/* ─── Buttons ─── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--gold) 0%, #c9971c 60%, #a87810 100%);
+  color: #0a0800;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3), 0 1px 0 rgba(255,255,200,0.25) inset;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.55), 0 1px 0 rgba(255,255,200,0.25) inset;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--gold);
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  border: 1.5px solid rgba(212, 175, 55, 0.4);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(212, 175, 55, 0.08);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+  box-shadow: var(--glow-gold);
+  transform: translateY(-2px);
+}
+
+.btn-outline:hover::after {
+  opacity: 1;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-dim);
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.btn-ghost:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--text);
+  border-color: var(--border);
+  transform: translateY(-2px);
+}
+
+/* ─── Section Titles ─── */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.section-eyebrow::before, .section-eyebrow::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 40%, #c4902c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes gradShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.fade-up { animation: fadeUp 0.8s var(--ease) forwards; }
+.fade-in { animation: fadeIn 0.6s var(--ease) forwards; }
+
+/* Ethiopian pattern divider */
+.eth-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), var(--crimson), var(--green-eth), var(--gold), transparent);
+  opacity: 0.5;
+  margin: 0;
+}
+
+/* Decorative cross */
+.eth-cross {
+  display: inline-block;
+  color: var(--gold);
+  opacity: 0.6;
+  font-size: 1.1em;
+}
+
+/* ─── Noise Texture Overlay ─── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+/* ─── Nav Active State ─── */
+.nav-link-active {
+  color: var(--gold) !important;
+}
+
+/* ─── Custom Utility ─── */
+.text-gold { color: var(--gold); }
+.text-crimson { color: var(--crimson-soft); }
+.text-dim { color: var(--text-dim); }
+.text-muted { color: var(--text-muted); }
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .container { padding: 0 1.25rem; }
+  .btn-primary, .btn-outline { padding: 0.75rem 1.5rem; font-size: 0.875rem; }
+}

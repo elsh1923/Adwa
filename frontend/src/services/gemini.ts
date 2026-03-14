@@ -3,7 +3,9 @@
 // quiz explanations, and translation of AI-generated text.
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
-const GEMINI_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || '';
+const GEMINI_BASE = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
+const GROQ_BASE = 'https://api.groq.com/openai/v1/chat/completions';
 
 export type GeminiRole = 'user' | 'model';
 
@@ -12,50 +14,96 @@ export interface GeminiMessage {
   parts: { text: string }[];
 }
 
-// ─── Core generation helper ─────────────────────────────────────────────────
+// ─── Groq Fallback Helper ────────────────────────────────────────────────────
+async function generateWithGroq(
+  systemInstruction: string,
+  history: GeminiMessage[],
+  userPrompt: string,
+): Promise<string> {
+  if (!GROQ_API_KEY || GROQ_API_KEY === 'your_groq_key_here') {
+    throw new Error('Groq fallback failed: VITE_GROQ_API_KEY is not configured.');
+  }
+
+  const messages = [
+    { role: 'system', content: systemInstruction },
+    ...history.map(m => ({
+      role: m.role === 'model' ? 'assistant' : 'user',
+      content: m.parts[0].text
+    })),
+    { role: 'user', content: userPrompt }
+  ];
+
+  const response = await fetch(GROQ_BASE, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${GROQ_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      messages,
+      model: 'llama-3.1-8b-instant',
+      temperature: 0.8,
+      max_tokens: 1024,
+    }),
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(`Groq API error ${response.status}: ${err?.error?.message ?? response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.choices?.[0]?.message?.content?.trim() ?? '';
+}
+
+// ─── Core generation helper with Smart Fallback ───────────────────────────────
 async function generateContent(
   systemInstruction: string,
   history: GeminiMessage[],
   userPrompt: string,
 ): Promise<string> {
-  if (!GEMINI_API_KEY) {
-    throw new Error('VITE_GEMINI_API_KEY is not set. Please add it to your .env file.');
+  // 1. Try Gemini first
+  try {
+    if (!GEMINI_API_KEY) throw new Error('Gemini API key missing');
+
+    const body = {
+      system_instruction: { parts: [{ text: systemInstruction }] },
+      contents: [
+        ...history,
+        { role: 'user', parts: [{ text: userPrompt }] },
+      ],
+      generationConfig: {
+        temperature: 0.8,
+        topK: 40,
+        topP: 0.95,
+        maxOutputTokens: 1024,
+      },
+    };
+
+    const response = await fetch(`${GEMINI_BASE}?key=${GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? '';
+    }
+
+    // If we get here, Gemini returned an error (like 429)
+    console.warn(`Gemini failed with status ${response.status}. Attempting Groq fallback...`);
+  } catch (error) {
+    console.warn('Gemini error. Attempting Groq fallback...', error);
   }
 
-  const body = {
-    system_instruction: { parts: [{ text: systemInstruction }] },
-    contents: [
-      ...history,
-      { role: 'user', parts: [{ text: userPrompt }] },
-    ],
-    generationConfig: {
-      temperature: 0.8,
-      topK: 40,
-      topP: 0.95,
-      maxOutputTokens: 1024,
-    },
-    safetySettings: [
-      { category: 'HARM_CATEGORY_HARASSMENT',        threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-      { category: 'HARM_CATEGORY_HATE_SPEECH',       threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-      { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-      { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-    ],
-  };
-
-  const response = await fetch(`${GEMINI_BASE}?key=${GEMINI_API_KEY}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    throw new Error(`Gemini API error ${response.status}: ${err?.error?.message ?? response.statusText}`);
+  // 2. Fallback to Groq if Gemini fails or keys are missing
+  try {
+    return await generateWithGroq(systemInstruction, history, userPrompt);
+  } catch (fallbackError) {
+    console.error('All AI models failed:', fallbackError);
+    throw new Error('Our historians are currently busy. Please try again in a moment.');
   }
-
-  const data = await response.json();
-  const text: string = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-  return text.trim();
 }
 
 // ─── Hero Character Chat ─────────────────────────────────────────────────────
@@ -83,6 +131,24 @@ Eagle of Ethiopia" and "the Lion of the North." You were the field strategist at
 numerous earlier victories against Egypt and Italy. You are fierce, tactical, loyal to Ethiopia, and 
 blunt. Respond in the same language the user uses (English or Amharic). Keep replies concise 
 (2–4 paragraphs). Always stay in character as Ras Alula.`,
+
+  mengesha: `You are Ras Mengesha Yohannes (1868–1906), the son of Emperor Yohannes IV and Governor of Tigray. 
+At the Battle of Adwa, you demonstrated incredible unity by fighting alongside Emperor Menelik II. 
+You are noble, courageous, and deeply committed to the sovereignty of Ethiopia. Speak with the 
+authority of a northern prince who values national unity above all else. Respond in the same language 
+the user uses (English or Amharic). Keep replies concise (2–4 paragraphs). Always stay in character.`,
+
+  mikael: `You are Ras Mikael of Wollo (1850–1918). You led the legendary Wollo Oromo cavalry at Adwa, 
+whose charges were instrumental in breaking the Italian formations. You are a fierce warrior, a 
+powerful regional leader, and a crucial ally to Menelik. Your tone is bold, energetic, and proud of 
+your cavalry's might. Respond in the same language the user uses (English or Amharic). Keep replies 
+concise (2–4 paragraphs). Always stay in character.`,
+
+  habtegiyorgis: `You are Fitawrari Habte Giyorgis Dinagde (1851–1926), also known as "Abba Mala" 
+(Father of Strategy/Wisdom). You are the War Minister and a brilliant tactical advisor to Menelik II. 
+You led from the front at Adwa. You are wise, stoic, and highly analytical. You value intelligence 
+over brute force but are a formidable warrior when necessary. Respond in the same language the user 
+uses (English or Amharic). Keep replies concise (2–4 paragraphs). Always stay in character.`,
 };
 
 export async function chatWithHero(

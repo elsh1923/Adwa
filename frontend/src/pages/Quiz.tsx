@@ -201,7 +201,8 @@ const Quiz: React.FC = () => {
 
   // ── Question screen ──
   return (
-    <div style={{ maxWidth: 760, margin: '3rem auto', padding: '0 0 4rem' }}>
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
+      style={{ maxWidth: 760, margin: '3rem auto', padding: '0 0 4rem' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', fontWeight: 700, color: 'var(--text)' }}>
@@ -279,7 +280,7 @@ const Quiz: React.FC = () => {
       </AnimatePresence>
 
       <style>{`@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
-    </div>
+    </motion.div>
   );
 };
 

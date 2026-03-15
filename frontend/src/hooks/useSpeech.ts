@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 /**
- * Custom hook to handle Text-to-Speech narration for English and Amharic.
+ * Custom hook to handle Text-to-Speech narration for English.
  * Uses the browser's native SpeechSynthesis API with enhanced selection logic.
  */
 export const useSpeech = () => {
@@ -24,7 +24,6 @@ export const useSpeech = () => {
 
   const speak = useCallback((
     text: string, 
-    lang: 'en' | 'am', 
     profile: 'elderly-male' | 'elderly-female' | 'warrior' | 'strategic' | 'male' | 'female' = 'male'
   ) => {
     window.speechSynthesis.cancel();
@@ -35,7 +34,7 @@ export const useSpeech = () => {
     const utterance = new SpeechSynthesisUtterance(cleanText);
     
     // Set language tags
-    utterance.lang = lang === 'am' ? 'am-ET' : 'en-US';
+    utterance.lang = 'en-US';
 
     // Map profiles to low-level parameters
     const isMale = (profile.includes('male') && !profile.includes('female')) || 
@@ -43,11 +42,7 @@ export const useSpeech = () => {
                    profile === 'strategic';
 
     // Advanced Voice Selection:
-    const availableLocaleVoices = voices.filter(v => {
-      const vLang = v.lang.toLowerCase();
-      if (lang === 'am') return vLang.startsWith('am') || vLang.includes('eth');
-      return vLang.startsWith('en');
-    });
+    const availableLocaleVoices = voices.filter(v => v.lang.toLowerCase().startsWith('en'));
 
     if (availableLocaleVoices.length > 0) {
       const genderKey = isMale ? 'male' : 'female';

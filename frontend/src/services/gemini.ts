@@ -155,16 +155,11 @@ export async function chatWithHero(
   heroId: string,
   history: GeminiMessage[],
   userMessage: string,
-  lang: 'en' | 'am',
 ): Promise<string> {
   const persona = HERO_SYSTEM_PROMPTS[heroId];
   if (!persona) throw new Error(`Unknown hero: ${heroId}`);
 
-  const langNote = lang === 'am'
-    ? '\n\nIMPORTANT: The user is speaking Amharic. Respond ENTIRELY in Amharic (Ethiopic script).'
-    : '';
-
-  return generateContent(persona + langNote, history, userMessage);
+  return generateContent(persona, history, userMessage);
 }
 
 // ─── Story Narration ─────────────────────────────────────────────────────────
@@ -172,11 +167,10 @@ export async function narrateStoryScene(
   sceneTitle: string,
   sceneContent: string,
   userQuestion: string,
-  lang: 'en' | 'am',
 ): Promise<string> {
   const systemPrompt = `You are an expert historian and immersive storyteller specializing in 
 Ethiopian history, specifically the Battle of Adwa (1896). You provide vivid, engaging, 
-historically accurate responses that bring the era to life. Respond in ${lang === 'am' ? 'Amharic (Ethiopic script)' : 'English'}.
+historically accurate responses that bring the era to life. Respond in English.
 Keep responses to 2–3 paragraphs.`;
 
   const context = `Current story chapter: "${sceneTitle}"\n\nChapter content: ${sceneContent}`;
@@ -187,12 +181,10 @@ Keep responses to 2–3 paragraphs.`;
 export async function explainQuizAnswer(
   question: string,
   correct: string,
-  lang: 'en' | 'am',
 ): Promise<string> {
   const systemPrompt = `You are an AI history tutor teaching about the Battle of Adwa (1896). 
 Provide a brief, engaging, accurate explanation of why the answer is correct. 
-Respond in ${lang === 'am' ? 'Amharic (Ethiopic script)' : 'English'}. 
-Keep response to 2–3 sentences.`;
+Respond in English. Keep response to 2–3 sentences.`;
 
   return generateContent(
     systemPrompt,
@@ -201,31 +193,16 @@ Keep response to 2–3 sentences.`;
   );
 }
 
-// ─── Dynamic Translation ──────────────────────────────────────────────────────
-// Used to translate AI-generated responses that come back in English
-// when user is in Amharic mode, or vice versa.
-export async function translateText(text: string, targetLang: 'en' | 'am'): Promise<string> {
-  const langName = targetLang === 'am' ? 'Amharic (using Ethiopic script ፊደላት)' : 'English';
-  const systemPrompt = `You are a professional translator specializing in English and Amharic 
-with deep knowledge of Ethiopian history and culture. Translate naturally and accurately. 
-Output only the translated text, nothing else.`;
 
-  return generateContent(
-    systemPrompt,
-    [],
-    `Translate the following text to ${langName}:\n\n${text}`,
-  );
-}
 
 // ─── Strategy Insight ─────────────────────────────────────────────────────────
 export async function getStrategyInsight(
   topic: string,
   side: 'ethiopian' | 'italian' | 'geography',
-  lang: 'en' | 'am',
 ): Promise<string> {
   const systemPrompt = `You are a military historian specializing in African colonial history 
 and the Battle of Adwa. Provide a concise, insightful analysis of military strategies. 
-Respond in ${lang === 'am' ? 'Amharic (Ethiopic script)' : 'English'}. 2–3 sentences only.`;
+Respond in English. 2–3 sentences only.`;
 
   return generateContent(
     systemPrompt,
@@ -238,6 +215,5 @@ export default {
   chatWithHero,
   narrateStoryScene,
   explainQuizAnswer,
-  translateText,
   getStrategyInsight,
 };

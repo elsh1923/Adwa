@@ -44,9 +44,7 @@ const AnimatedCounter: React.FC<{ target: string }> = ({ target }) => {
    HOME PAGE COMPONENT
    ──────────────────────────────── */
 const Home: React.FC = () => {
-  const { t, lang } = useLanguage();
-
-  const amFont = lang === 'am' ? 'Noto Serif Ethiopic, serif' : undefined;
+  const { t } = useLanguage();
 
   const STATS = [
     { value: '100K+', label: t('stats.warriors'), icon: '⚔️' },
@@ -124,7 +122,7 @@ const Home: React.FC = () => {
 
             {/* Badge */}
             <motion.div variants={fadeUp}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: 99, padding: '0.45rem 1.2rem', fontSize: '0.78rem', fontWeight: 700, letterSpacing: lang === 'en' ? '0.15em' : '0.05em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: amFont }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.25)', borderRadius: 99, padding: '0.45rem 1.2rem', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'inherit' }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold)', animation: 'pulseGold 2s ease-in-out infinite' }} />
                 {t('home.badge')}
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold)', animation: 'pulseGold 2s ease-in-out infinite 0.5s' }} />
@@ -133,7 +131,7 @@ const Home: React.FC = () => {
 
             {/* Heading */}
             <motion.div variants={fadeUp}>
-              <h1 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(3rem, 8vw, 6.5rem)', fontWeight: 700, lineHeight: 1.05, color: 'var(--text)', letterSpacing: '-0.02em' }}>
+              <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(3rem, 8vw, 6.5rem)', fontWeight: 700, lineHeight: 1.05, color: 'var(--text)', letterSpacing: '-0.02em' }}>
                 <span style={{ display: 'block', background: 'linear-gradient(135deg, #f0d060 0%, #d4af37 40%, #c4902c 80%, #8b6914 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   {t('home.title1')}
                 </span>
@@ -152,21 +150,21 @@ const Home: React.FC = () => {
             </motion.div>
 
             {/* Subtitle */}
-            <motion.p variants={fadeUp} style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)', color: 'var(--text-dim)', maxWidth: 660, lineHeight: 1.8, fontFamily: amFont }}>
+            <motion.p variants={fadeUp} style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)', color: 'var(--text-dim)', maxWidth: 660, lineHeight: 1.8, fontFamily: 'inherit' }}>
               {t('home.subtitle')}
             </motion.p>
 
             {/* Primary CTAs */}
             <motion.div variants={fadeUp} style={{ display: 'flex', flexWrap: 'wrap', gap: '0.85rem', justifyContent: 'center', marginTop: '0.5rem' }}>
-              <NavLink to="/story" className="btn-primary" id="cta-start-story" style={{ fontSize: '1rem', padding: '0.9rem 2.25rem', fontFamily: amFont }}>
+              <NavLink to="/story" className="btn-primary" id="cta-start-story" style={{ fontSize: '1rem', padding: '0.9rem 2.25rem', fontFamily: 'inherit' }}>
                 <Play size={18} fill="currentColor" />
                 {t('home.cta1')}
               </NavLink>
-              <NavLink to="/chat" className="btn-outline" id="cta-chat-heroes" style={{ fontFamily: amFont }}>
+              <NavLink to="/chat" className="btn-outline" id="cta-chat-heroes" style={{ fontFamily: 'inherit' }}>
                 <MessageSquare size={18} />
                 {t('home.cta2')}
               </NavLink>
-              <NavLink to="/quiz" className="btn-ghost" id="cta-take-quiz" style={{ fontFamily: amFont }}>
+              <NavLink to="/quiz" className="btn-ghost" id="cta-take-quiz" style={{ fontFamily: 'inherit' }}>
                 <HelpCircle size={16} />
                 {t('home.cta3')}
               </NavLink>
@@ -179,7 +177,7 @@ const Home: React.FC = () => {
                 { to: '/timeline', label: t('home.cta5'), icon: <Clock size={14} /> },
               ].map(({ to, label, icon }) => (
                 <NavLink key={to} to={to}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', fontWeight: 500, color: 'var(--text-dim)', padding: '0.4rem 0.9rem', borderRadius: 99, border: '1px solid var(--border-subtle)', transition: 'var(--transition)', fontFamily: amFont }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.82rem', fontWeight: 500, color: 'var(--text-dim)', padding: '0.4rem 0.9rem', borderRadius: 99, border: '1px solid var(--border-subtle)', transition: 'var(--transition)', fontFamily: 'inherit' }}
                   onMouseEnter={e => { e.currentTarget.style.color = 'var(--gold)'; e.currentTarget.style.borderColor = 'rgba(212,175,55,0.3)'; }}
                   onMouseLeave={e => { e.currentTarget.style.color = 'var(--text-dim)'; e.currentTarget.style.borderColor = 'var(--border-subtle)'; }}
                 >
@@ -216,9 +214,9 @@ const Home: React.FC = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 1 }}
-              style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--text-muted)', fontFamily: amFont }}
+              style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--text-muted)', fontFamily: 'inherit' }}
             >
-              {lang === 'am' ? 'የዓድዋ ጀግኖች' : 'The Heroes of Adwa'}
+              The Heroes of Adwa
             </motion.div>
           </div>
         </div>
@@ -242,10 +240,10 @@ const Home: React.FC = () => {
                 style={{ textAlign: 'center', padding: '1.75rem 1rem', borderRadius: 16, background: 'rgba(18,20,24,0.6)', border: '1px solid var(--border-subtle)', transition: 'var(--transition)' }}
                 whileHover={{ borderColor: 'rgba(212,175,55,0.3)', boxShadow: '0 0 30px rgba(212,175,55,0.1)', y: -4 }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{icon}</div>
-                <div style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 700, color: 'var(--gold)', lineHeight: 1.1 }}>
+                <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 700, color: 'var(--gold)', lineHeight: 1.1 }}>
                   <AnimatedCounter target={value} />
                 </div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', marginTop: '0.3rem', fontFamily: amFont, letterSpacing: lang === 'en' ? '0.08em' : '0.02em' }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', marginTop: '0.3rem', fontFamily: 'inherit', letterSpacing: '0.08em' }}>
                   {label}
                 </div>
               </motion.div>
@@ -258,9 +256,9 @@ const Home: React.FC = () => {
       <section id="features" style={{ padding: '6rem 0', position: 'relative', zIndex: 5 }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={stagger} style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <motion.div variants={fadeUp} className="section-eyebrow" style={{ fontFamily: amFont, letterSpacing: lang === 'am' ? '0.05em' : undefined }}>{t('features.eyebrow')}</motion.div>
-            <motion.h2 variants={fadeUp} className="section-title" style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : undefined }}>{t('features.title')}</motion.h2>
-            <motion.p variants={fadeUp} style={{ color: 'var(--text-dim)', maxWidth: 580, margin: '0 auto', lineHeight: 1.8, fontFamily: amFont }}>{t('features.subtitle')}</motion.p>
+            <motion.div variants={fadeUp} className="section-eyebrow" style={{ fontFamily: 'inherit' }}>{t('features.eyebrow')}</motion.div>
+            <motion.h2 variants={fadeUp} className="section-title" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{t('features.title')}</motion.h2>
+            <motion.p variants={fadeUp} style={{ color: 'var(--text-dim)', maxWidth: 580, margin: '0 auto', lineHeight: 1.8, fontFamily: 'inherit' }}>{t('features.subtitle')}</motion.p>
           </motion.div>
 
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} variants={stagger}
@@ -272,7 +270,7 @@ const Home: React.FC = () => {
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.borderColor = 'var(--border-subtle)'; el.style.boxShadow = 'none'; }}>
 
                 <div style={{ position: 'absolute', top: 0, right: 0, width: 120, height: 120, background: `radial-gradient(circle at top right, ${color}12, transparent 70%)`, pointerEvents: 'none' }} />
-                <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color, background: color + '18', border: `1px solid ${color}35`, borderRadius: 99, padding: '0.2rem 0.6rem', fontFamily: amFont }}>
+                <div style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color, background: color + '18', border: `1px solid ${color}35`, borderRadius: 99, padding: '0.2rem 0.6rem', fontFamily: 'inherit' }}>
                   {badge}
                 </div>
 
@@ -281,16 +279,16 @@ const Home: React.FC = () => {
                     {emoji}
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: '0.15rem', fontFamily: amFont }}>{subtitle}</div>
-                    <h3 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text)' }}>{title}</h3>
+                    <div style={{ fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: '0.15rem', fontFamily: 'inherit' }}>{subtitle}</div>
+                    <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text)' }}>{title}</h3>
                   </div>
                 </div>
 
                 <div style={{ height: 1, background: `linear-gradient(to right, ${color}30, transparent)` }} />
-                <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: 1.8, flexGrow: 1, fontFamily: amFont }}>{desc}</p>
+                <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: 1.8, flexGrow: 1, fontFamily: 'inherit' }}>{desc}</p>
 
                 <NavLink to={path} id={`feature-link-${id}`}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 700, color, marginTop: 'auto', transition: 'var(--transition)', fontFamily: amFont }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 700, color, marginTop: 'auto', transition: 'var(--transition)', fontFamily: 'inherit' }}
                   onMouseEnter={e => (e.currentTarget.style.gap = '0.75rem')}
                   onMouseLeave={e => (e.currentTarget.style.gap = '0.4rem')}>
                   {t('features.explore')} {title} <ArrowRight size={16} />
@@ -306,9 +304,9 @@ const Home: React.FC = () => {
         <div className="container">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={stagger}>
             <motion.div variants={fadeUp} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <div className="section-eyebrow" style={{ fontFamily: amFont }}>{t('heroes.eyebrow')}</div>
-              <h2 className="section-title" style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : undefined }}>{t('heroes.title')}</h2>
-              <p style={{ color: 'var(--text-dim)', maxWidth: 520, margin: '0 auto', lineHeight: 1.8, fontFamily: amFont }}>{t('heroes.subtitle')}</p>
+              <div className="section-eyebrow" style={{ fontFamily: 'inherit' }}>{t('heroes.eyebrow')}</div>
+              <h2 className="section-title" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{t('heroes.title')}</h2>
+              <p style={{ color: 'var(--text-dim)', maxWidth: 520, margin: '0 auto', lineHeight: 1.8, fontFamily: 'inherit' }}>{t('heroes.subtitle')}</p>
             </motion.div>
 
             <motion.div variants={stagger} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
@@ -322,12 +320,12 @@ const Home: React.FC = () => {
                     <img src={image} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                   <div>
-                    <h3 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.2rem' }}>{name}</h3>
-                    <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color, fontFamily: amFont }}>{role}</span>
+                    <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.2rem' }}>{name}</h3>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color, fontFamily: 'inherit' }}>{role}</span>
                   </div>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--text-dim)', lineHeight: 1.7, fontFamily: amFont }}>{desc}</p>
+                  <p style={{ fontSize: '0.875rem', color: 'var(--text-dim)', lineHeight: 1.7, fontFamily: 'inherit' }}>{desc}</p>
                   <NavLink to="/chat"
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', fontWeight: 700, color, padding: '0.5rem 1.25rem', borderRadius: 99, background: color + '12', border: `1px solid ${color}30`, transition: 'var(--transition)', marginTop: '0.25rem', fontFamily: amFont }}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', fontWeight: 700, color, padding: '0.5rem 1.25rem', borderRadius: 99, background: color + '12', border: `1px solid ${color}30`, transition: 'var(--transition)', marginTop: '0.25rem', fontFamily: 'inherit' }}
                     onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = color + '25')}
                     onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = color + '12')}>
                     <MessageSquare size={14} /> {t('heroes.chat_btn')}
@@ -337,7 +335,7 @@ const Home: React.FC = () => {
             </motion.div>
 
             <motion.div variants={fadeUp} style={{ textAlign: 'center' }}>
-              <NavLink to="/chat" className="btn-outline" id="see-all-heroes" style={{ padding: '0.9rem 2.5rem', fontFamily: amFont }}>
+              <NavLink to="/chat" className="btn-outline" id="see-all-heroes" style={{ padding: '0.9rem 2.5rem', fontFamily: 'inherit' }}>
                 <MessageSquare size={18} />
                 {t('heroes.all_btn')}
               </NavLink>
@@ -370,9 +368,9 @@ const Home: React.FC = () => {
 
             {/* Text Side */}
             <motion.div variants={fadeUp}>
-              <div className="section-eyebrow" style={{ fontFamily: amFont }}>{t('mission.eyebrow')}</div>
-              <h2 className="section-title" style={{ textAlign: 'left', fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : undefined, marginBottom: '2rem' }}>{t('mission.title')}</h2>
-              <p style={{ color: 'var(--text-dim)', lineHeight: 1.85, fontSize: '1.05rem', marginBottom: '1.5rem', fontFamily: amFont }}>{t('mission.p1')}</p>
+              <div className="section-eyebrow" style={{ fontFamily: 'inherit' }}>{t('mission.eyebrow')}</div>
+              <h2 className="section-title" style={{ textAlign: 'left', fontFamily: 'Cormorant Garamond, serif', marginBottom: '2rem' }}>{t('mission.title')}</h2>
+              <p style={{ color: 'var(--text-dim)', lineHeight: 1.85, fontSize: '1.05rem', marginBottom: '1.5rem', fontFamily: 'inherit' }}>{t('mission.p1')}</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem' }}>
                 {[
@@ -380,7 +378,7 @@ const Home: React.FC = () => {
                   { icon: <Shield size={18} />,  titleKey: 'mission.accurate' },
                   { icon: <Globe size={18} />,   titleKey: 'mission.pan' },
                 ].map(({ icon, titleKey }) => (
-                  <div key={titleKey} style={{ display: 'flex', gap: '1rem', alignItems: 'center', color: 'var(--text)', fontFamily: amFont, fontSize: '0.95rem' }}>
+                  <div key={titleKey} style={{ display: 'flex', gap: '1rem', alignItems: 'center', color: 'var(--text)', fontFamily: 'inherit', fontSize: '0.95rem' }}>
                     <div style={{ color: 'var(--gold)', flexShrink: 0 }}>{icon}</div>
                     <span style={{ fontWeight: 600 }}>{t(titleKey)}</span>
                   </div>
@@ -398,17 +396,17 @@ const Home: React.FC = () => {
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={stagger}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.75rem' }}>
             <motion.div variants={fadeUp} style={{ fontSize: '3rem', animation: 'floatY 3s ease-in-out infinite' }}>🏆</motion.div>
-            <motion.h2 variants={fadeUp} style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 700, background: 'linear-gradient(135deg, var(--gold-light), var(--gold), #c4902c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', maxWidth: 700, lineHeight: 1.25 }}>
+            <motion.h2 variants={fadeUp} style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 700, background: 'linear-gradient(135deg, var(--gold-light), var(--gold), #c4902c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', maxWidth: 700, lineHeight: 1.25 }}>
               {t('cta.title')}
             </motion.h2>
-            <motion.p variants={fadeUp} style={{ color: 'var(--text-dim)', fontSize: '1.1rem', maxWidth: 520, lineHeight: 1.8, fontFamily: amFont }}>
+            <motion.p variants={fadeUp} style={{ color: 'var(--text-dim)', fontSize: '1.1rem', maxWidth: 520, lineHeight: 1.8, fontFamily: 'inherit' }}>
               {t('cta.subtitle')}
             </motion.p>
             <motion.div variants={fadeUp} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <NavLink to="/story" className="btn-primary" id="final-cta-story" style={{ padding: '1rem 2.5rem', fontSize: '1rem', fontFamily: amFont }}>
+              <NavLink to="/story" className="btn-primary" id="final-cta-story" style={{ padding: '1rem 2.5rem', fontSize: '1rem', fontFamily: 'inherit' }}>
                 <Play size={18} fill="currentColor" /> {t('home.cta1')}
               </NavLink>
-              <NavLink to="/chat" className="btn-outline" id="final-cta-chat" style={{ padding: '1rem 2.5rem', fontFamily: amFont }}>
+              <NavLink to="/chat" className="btn-outline" id="final-cta-chat" style={{ padding: '1rem 2.5rem', fontFamily: 'inherit' }}>
                 <MessageSquare size={18} /> {t('home.cta2')}
               </NavLink>
             </motion.div>

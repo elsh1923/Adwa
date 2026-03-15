@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, ArrowRight, RefreshCcw, HelpCircle, Loader2 } from 'lucide-react';
+import { ArrowRight, RefreshCcw, HelpCircle, Loader2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { explainQuizAnswer } from '../services/gemini';
@@ -109,8 +109,7 @@ const quizData: Question[] = [
 ];
 
 const Quiz: React.FC = () => {
-  const { t, lang } = useLanguage();
-  const amFont = lang === 'am' ? 'Noto Serif Ethiopic, sans-serif' : undefined;
+  const { t } = useLanguage();
 
   const [currentStep, setCurrentStep] = useState(0);
   const [score, setScore] = useState(0);
@@ -121,9 +120,9 @@ const Quiz: React.FC = () => {
   const [loadingAI, setLoadingAI] = useState(false);
 
   const q = quizData[currentStep];
-  const question = lang === 'am' ? q.q_am : q.q_en;
-  const options   = lang === 'am' ? q.options_am : q.options_en;
-  const staticExplanation = lang === 'am' ? q.explanation_am : q.explanation_en;
+  const question = q.q_en;
+  const options   = q.options_en;
+  const staticExplanation = q.explanation_en;
 
   const handleOptionClick = async (idx: number) => {
     if (isAnswered) return;
@@ -134,7 +133,7 @@ const Quiz: React.FC = () => {
     // Fetch Gemini explanation
     setLoadingAI(true);
     try {
-      const reply = await explainQuizAnswer(question, options[q.correct], lang);
+      const reply = await explainQuizAnswer(question, options[q.correct]);
       setAiExplanation(reply);
     } catch {
       setAiExplanation(null); // fallback to static
@@ -176,8 +175,8 @@ const Quiz: React.FC = () => {
           {getScoreEmoji()}
         </div>
         <div>
-          <h2 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 700, color: 'var(--text)', marginBottom: '0.5rem' }}>{t('quiz.complete')}</h2>
-          <p style={{ color: 'var(--text-dim)', fontSize: '1.1rem', fontFamily: amFont }}>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 700, color: 'var(--text)', marginBottom: '0.5rem' }}>{t('quiz.complete')}</h2>
+          <p style={{ color: 'var(--text-dim)', fontSize: '1.1rem', fontFamily: 'inherit' }}>
             {t('quiz.score')} <span style={{ color: 'var(--gold)', fontWeight: 700 }}>{score} / {quizData.length}</span>
           </p>
         </div>
@@ -189,10 +188,10 @@ const Quiz: React.FC = () => {
         </div>
 
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <button onClick={resetQuiz} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: amFont }}>
+          <button onClick={resetQuiz} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'inherit' }}>
             <RefreshCcw size={16} /> {t('quiz.try_again')}
           </button>
-          <NavLink to="/" className="btn-ghost" style={{ fontFamily: amFont }}>
+          <NavLink to="/" className="btn-ghost" style={{ fontFamily: 'inherit' }}>
             {t('quiz.back_home')}
           </NavLink>
         </div>
@@ -205,10 +204,10 @@ const Quiz: React.FC = () => {
     <div style={{ maxWidth: 760, margin: '3rem auto', padding: '0 0 4rem' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', fontWeight: 700, color: 'var(--text)' }}>
+        <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.4rem, 3vw, 1.9rem)', fontWeight: 700, color: 'var(--text)' }}>
           {t('quiz.title')}
         </h2>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: 99, padding: '0.4rem 1rem', color: 'var(--gold)', fontWeight: 700, fontSize: '0.85rem', fontFamily: amFont, flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(212,175,55,0.08)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: 99, padding: '0.4rem 1rem', color: 'var(--gold)', fontWeight: 700, fontSize: '0.85rem', fontFamily: 'inherit', flexShrink: 0 }}>
           {t('quiz.question_of')} {currentStep + 1} {t('quiz.of')} {quizData.length}
         </div>
       </div>
@@ -223,7 +222,7 @@ const Quiz: React.FC = () => {
       <AnimatePresence mode="wait">
         <motion.div key={currentStep} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}
           style={{ background: 'rgba(14,16,20,0.85)', border: '1px solid var(--border-subtle)', borderRadius: 22, padding: '2rem', marginBottom: '1rem' }}>
-          <h3 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', fontWeight: 700, color: 'var(--text)', marginBottom: '1.75rem', lineHeight: 1.5 }}>
+          <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', fontWeight: 700, color: 'var(--text)', marginBottom: '1.75rem', lineHeight: 1.5 }}>
             {question}
           </h3>
 
@@ -240,13 +239,13 @@ const Quiz: React.FC = () => {
 
               return (
                 <button key={i} disabled={isAnswered} onClick={() => handleOptionClick(i)}
-                  style={{ padding: '1rem 1.25rem', borderRadius: 14, border: `1.5px solid ${border}`, background: bg, color, display: 'flex', alignItems: 'center', gap: '1rem', cursor: isAnswered ? 'default' : 'pointer', textAlign: 'left', transition: 'all 0.25s', fontFamily: amFont, opacity: isAnswered && i !== q.correct && i !== selectedOption ? 0.45 : 1 }}
+                  style={{ padding: '1rem 1.25rem', borderRadius: 14, border: `1.5px solid ${border}`, background: bg, color, display: 'flex', alignItems: 'center', gap: '1rem', cursor: isAnswered ? 'default' : 'pointer', textAlign: 'left', transition: 'all 0.25s', fontFamily: 'inherit', opacity: isAnswered && i !== q.correct && i !== selectedOption ? 0.45 : 1 }}
                   onMouseEnter={e => { if (!isAnswered) { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212,175,55,0.4)'; (e.currentTarget as HTMLElement).style.background = 'rgba(212,175,55,0.05)'; } }}
                   onMouseLeave={e => { if (!isAnswered) { (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-subtle)'; (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.03)'; } }}>
                   <div style={{ width: 36, height: 36, borderRadius: '50%', border: `1.5px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.85rem', flexShrink: 0, color }}>
                     {String.fromCharCode(65 + i)}
                   </div>
-                  <span style={{ fontSize: lang === 'am' ? '0.9rem' : '1rem' }}>{opt}</span>
+                  <span style={{ fontSize: '1rem' }}>{opt}</span>
                 </button>
               );
             })}
@@ -264,15 +263,15 @@ const Quiz: React.FC = () => {
                 : <HelpCircle size={18} style={{ color: 'var(--gold)', flexShrink: 0, marginTop: '0.1rem' }} />
               }
               <div>
-                <p style={{ fontWeight: 700, color: 'var(--gold)', marginBottom: '0.35rem', fontSize: '0.85rem', fontFamily: amFont }}>{t('quiz.ai_insight')}</p>
-                <p style={{ color: 'var(--text-dim)', lineHeight: 1.8, fontSize: '0.9rem', fontFamily: amFont }}>
-                  {loadingAI ? (lang === 'am' ? 'Gemini ሞዴሉ እያሰበ ነው…' : 'Gemini is thinking…') : (aiExplanation ?? staticExplanation)}
+                <p style={{ fontWeight: 700, color: 'var(--gold)', marginBottom: '0.35rem', fontSize: '0.85rem', fontFamily: 'inherit' }}>{t('quiz.ai_insight')}</p>
+                <p style={{ color: 'var(--text-dim)', lineHeight: 1.8, fontSize: '0.9rem', fontFamily: 'inherit' }}>
+                  {loadingAI ? 'Gemini is thinking…' : (aiExplanation ?? staticExplanation)}
                 </p>
               </div>
             </div>
 
             <button onClick={nextQuestion} className="btn-primary"
-              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '1rem', fontSize: '1rem', fontFamily: amFont }}>
+              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '1rem', fontSize: '1rem', fontFamily: 'inherit' }}>
               {currentStep === quizData.length - 1 ? t('quiz.results') : t('quiz.next')} <ArrowRight size={20} />
             </button>
           </motion.div>

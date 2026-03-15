@@ -1,81 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+
 import { Calendar, Shield, Sword, Award, Flag, MapPin, CheckCircle2 } from 'lucide-react';
 
 interface TimelineEvent {
   date: string;
   title: string;
   desc: string;
-  amDate: string;
-  amTitle: string;
-  amDesc: string;
   icon: React.ReactNode;
   color: string;
 }
 
 const TimelinePage: React.FC = () => {
-  const { lang } = useLanguage();
-  const amFont = lang === 'am' ? 'Noto Serif Ethiopic, sans-serif' : undefined;
 
   const events: TimelineEvent[] = [
     {
       date: 'May 2, 1889',
-      amDate: 'ሚያዝያ ፳፬ ቀን ፲፰፻፹፩ ዓ.ም',
       title: 'Treaty of Wuchale Signed',
-      amTitle: 'የውጫሌ ውል ተፈረመ',
       desc: 'Signed between Emperor Menelik II and Italy. A translation discrepancy in Article XVII later became the catalyst for conflict.',
-      amDesc: 'በዳግማዊ ምኒልክ እና በኢጣሊያ መካከል የተፈረመ ውል፤ በታዋቂው አንቀጽ ፲፯ ትርጉም ልዩነት ምክንያት ለጦርነቱ መነሻ ሆነ።',
       icon: <Award size={24} />,
       color: '#d4af37',
     },
     {
       date: 'September 1895',
-      amDate: 'መስከረም ፲፰፻፹፰ ዓ.ም',
       title: 'Mobilization Proclamation',
-      amTitle: 'የክተት አዋጅ',
       desc: 'Emperor Menelik II issued the famous call to arms, mobilizing over 100,000 warriors from across Ethiopia to defend the nation.',
-      amDesc: 'ዳግማዊ ምኒልክ ታሪካዊውን የክተት አዋጅ አወጁ፤ ከ፻ ሺህ በላይ ተዋጊዎች ከሁሉም የሀገሪቱ ክፍሎች ለነጻነት ተሰባሰቡ።',
       icon: <Flag size={24} />,
       color: '#1a5c38',
     },
     {
       date: 'December 7, 1895',
-      amDate: 'ሕዳር ፳፰ ቀን ፲፰፻፹፰ ዓ.ም',
       title: 'Battle of Amba Alagi',
-      amTitle: 'የአምባላጌ ውጊያ',
       desc: 'Ethiopian forces led by Ras Makonnen and Fitawrari Gebeyehu achieved a major victory, forcing Italian retreat.',
-      amDesc: 'በራስ መኮንን እና በፊታውራሪ ገበየሁ የሚመራው የኢትዮጵያ ጦር ታላቅ ድል ተቀዳጀ፤ የኢጣሊያ ጦር ወደኋላ እንዲያፈገፍግ ተገደደ።',
       icon: <Sword size={24} />,
       color: '#8b0000',
     },
     {
       date: 'Jan 1896',
-      amDate: 'ጥር ፲፰፻፹፰ ዓ.ም',
       title: 'Siege of Mekelle',
-      amTitle: 'የመቀሌ ከበባ',
       desc: 'Empress Taytu Betul masterminded the strategy to cut off the Italian water supply at the Enda Yesus fort.',
-      amDesc: 'እቴጌ ጣይቱ ብጡል እንዳየሱስ ምሽግ የነበረውን የኢጣሊያ ጦር የውሃ ምንጭ በመቁረጥ ስልታዊ በሆነ መንገድ እንዲሸነፍ አደረጉ።',
       icon: <MapPin size={24} />,
       color: '#2e8b57',
     },
     {
       date: 'March 1, 1896',
-      amDate: 'መጋቢት ፳፫ ቀን ፲፰፻፹፰ ዓ.ም',
       title: 'The Great Victory at Adwa',
-      amTitle: 'ታላቁ የዓድዋ ድል',
       desc: 'The decisive battle. Ethiopian unity and strategy crushed the Italian columns, securing lasting independence for the nation.',
-      amDesc: 'ወሳኙ ውጊያ፤ የኢትዮጵያውያን አንድነት እና ስልት የኢጣሊያን ጦር አድቅቆ የሀገሪቱን ሉዓላዊነት ለዘላለሙ አረጋገጠ።',
       icon: <Shield size={24} />,
       color: '#d4af37',
     },
     {
       date: 'October 26, 1896',
-      amDate: 'ጥቅምት ፲፮ ቀን ፲፰፻፹፱ ዓ.ም',
       title: 'Treaty of Addis Ababa',
-      amTitle: 'የአዲስ አበባ ውል',
       desc: 'Italy formally recognized Ethiopia\'s full and unconditional independence, abrogating the Treaty of Wuchale.',
-      amDesc: 'ኢጣሊያ የኢትዮጵያን ሙሉ ነጻነት በይፋ መሰከረች፤ የውጫሌ ውልም በይፋ ተሰረዘ።',
       icon: <CheckCircle2 size={24} />,
       color: '#d4af37',
     },
@@ -87,16 +64,14 @@ const TimelinePage: React.FC = () => {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="section-eyebrow" style={{ fontFamily: amFont }}>
-              {lang === 'am' ? 'ታሪካዊ ጉዞ' : 'Historical Journey'}
+            <div className="section-eyebrow" style={{ fontFamily: 'inherit' }}>
+              Historical Journey
             </div>
-            <h1 className="section-title" style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif' }}>
-              {lang === 'am' ? 'የዓድዋ የጊዜ ሰሌዳ' : 'Timeline of Adwa'}
+            <h1 className="section-title" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              Timeline of Adwa
             </h1>
-            <p style={{ color: 'var(--text-dim)', maxWidth: 660, margin: '0 auto', lineHeight: 1.8, fontFamily: amFont }}>
-              {lang === 'am' 
-                ? 'ከመነሻው እስከ ታላቁ ድል — የኢትዮጵያን ነጻነት ያረጋገጡ ወሳኝ ክስተቶች።' 
-                : 'From initial tensions to the absolute victory — follow the pivotal events that secured Ethiopian sovereignty.'}
+            <p style={{ color: 'var(--text-dim)', maxWidth: 660, margin: '0 auto', lineHeight: 1.8, fontFamily: 'inherit' }}>
+              From initial tensions to the absolute victory — follow the pivotal events that secured Ethiopian sovereignty.
             </p>
           </motion.div>
         </div>
@@ -121,8 +96,6 @@ const TimelinePage: React.FC = () => {
                 key={index} 
                 event={event} 
                 index={index} 
-                amFont={amFont} 
-                isAm={lang === 'am'} 
               />
             ))}
           </div>
@@ -144,10 +117,8 @@ const TimelinePage: React.FC = () => {
 
 const TimelineEventItem: React.FC<{ 
   event: TimelineEvent, 
-  index: number, 
-  amFont?: string, 
-  isAm: boolean 
-}> = ({ event, index, amFont, isAm }) => {
+  index: number 
+}> = ({ event, index }) => {
   const isLeft = index % 2 === 0;
 
   return (
@@ -200,7 +171,7 @@ const TimelineEventItem: React.FC<{
             style={{ textAlign: 'right' }}
             className="timeline-content-wrapper"
           >
-            <EventCard event={event} amFont={amFont} isAm={isAm} isLeft={true} />
+            <EventCard event={event} isLeft={true} />
           </motion.div>
         ) : <div className="timeline-spacer" />}
 
@@ -214,7 +185,7 @@ const TimelineEventItem: React.FC<{
             style={{ textAlign: 'left' }}
             className="timeline-content-wrapper"
           >
-            <EventCard event={event} amFont={amFont} isAm={isAm} isLeft={false} />
+            <EventCard event={event} isLeft={false} />
           </motion.div>
         ) : <div className="timeline-spacer" />}
       </div>
@@ -224,10 +195,8 @@ const TimelineEventItem: React.FC<{
 
 const EventCard: React.FC<{ 
   event: TimelineEvent, 
-  amFont?: string, 
-  isAm: boolean, 
   isLeft: boolean 
-}> = ({ event, amFont, isAm, isLeft }) => {
+}> = ({ event, isLeft }) => {
   return (
     <div style={{ 
       background: 'rgba(255,255,255,0.03)', 
@@ -251,27 +220,27 @@ const EventCard: React.FC<{
         marginBottom: '1rem',
         textTransform: 'uppercase',
         letterSpacing: '0.1em',
-        fontFamily: amFont
+        fontFamily: 'inherit'
       }}>
         <Calendar size={12} style={{ display: 'inline', marginRight: '0.5rem', marginBottom: '2px' }} />
-        {isAm ? event.amDate : event.date}
+        {event.date}
       </div>
       <h3 style={{ 
-        fontFamily: isAm ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', 
+        fontFamily: 'Cormorant Garamond, serif', 
         fontSize: '1.5rem', 
         fontWeight: 700, 
         color: 'var(--text)', 
         marginBottom: '0.75rem' 
       }}>
-        {isAm ? event.amTitle : event.title}
+        {event.title}
       </h3>
       <p style={{ 
         color: 'var(--text-dim)', 
         lineHeight: 1.8, 
         fontSize: '0.95rem', 
-        fontFamily: amFont 
+        fontFamily: 'inherit' 
       }}>
-        {isAm ? event.amDesc : event.desc}
+        {event.desc}
       </p>
 
       {/* Connector line for desktop */}

@@ -19,8 +19,7 @@ interface Leader {
 }
 
 const HeroesChat: React.FC = () => {
-  const { t, lang } = useLanguage();
-  const amFont = lang === 'am' ? 'Noto Serif Ethiopic, sans-serif' : undefined;
+  const { t } = useLanguage();
 
   const leaders: Leader[] = [
     {
@@ -127,7 +126,6 @@ const HeroesChat: React.FC = () => {
         selectedLeader.id,
         geminiHistory.current,
         trimmed,
-        lang,
       );
 
       // Update Gemini conversation history
@@ -151,9 +149,9 @@ const HeroesChat: React.FC = () => {
     return (
       <div style={{ padding: '3rem 0' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <div className="section-eyebrow" style={{ fontFamily: amFont }}>{t('heroes.eyebrow')}</div>
-          <h2 className="section-title" style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : undefined }}>{t('chat.title')}</h2>
-          <p style={{ color: 'var(--text-dim)', maxWidth: 560, margin: '0 auto', lineHeight: 1.8, fontFamily: amFont }}>
+          <div className="section-eyebrow" style={{ fontFamily: 'inherit' }}>{t('heroes.eyebrow')}</div>
+          <h2 className="section-title" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{t('chat.title')}</h2>
+          <p style={{ color: 'var(--text-dim)', maxWidth: 560, margin: '0 auto', lineHeight: 1.8, fontFamily: 'inherit' }}>
             {t('chat.subtitle')}
           </p>
         </div>
@@ -204,15 +202,15 @@ const HeroesChat: React.FC = () => {
               </div>
 
               <div>
-                <h3 style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.2rem' }}>
+                <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text)', marginBottom: '0.2rem' }}>
                   {leader.name}
                 </h3>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: leader.color, fontFamily: amFont }}>
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: leader.color, fontFamily: 'inherit' }}>
                   {leader.role}
                 </span>
               </div>
 
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-dim)', lineHeight: 1.7, fontFamily: amFont }}>
+              <p style={{ fontSize: '0.875rem', color: 'var(--text-dim)', lineHeight: 1.7, fontFamily: 'inherit' }}>
                 {leader.desc}
               </p>
 
@@ -222,7 +220,7 @@ const HeroesChat: React.FC = () => {
                 padding: '0.5rem 1.25rem', borderRadius: 99,
                 background: leader.color + '12',
                 border: `1px solid ${leader.color}30`,
-                fontFamily: amFont,
+                fontFamily: 'inherit',
               }}>
                 {t('heroes.chat_btn')} →
               </div>
@@ -265,10 +263,10 @@ const HeroesChat: React.FC = () => {
               {selectedLeader.emoji}
             </div>
             <div>
-              <div style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--text)' }}>
+              <div style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--text)' }}>
                 {selectedLeader.name}
               </div>
-              <div style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: selectedLeader.color, fontFamily: amFont }}>
+              <div style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: selectedLeader.color, fontFamily: 'inherit' }}>
                 {selectedLeader.role}
               </div>
             </div>
@@ -286,7 +284,7 @@ const HeroesChat: React.FC = () => {
           {messages.length === 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-muted)', textAlign: 'center', gap: '0.75rem' }}>
               <div style={{ fontSize: '3rem', opacity: 0.5 }}>{selectedLeader.emoji}</div>
-              <p style={{ fontFamily: amFont, lineHeight: 1.7, maxWidth: 300 }}>
+              <p style={{ fontFamily: 'inherit', lineHeight: 1.7, maxWidth: 300 }}>
                 {t('chat.start_hint')} <em style={{ color: selectedLeader.color }}>{selectedLeader.name}</em>…
               </p>
             </div>
@@ -321,14 +319,14 @@ const HeroesChat: React.FC = () => {
                   fontWeight: m.role === 'user' ? 600 : 400,
                   fontSize: '0.9rem',
                   lineHeight: 1.75,
-                  fontFamily: amFont,
+                  fontFamily: 'inherit',
                   whiteSpace: 'pre-wrap',
                 }}>
                   {m.content}
                   
                   {m.role === 'assistant' && (
                     <button 
-                      onClick={() => isSpeaking ? stop() : speak(m.content, lang, selectedLeader.voiceProfile)}
+                      onClick={() => isSpeaking ? stop() : speak(m.content, selectedLeader.voiceProfile)}
                       style={{ 
                         display: 'block', 
                         marginTop: '0.5rem', 
@@ -373,7 +371,7 @@ const HeroesChat: React.FC = () => {
 
           {/* Error */}
           {error && (
-            <div style={{ background: 'rgba(139,0,0,0.1)', border: '1px solid rgba(139,0,0,0.3)', borderRadius: 12, padding: '0.75rem 1rem', fontSize: '0.85rem', color: '#ff6b6b', fontFamily: amFont }}>
+            <div style={{ background: 'rgba(139,0,0,0.1)', border: '1px solid rgba(139,0,0,0.3)', borderRadius: 12, padding: '0.75rem 1rem', fontSize: '0.85rem', color: '#ff6b6b', fontFamily: 'inherit' }}>
               ⚠️ {error}
             </div>
           )}
@@ -400,7 +398,7 @@ const HeroesChat: React.FC = () => {
                 color: 'var(--text)',
                 fontSize: '0.9rem',
                 outline: 'none',
-                fontFamily: amFont ?? 'Outfit, sans-serif',
+                fontFamily: 'Outfit, sans-serif',
                 transition: 'var(--transition)',
               }}
               onFocus={e => (e.currentTarget.style.borderColor = selectedLeader.color + '60')}

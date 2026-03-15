@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 import { Calendar, Shield, Sword, Award, Flag, MapPin, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { API_BASE } from '../services/apiConfig';
 
 interface TimelineEvent {
   date: string;
@@ -23,7 +24,7 @@ const TimelinePage: React.FC = () => {
   useEffect(() => {
     const fetchTimelineInfo = async () => {
       try {
-        const response = await fetch('/api/knowledge/timeline');
+        const response = await fetch(`${API_BASE}/api/knowledge/timeline`);
         if (!response.ok) throw new Error();
         const data = await response.json();
         

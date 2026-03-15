@@ -4,6 +4,7 @@ import { ArrowRight, RefreshCcw, HelpCircle, Loader2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { explainQuizAnswer } from '../services/gemini';
+import { API_BASE } from '../services/apiConfig';
 
 interface Question {
   q_en: string;
@@ -36,7 +37,7 @@ const Quiz: React.FC = () => {
     setLoadingQuiz(true);
     setFetchError(false);
     try {
-      const resp = await fetch('/api/quiz');
+      const resp = await fetch(`${API_BASE}/api/quiz`);
       if (!resp.ok) throw new Error('Failed');
       const data = await resp.json();
       // Ensure we treat missing amharic properly

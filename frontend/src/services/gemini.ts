@@ -1,4 +1,5 @@
 // ─── Gemini AI Service ──────────────────────────────────────────────────────
+import { API_BASE } from './apiConfig';
 // Uses Google Gemini API for dynamic content: hero chat, story narration,
 // quiz explanations, and translation of AI-generated text.
 
@@ -121,7 +122,7 @@ export async function chatWithHero(
   userMessage: string,
   lang: string = 'en'
 ): Promise<string> {
-  const response = await fetch('/api/chat', {
+  const response = await fetch(`${API_BASE}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ hero: heroId, question: userMessage, lang })

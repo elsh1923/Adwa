@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, User, ScrollText, Loader2, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSpeech } from '../hooks/useSpeech';
+import { API_BASE } from '../services/apiConfig';
 
 const StoryMode: React.FC = () => {
   const { lang, t } = useLanguage();
@@ -43,7 +44,7 @@ const StoryMode: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch(`${API_BASE}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Use 'story' persona from the backend

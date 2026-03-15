@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Info, Loader2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { API_BASE } from '../services/apiConfig';
 
 interface StrategyItem {
   strategy_name: string;
@@ -17,7 +18,7 @@ const StrategyPage: React.FC = () => {
   useEffect(() => {
     const fetchStrategies = async () => {
       try {
-        const response = await fetch('/api/knowledge/strategies');
+        const response = await fetch(`${API_BASE}/api/knowledge/strategies`);
         if (!response.ok) throw new Error();
         const data = await response.json();
         

@@ -170,7 +170,7 @@ const Quiz: React.FC = () => {
   if (showResult) {
     return (
       <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }}
-        style={{ maxWidth: 560, margin: '4rem auto', background: 'rgba(14,16,20,0.9)', border: '1px solid var(--border)', borderRadius: 28, padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', boxShadow: '0 0 60px rgba(212,175,55,0.1)' }}>
+        style={{ maxWidth: 560, margin: '4rem auto', background: 'transparent', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
         <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'rgba(212,175,55,0.12)', border: '2px solid rgba(212,175,55,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>
           {getScoreEmoji()}
         </div>
@@ -222,7 +222,7 @@ const Quiz: React.FC = () => {
       {/* Question card */}
       <AnimatePresence mode="wait">
         <motion.div key={currentStep} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}
-          style={{ background: 'rgba(14,16,20,0.85)', border: '1px solid var(--border-subtle)', borderRadius: 22, padding: '2rem', marginBottom: '1rem' }}>
+          style={{ background: 'transparent', padding: '1rem 0', marginBottom: '1rem' }}>
           <h3 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', fontWeight: 700, color: 'var(--text)', marginBottom: '1.75rem', lineHeight: 1.5 }}>
             {question}
           </h3>

@@ -37,6 +37,11 @@ html {
 body {
   font-family: 'Outfit', system-ui, sans-serif;
   background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
 /* Amharic font override */
 body.lang-am {
@@ -44,11 +49,6 @@ body.lang-am {
 }
 body.lang-am h1, body.lang-am h2, body.lang-am h3 {
   font-family: 'Noto Serif Ethiopic', Georgia, serif;
-}
-  color: var(--text);
-  line-height: 1.65;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
 }
 
 /* ─── Typography ─── */

@@ -99,38 +99,24 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 0, background: 'var(--bg)' }}>
-      {/* ═══ Fixed Background Image ═══ */}
-      <div style={{ 
-        position: 'fixed', 
-        inset: 0, 
-        backgroundImage: 'url("/image/hero_epic.png")', 
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center 75%',
-        backgroundRepeat: 'no-repeat',
-        opacity: 0.15, 
-        filter: 'brightness(0.8) contrast(1.2)', 
-        zIndex: 0,
-        pointerEvents: 'none'
-      }} />
-
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 0, background: 'transparent' }}>
       {/* ═══ HERO ═══ */}
       <section id="hero" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
-        {/* Extra visibility for Hero section only */}
+        {/* High-visibility landing page version of the epic battle image */}
         <div style={{ 
           position: 'absolute', 
           inset: 0, 
           backgroundImage: 'url("/image/hero_epic.png")', 
-          backgroundSize: '100% auto', 
-          backgroundPosition: 'center 30%',
+          backgroundSize: 'cover', 
+          backgroundPosition: 'center 35%',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.55, 
-          filter: 'brightness(0.9) contrast(1.3) saturate(1.1)', 
+          opacity: 0.6, 
+          filter: 'brightness(0.9) contrast(1.4) saturate(1.05)', 
           zIndex: 1 
         }} />
         
-        {/* Fade to fixed background as we scroll */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(8,10,12,0.2) 0%, rgba(8,10,12,0.9) 100%)', pointerEvents: 'none', zIndex: 2 }} />
+        {/* Atmospheric overlays for text readability */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(8,10,12,0.15) 0%, rgba(8,10,12,0.5) 50%, rgba(8,10,12,0.95) 100%)', pointerEvents: 'none', zIndex: 2 }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 10, paddingTop: '6rem', paddingBottom: '8rem' }}>
           <motion.div variants={stagger} initial="hidden" animate="show"
@@ -316,7 +302,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* ═══ HEROES SPOTLIGHT ═══ */}
-      <section id="heroes-spotlight" style={{ padding: '6rem 0', background: 'linear-gradient(180deg, rgba(8,10,12,0.2), rgba(14,12,8,0.8), rgba(8,10,12,0.2))', position: 'relative', zIndex: 5 }}>
+      <section id="heroes-spotlight" style={{ padding: '6rem 0', background: 'linear-gradient(180deg, rgba(8,10,12,0.1), rgba(14,12,8,0.4), rgba(8,10,12,0.1))', position: 'relative', zIndex: 5 }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={stagger}>
             <motion.div variants={fadeUp} style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -360,7 +346,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section id="mission" style={{ padding: '6rem 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'rgba(10,9,6,0.6)', position: 'relative', overflow: 'hidden', zIndex: 5 }}>
+      <section id="mission" style={{ padding: '6rem 0', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', background: 'rgba(10,9,6,0.35)', position: 'relative', overflow: 'hidden', zIndex: 5 }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(212,175,55,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.02) 1px, transparent 1px)', backgroundSize: '40px 40px', pointerEvents: 'none' }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>

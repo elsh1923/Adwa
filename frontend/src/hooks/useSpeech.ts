@@ -22,7 +22,11 @@ export const useSpeech = () => {
     };
   }, []);
 
-  const speak = useCallback((text: string, lang: 'en' | 'am', requestedGender: 'male' | 'female' = 'male') => {
+  const speak = useCallback((
+    text: string, 
+    lang: 'en' | 'am', 
+    profile: 'elderly-male' | 'elderly-female' | 'warrior' | 'strategic' | 'male' | 'female' = 'male'
+  ) => {
     window.speechSynthesis.cancel();
 
     if (!text) return;
@@ -30,49 +34,61 @@ export const useSpeech = () => {
     const cleanText = text.replace(/[*#]/g, '');
     const utterance = new SpeechSynthesisUtterance(cleanText);
     
-    // Set language tags - support wider range of Amharic tags
+    // Set language tags
     utterance.lang = lang === 'am' ? 'am-ET' : 'en-US';
+
+    // Map profiles to low-level parameters
+    const isMale = (profile.includes('male') && !profile.includes('female')) || 
+                   profile === 'warrior' || 
+                   profile === 'strategic';
 
     // Advanced Voice Selection:
     const availableLocaleVoices = voices.filter(v => {
       const vLang = v.lang.toLowerCase();
-      if (lang === 'am') {
-        return vLang.startsWith('am') || vLang.includes('eth');
-      }
+      if (lang === 'am') return vLang.startsWith('am') || vLang.includes('eth');
       return vLang.startsWith('en');
     });
 
     if (availableLocaleVoices.length > 0) {
-      // 1. First priority: High quality voices that match the gender
-      let selectedVoice = availableLocaleVoices.find(v => 
-        (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('google')) &&
-        (v.name.toLowerCase().includes(requestedGender) || 
-         (requestedGender === 'male' && (v.name.includes('David') || v.name.includes('Mark'))) ||
-         (requestedGender === 'female' && (v.name.includes('Zira') || v.name.includes('Sara'))))
+      const genderKey = isMale ? 'male' : 'female';
+      
+      // Filter voices by gender
+      const genderMatchingVoices = availableLocaleVoices.filter(v => 
+        v.name.toLowerCase().includes(genderKey) || 
+        (genderKey === 'male' && (v.name.includes('David') || v.name.includes('Mark') || v.name.includes('George'))) ||
+        (genderKey === 'female' && (v.name.includes('Zira') || v.name.includes('Sara') || v.name.includes('Hazel')))
       );
 
-      // 2. Second priority: Any voice that matches the gender
-      if (!selectedVoice) {
-        selectedVoice = availableLocaleVoices.find(v => 
-          v.name.toLowerCase().includes(requestedGender) ||
-          (requestedGender === 'male' && (v.name.includes('David') || v.name.includes('Mark'))) ||
-          (requestedGender === 'female' && (v.name.includes('Zira') || v.name.includes('Sara')))
-        );
-      }
-
-      // 3. Third priority: High quality voices (any gender)
-      if (!selectedVoice) {
-        selectedVoice = availableLocaleVoices.find(v => 
-          v.name.toLowerCase().includes('natural') || 
-          v.name.toLowerCase().includes('google')
-        );
+      // Try to pick a UNIQUE voice for different profiles if multiple exist
+      let selectedVoice: SpeechSynthesisVoice | undefined;
+      if (genderMatchingVoices.length > 1) {
+        const offset = profile === 'elderly-male' ? 0 : (profile === 'warrior' ? 1 : 2);
+        selectedVoice = genderMatchingVoices[offset % genderMatchingVoices.length];
+      } else {
+        selectedVoice = genderMatchingVoices[0];
       }
 
       utterance.voice = selectedVoice || availableLocaleVoices[0];
     }
 
-    utterance.rate = 0.82; // Deliberate narrator pace
-    utterance.pitch = requestedGender === 'male' ? 0.95 : 1.05;
+    // High-Contrast Audio Tweaks
+    if (profile === 'elderly-male') {
+      utterance.pitch = 0.55; // Very deep, old King
+      utterance.rate = 0.68;  // Very slow and wise
+    } else if (profile === 'elderly-female') {
+      utterance.pitch = 0.90; // Mature, maternal (clearly female)
+      utterance.rate = 0.75;  // Deliberate
+    } else if (profile === 'warrior') {
+      utterance.pitch = 1.30; // High, urgent battle voice
+      utterance.rate = 1.05;  // Faster, energetic
+    } else if (profile === 'strategic') {
+      utterance.pitch = 0.88; // Deep but precise
+      utterance.rate = 0.85;  // Steady
+    } else {
+      utterance.pitch = isMale ? 0.90 : 1.10;
+      utterance.rate = 0.82;
+    }
+
     utterance.volume = 1.0;
 
     utterance.onstart = () => setIsSpeaking(true);

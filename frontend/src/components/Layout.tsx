@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, BookOpen, MessageSquare, Sword, Clock, HelpCircle, Menu, X, Shield } from 'lucide-react';
+import { Home, BookOpen, MessageSquare, Sword, Clock, HelpCircle, Menu, X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -40,6 +40,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Noise texture */}
       <div className="noise-overlay" aria-hidden="true" />
 
+      {/* ═══ Global Fixed Background Image ═══ */}
+      <div style={{ 
+        position: 'fixed', 
+        inset: 0, 
+        backgroundImage: 'url("/image/hero_epic.png")', 
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center 94%',
+        backgroundRepeat: 'no-repeat',
+        opacity: 0.18, 
+        filter: 'brightness(0.9) contrast(1.2)', 
+        zIndex: 0,
+        pointerEvents: 'none'
+      }} />
+
       {/* ── Navigation ── */}
       <nav
         style={{
@@ -65,12 +79,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.85rem 2rem' }}
         >
           {/* Logo */}
-          <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+          <NavLink to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', textDecoration: 'none' }}>
             <div style={{
-              width: 42, height: 42, borderRadius: '50%',
+              width: 54, height: 54, borderRadius: '50%',
               background: 'linear-gradient(135deg, #d4af37, #8b6914)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 20px rgba(212,175,55,0.35)', flexShrink: 0,
+              boxShadow: '0 0 25px rgba(212,175,55,0.3)', flexShrink: 0,
               overflow: 'hidden', border: '1.5px solid rgba(212,175,55,0.5)'
             }}>
               <img 
@@ -84,7 +98,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 {lang === 'am' ? 'ዓድዋ AI' : 'Adwa AI'}
               </span>
               <span style={{ fontSize: '0.62rem', color: 'var(--text-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                {lang === 'am' ? 'ትምህርት ማዕከል' : 'Learning Hub'}
+                {lang === 'am' ? 'ረዳት' : 'Assistant'}
               </span>
             </div>
           </NavLink>
@@ -191,9 +205,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="container" style={{ padding: '3.5rem 2rem 2rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem' }}>
           {/* Brand */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
               <div style={{ 
-                width: 38, height: 38, borderRadius: '50%', 
+                width: 48, height: 48, borderRadius: '50%', 
                 background: 'linear-gradient(135deg, #d4af37, #8b6914)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 overflow: 'hidden', border: '1px solid rgba(212,175,55,0.4)'
@@ -205,7 +219,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 />
               </div>
               <span style={{ fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, serif' : 'Cormorant Garamond, serif', fontSize: '1.1rem', fontWeight: 700, color: 'var(--gold)' }}>
-                {lang === 'am' ? 'ዓድዋ AI ትምህርት ማዕከል' : 'Adwa AI Learning Hub'}
+                {lang === 'am' ? 'ዓድዋ AI ረዳት' : 'Adwa AI Assistant'}
               </span>
             </div>
             <p style={{ color: 'var(--text-dim)', fontSize: '0.875rem', maxWidth: 260, lineHeight: 1.7, fontFamily: lang === 'am' ? 'Noto Serif Ethiopic, sans-serif' : 'inherit' }}>

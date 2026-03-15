@@ -32,7 +32,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.share':   'Share Your Story',
     'footer.resources': 'Educational Resources',
     'footer.feedback': 'Feedback',
-    'footer.copyright': '© 2026 Adwa AI Learning Hub · Celebrating 130 Years of Victory · March 1, 1896',
+    'footer.copyright': '© 2026 Adwa AI Assistant · Celebrating 130 Years of Victory · March 1, 1896',
     'footer.context': 'Historical Context',
     'footer.leaders': 'The Leaders',
     'footer.victory': 'The Victory',
@@ -56,7 +56,7 @@ const translations: Record<Language, Record<string, string>> = {
     'stats.years':        'Years of Inspiration',
 
     // Home features section
-    'features.eyebrow':   'The Learning Hub',
+    'features.eyebrow':   'The Assistant',
     'features.title':     'Five Ways to Experience Adwa',
     'features.subtitle':  'Whether through immersive AI narratives, real-time conversations with historical icons, or strategic deep-dives — every path leads to a richer understanding of Ethiopia\'s greatest victory.',
     'features.explore':   'Explore',
@@ -203,7 +203,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.share':   'ታሪክዎን ያጋሩ',
     'footer.resources': 'የትምህርት ምንጮች',
     'footer.feedback': 'አስተያየት',
-    'footer.copyright': '© 2026 የዓድዋ AI ትምህርት ማዕከል · ፩፻፴ ዓመታት ድሎ · መጋቢት ፳፫ ቀን ፲፰፻፹፰ ዓ.ም',
+    'footer.copyright': '© 2026 የዓድዋ AI ረዳት · ፩፻፴ ዓመታት ድሎ · መጋቢት ፳፫ ቀን ፲፰፻፹፰ ዓ.ም',
     'footer.context': 'ታሪካዊ ዳራ',
     'footer.leaders': 'መሪዎቹ',
     'footer.victory': 'ድሎ',
@@ -227,7 +227,7 @@ const translations: Record<Language, Record<string, string>> = {
     'stats.years':        'ዓመታት መነቃቃት',
 
     // Home features section
-    'features.eyebrow':   'የትምህርት ማዕከሉ',
+    'features.eyebrow':   'ረዳቱ',
     'features.title':     'ዓድዋን ለመለማመድ አምስት መንገዶች',
     'features.subtitle':  'ይዘዋወሩ — ታሪካዊ ትረካ፣ ከምስሎች ጋር ውይይት፣ ወይም ስትራቴጂ — እያንዳንዱ መንገድ ወደ ጥልቅ ሀኔታ ያስወስዳል።',
     'features.explore':   'አስሰስ',

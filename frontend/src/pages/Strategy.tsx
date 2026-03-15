@@ -94,8 +94,8 @@ const StrategyPage: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1rem' }}>
             {activeTab === 'ethiopian' ? (
               <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                style={{ width: 120, height: 120, marginBottom: '0.5rem' }}>
-                <img src="/image/logo.png" alt="Ethiopian Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.4))' }} />
+                style={{ width: 200, height: 200, marginBottom: '0.5rem' }}>
+                <img src="/image/logo.png" alt="Ethiopian Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 25px rgba(212,175,55,0.4))' }} />
               </motion.div>
             ) : (
               <div style={{ width: 96, height: 96, borderRadius: 24, background: `${current.color}12`, border: `1px solid ${current.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

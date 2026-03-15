@@ -1,25 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
-import { useLanguage } from './context/LanguageContext';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import StoryMode from './pages/StoryMode';
 import HeroesChat from './pages/HeroesChat';
 import Strategy from './pages/Strategy';
 import Quiz from './pages/Quiz';
-
-// Placeholder Timeline page
-const Timeline = () => {
-  const { t } = useLanguage();
-  return (
-    <div style={{ padding: '4rem 2rem', textAlign: 'center', color: 'var(--text-dim)' }}>
-      <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', color: 'var(--gold)', marginBottom: '1rem' }}>
-        {t('nav.timeline')}
-      </h2>
-      <p>{t('lang.en') === 'English' ? 'Coming soon — the complete chronological story of Adwa.' : 'በቅርቡ ይመጣል።'}</p>
-    </div>
-  );
-};
+import Timeline from './pages/Timeline';
 
 function AppRoutes() {
   return (

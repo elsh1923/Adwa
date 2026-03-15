@@ -23,7 +23,7 @@ const TimelinePage: React.FC = () => {
   useEffect(() => {
     const fetchTimelineInfo = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/knowledge/timeline');
+        const response = await fetch('/api/knowledge/timeline');
         if (!response.ok) throw new Error();
         const data = await response.json();
         

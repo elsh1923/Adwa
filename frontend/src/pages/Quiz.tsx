@@ -36,7 +36,7 @@ const Quiz: React.FC = () => {
     setLoadingQuiz(true);
     setFetchError(false);
     try {
-      const resp = await fetch('http://localhost:5000/api/quiz');
+      const resp = await fetch('/api/quiz');
       if (!resp.ok) throw new Error('Failed');
       const data = await resp.json();
       // Ensure we treat missing amharic properly

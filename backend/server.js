@@ -29,9 +29,15 @@ app.get('/', (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`===========================================`);
-  console.log(`🚀 ADWA AI BACKEND RUNNING ON PORT: ${PORT}`);
-  console.log(`🌐 API ENDPOINT: http://localhost:${PORT}/api`);
-  console.log(`===========================================`);
-});
+// Export the app for Vercel Serverless Functions
+module.exports = app;
+
+// Start Server locally if not running as a serverless function
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`===========================================`);
+    console.log(`🚀 ADWA AI BACKEND RUNNING ON PORT: ${PORT}`);
+    console.log(`🌐 API ENDPOINT: http://localhost:${PORT}/api`);
+    console.log(`===========================================`);
+  });
+}

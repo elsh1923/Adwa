@@ -17,7 +17,7 @@ const StrategyPage: React.FC = () => {
   useEffect(() => {
     const fetchStrategies = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/knowledge/strategies');
+        const response = await fetch('/api/knowledge/strategies');
         if (!response.ok) throw new Error();
         const data = await response.json();
         

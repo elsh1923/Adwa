@@ -142,7 +142,7 @@ const StoryMode: React.FC = () => {
                 }}>
                   {m.content}
                   
-                  {m.role === 'assistant' && (
+                  {m.role === 'assistant' && lang === 'en' && (
                     <button 
                       onClick={() => isSpeaking ? stop() : speak(m.content, 'male')}
                       style={{ 

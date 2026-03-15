@@ -29,6 +29,9 @@ export const useSpeech = () => {
     window.speechSynthesis.cancel();
 
     if (!text) return;
+    
+    // Safety check: skip if text contains Amharic characters (speech engine is English-only)
+    if (/[\u1200-\u137F]/.test(text)) return;
 
     const cleanText = text.replace(/[*#]/g, '');
     const utterance = new SpeechSynthesisUtterance(cleanText);

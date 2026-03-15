@@ -15,101 +15,13 @@ interface Question {
   explanation_am: string;
 }
 
-const quizData: Question[] = [
-  {
-    q_en: 'In what year did the Battle of Adwa take place?',
-    q_am: 'የዓድዋ ውጊያ የተካሄደው መቼ ነው?',
-    options_en: ['1889', '1896', '1902', '1935'],
-    options_am: ['፲፰፹፩', '፲፰፹፰', '፲፰፺፩', '፲፱፳፭'],
-    correct: 1,
-    explanation_en: 'The Battle of Adwa occurred on March 1, 1896, marking a significant victory for Ethiopia over the Italian invaders.',
-    explanation_am: 'የዓድዋ ውጊያ የካሄደው መጋቢት ፩ ቀን ፲፰፹፰ ዓ.ም ነው — ኢትዮጵያ ቅኝ ሰሪ ኢጣሊያን ያሸነፈችበት ቀን።',
-  },
-  {
-    q_en: 'Which treaty was the primary cause of conflict between Ethiopia and Italy?',
-    q_am: 'ከኢጣሊያ ጋር ጦርነትን ያስከተለው ስምምነት ማነው?',
-    options_en: ['Treaty of Addis Ababa', 'Treaty of Wuchale', 'Berlin Conference', 'Treaty of Rome'],
-    options_am: ['የአዲስ አበባ ስምምነት', 'የዉቻሌ ስምምነት', 'የበርሊን ኮንፈረንስ', 'የሮም ስምምነት'],
-    correct: 1,
-    explanation_en: 'The Treaty of Wuchale (1889) had a discrepancy between the Amharic and Italian versions regarding Ethiopia\'s sovereignty.',
-    explanation_am: 'የዉቻሌ ስምምነት (፲፰፹፩) በሁለቱ ቋንቋዎች ኢትዮጵያ ሉዓላዊ ናት ወይ ብለው ሲጨቃጨቁ ጦርነቱ ሆነ።',
-  },
-  {
-    q_en: 'Who was the primary female military leader and strategist at Adwa?',
-    q_am: 'ዓድዋ ላይ ዋናዋ ሴት ወታደራዊ መሪና ስትራቴጂስት ማናት?',
-    options_en: ['Queen Sheba', 'Empress Taytu Betul', 'Zewditu', 'Mentewab'],
-    options_am: ['ንግሥት ሳባ', 'እቴጌ ጣይቱ ብጡል', 'ዘዉዲቱ', 'ምኒትዋብ'],
-    correct: 1,
-    explanation_en: 'Empress Taytu Betul was a brilliant strategist who notably led the siege of Mekelle and cut off Italian water supplies.',
-    explanation_am: 'እቴጌ ጣይቱ ብጡል ብርቱ ስትራቴጂስት ሲሆኑ፣ የመቀሌ ከበባ ዘምቶ ኢጣሊያኖቹ ውሃ ቆርጠዋቸው ሸሸሟቸሁ።',
-  },
-  {
-    q_en: 'What key advantage did Ethiopian forces have at Adwa?',
-    q_am: 'ኢትዮጵያ ዓድዋ ላይ ያላት ቁልፍ ጥቅም ምንድን ነው?',
-    options_en: ['Superior navy', 'Knowledge of terrain', 'Foreign allies', 'Better communication technology'],
-    options_am: ['የላቀ ባህር ኃይል', 'የምድሩ እውቀት', 'የውጭ ወዳጆች', 'የተሻለ ፌዴሬሽን'],
-    correct: 1,
-    explanation_en: 'Ethiopian fighters knew the rugged Adwa mountains intimately, using the terrain to isolate and defeat Italian columns one by one.',
-    explanation_am: 'ኢትዮጵያ ተዋጊዎቹ የዓድዋ ተራሮቹን ጠንቅቀው ያውቁ ነበር — ኢጣሊያኖቹን ቦቃ ቦቃ አደርጓቸው።',
-  },
-  {
-    q_en: 'What did the Battle of Adwa symbolize for colonized peoples worldwide?',
-    q_am: 'የዓድዋ ውጊያ ለቅኝ ሰርያ ለነዚ ሕዝቦች ምን ምሳሌ ሆናቸው?',
-    options_en: ['European supremacy', 'Hope and resistance against colonialism', 'End of African kingdoms', 'Start of WWI'],
-    options_am: ['የአውሮፓ ኃይል', 'ቅኝ ሰርዮዎች ሊሸነፉ ይቻላቸዋል', 'የዓፍሪካ ሀገሮቱ ሽብርቃ', '፩ አለም ጦርነት ጅማሮ'],
-    correct: 1,
-    explanation_en: 'Adwa became a global symbol of resistance and hope, proving that colonized peoples could resist and defeat European powers.',
-    explanation_am: 'ዓድዋ ለዓለም ሁሉ ቅኝ ሰርዮዎቹ ሊሸነፉ ይቻላቸዋል ብሎ ያስተማረ ምሳሌ ሆኗቸ።',
-  },
-  {
-    q_en: 'Who commanded the vanguard forces during the victory at the Battle of Amba Alagi?',
-    q_am: 'በአምባላጌ ጦርነት ግንባር ቀደም ጦሩን የመሩት አዛዥ ማን ናቸው?',
-    options_en: ['Ras Alula', 'Ras Makonnen & Fitawrari Gebeyehu', 'Ras Mikael', 'Ras Mengesha'],
-    options_am: ['ራስ አሉላ', 'ራስ መኮንን እና ፊታውራሪ ገበየሁ', 'ራስ ሚካኤል', 'ራስ መንገሻ'],
-    correct: 1,
-    explanation_en: 'Ras Makonnen and Fitawrari Gebeyehu led the forces that secured a decisive victory at Amba Alagi in December 1895.',
-    explanation_am: 'በሕዳር ፲፰፻፹፰ ዓ.ም በአምባላጌ ጦርነት በራስ መኮንን እና በፊታውራሪ ገበየሁ የሚመራው ጦር ታላቅ ድል ተቀዳጅቷል።',
-  },
-  {
-    q_en: 'Which Ethiopian general is known as the "Eagle of Ethiopia" and was a key strategist at Adwa?',
-    q_am: 'የዓድዋ ውጊያ ቁልፍ ስትራቴጂስትና "የሰሜኑ አንበሳ" በሚል የሚታወቁት ጄኔራል ማን ናቸው?',
-    options_en: ['Ras Alula Engida', 'Dejazmach Balcha', 'Fitawrari Habte Giyorgis', 'Ras Mikael'],
-    options_am: ['ራስ አሉላ እንግዳ', 'ደጃዝማች ባልቻ', 'ፊታውራሪ ሀብተ ጊዮርጊስ', 'ራስ ሚካኤል'],
-    correct: 0,
-    explanation_en: 'Ras Alula Engida was a legendary military commander who designed the tactical formations that outmaneuvered the Italians at Adwa.',
-    explanation_am: 'ራስ አሉላ እንግዳ የኢጣሊያን ጦር ከጥቅም ውጭ ያደረጉ ወታደራዊ ስልቶችን የቀረጹ ዝነኛ የጦር አዛዥ ናቸው።',
-  },
-  {
-    q_en: 'Which peace treaty officially ended the First Italo-Ethiopian War?',
-    q_am: 'የመጀመሪያውን የኢጣሊያ-ኢትዮጵያ ጦርነት በይፋ ያቆመው የሰላም ስምምነት የትኛው ነው?',
-    options_en: ['Treaty of Versaille', 'Treaty of Wuchale', 'Treaty of Addis Ababa', 'Treaty of Rome'],
-    options_am: ['የቨርሳይ ስምምነት', 'የውጫሌ ስምምነት', 'የአዲስ አበባ ስምምነት', 'የሮም ስምምነት'],
-    correct: 2,
-    explanation_en: 'The Treaty of Addis Ababa (Oct 1896) forced Italy to recognize Ethiopia\'s full independence and cancel the Treaty of Wuchale.',
-    explanation_am: 'ጥቅምት ፲፮ ቀን ፲፰፻፹፱ ዓ.ም የተፈረመው የአዲስ አበባ ስምምነት ኢጣሊያ የኢትዮጵያን ሙሉ ነጻነት እንድታውቅ አስገድዷል።',
-  },
-  {
-    q_en: 'Which ethnic group was famous for their powerful cavalry charge that shattered Italian formations?',
-    q_am: 'በዓድዋ ውጊያ የኢጣሊያን ጦር መስመር የሰባበረው ዝነኛው ፈረሰኛ ጦር የትኛው ነው?',
-    options_en: ['Wollo Oromo Cavalry', 'Begemder Infantry', 'Gojjam Forces', 'Tigray Lancers'],
-    options_am: ['የወሎ ኦሮሞ ፈረሰኛ ጦር', 'የበጌምድር እግረኛ', 'የጎጃም ጦር', 'የትግራይ ተዋጊዎች'],
-    correct: 0,
-    explanation_en: 'Ras Mikael of Wollo led the legendary cavalry charges that were instrumental in breaking the Italian brigade lines.',
-    explanation_am: 'በራስ ሚካኤል የሚመራው የወሎ ኦሮሞ ፈረሰኛ ጦር የኢጣሊያን ብርጌዶች በመበተን ረገድ ወሳኝ ሚና ተጫውቷል።',
-  },
-  {
-    q_en: 'Who was the War Minister known as "Abba Mala" for his wisdom and tactical advice to Menelik II?',
-    q_am: '"አባ መላ" በሚል ቅጽል ስም የሚታወቁት የዳግማዊ ምኒልክ ታማኝ የጦር ሚኒስትር ማን ናቸው?',
-    options_en: ['Ras Makonnen', 'Fitawrari Habte Giyorgis', 'Ras Mikael', 'Ras Alula'],
-    options_am: ['ራስ መኮንን', 'ፊታውራሪ ሀብተ ጊዮርጊስ', 'ራስ ሚካኤል', 'ራስ አሉላ'],
-    correct: 1,
-    explanation_en: 'Fitawrari Habte Giyorgis Dinagde was nicknamed "Abba Mala" (Father of Strategy) for his brilliant military advice and leadership.',
-    explanation_am: 'ፊታውራሪ ሀብተ ጊዮርጊስ ዲናግዴ በብልህነታቸውና በመልካም ወታደራዊ ምክራቸው "አባ መላ" ተብለው ይጠሩ ነበር።',
-  },
-];
+// Removed static quizData - we will generate it dynamically.
 
 const Quiz: React.FC = () => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+
+  const [quizData, setQuizData] = useState<Question[]>([]);
+  const [loadingQuiz, setLoadingQuiz] = useState(true);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [score, setScore] = useState(0);
@@ -118,11 +30,58 @@ const Quiz: React.FC = () => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [loadingAI, setLoadingAI] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+
+  const loadQuiz = async () => {
+    setLoadingQuiz(true);
+    setFetchError(false);
+    try {
+      const resp = await fetch('http://localhost:5000/api/quiz');
+      if (!resp.ok) throw new Error('Failed');
+      const data = await resp.json();
+      // Ensure we treat missing amharic properly
+      const processed = data.map((q: any) => ({
+        ...q,
+        q_am: q.q_am || q.q_en,
+        options_am: q.options_am || q.options_en,
+        explanation_am: q.explanation_am || q.explanation_en,
+      }));
+      setQuizData(processed);
+    } catch (e) {
+      setFetchError(true);
+    } finally {
+      setLoadingQuiz(false);
+    }
+  };
+
+  React.useEffect(() => {
+    loadQuiz();
+  }, []);
+
+  if (loadingQuiz) {
+    return (
+      <div style={{ padding: '5rem 0', textAlign: 'center', color: 'var(--gold)' }}>
+        <Loader2 size={40} style={{ animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
+        <p style={{ fontFamily: 'Outfit, sans-serif' }}>
+           {lang === 'am' ? 'የዓድዋ እውቀት ማከማቻን በመጠቀም ጥያቄዎችን በማዘጋጀት ላይ...' : 'Generating questions from Adwa knowledge base...'}
+        </p>
+      </div>
+    );
+  }
+
+  if (fetchError || quizData.length === 0) {
+    return (
+      <div style={{ padding: '5rem 0', textAlign: 'center', color: '#ff6b6b' }}>
+        <p style={{ fontFamily: 'Outfit, sans-serif' }}>{lang === 'am' ? 'ጥያቄዎችን ማዘጋጀት አልተቻለም። አገልጋዩ መስራቱን ያረጋግጡ።' : 'Failed to generate the quiz. Ensure the backend is running.'}</p>
+        <button onClick={loadQuiz} className="btn-primary" style={{ marginTop: '1rem' }}>{lang === 'am' ? 'እንደገና ይሞክሩ' : 'Retry'}</button>
+      </div>
+    );
+  }
 
   const q = quizData[currentStep];
-  const question = q.q_en;
-  const options   = q.options_en;
-  const staticExplanation = q.explanation_en;
+  const question = lang === 'am' ? q.q_am : q.q_en;
+  const options = lang === 'am' ? q.options_am : q.options_en;
+  const staticExplanation = lang === 'am' ? q.explanation_am : q.explanation_en;
 
   const handleOptionClick = async (idx: number) => {
     if (isAnswered) return;
@@ -133,7 +92,8 @@ const Quiz: React.FC = () => {
     // Fetch Gemini explanation
     setLoadingAI(true);
     try {
-      const reply = await explainQuizAnswer(question, options[q.correct]);
+      // Pass preferred language to explanation service if possible
+      const reply = await explainQuizAnswer(question, options[q.correct], lang);
       setAiExplanation(reply);
     } catch {
       setAiExplanation(null); // fallback to static
@@ -156,6 +116,7 @@ const Quiz: React.FC = () => {
   const resetQuiz = () => {
     setCurrentStep(0); setScore(0); setShowResult(false);
     setSelectedOption(null); setIsAnswered(false); setAiExplanation(null);
+    loadQuiz(); // fetch a brand new quiz from the AI backend!
   };
 
   const getScoreEmoji = () => {

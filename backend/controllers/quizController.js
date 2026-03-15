@@ -1,0 +1,69 @@
+const { getKnowledgeData } = require('../utils/ragEngine');
+
+exports.generateQuiz = async (req, res) => {
+  try {
+    const GROQ_API_KEY = process.env.GROQ_API_KEY;
+    const knowledgeData = getKnowledgeData();
+
+    const contextLines = [...knowledgeData]
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 8)
+      .map(line => {
+        try {
+          const obj = JSON.parse(line);
+          return JSON.stringify({ en: obj.fact || obj.description || obj.event || obj.name || "", am: obj.am || "" });
+        } catch { return line; }
+      })
+      .join('\n');
+    
+    const systemPrompt = `You are an AI history tutor specialized in the Battle of Adwa.
+Generate a valid JSON object containing a "questions" array of 5 multiple-choice questions.
+Each question must have: "q_en", "q_am", "options_en" (4 strings), "options_am" (4 strings), "correct" (0-3), "explanation_en", and "explanation_am".
+Use Ge'ez script for Amharic.`;
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: `Context:\n${contextLines}\n\nGenerate the JSON quiz object.` }
+        ],
+        temperature: 0.5,
+        max_tokens: 2000,
+        response_format: { type: "json_object" }
+      })
+    });
+
+    if (!response.ok) throw new Error(`AI Service Error: ${response.status}`);
+
+    const data = await response.json();
+    const answerText = data.choices?.[0]?.message?.content?.trim();
+    if (!answerText) throw new Error("Empty response from AI");
+    
+    const fullObj = JSON.parse(answerText);
+    const parsed = fullObj.questions || (Array.isArray(fullObj) ? fullObj : null);
+
+    if (!parsed || !Array.isArray(parsed)) throw new Error("Invalid format from AI");
+
+    const cleaned = parsed.slice(0, 5).map(q => ({
+      q_en: q.q_en || "Question?",
+      q_am: q.q_am || q.q_en || "ጥያቄ?",
+      options_en: Array.isArray(q.options_en) ? q.options_en : ["O1", "O2", "O3", "O4"],
+      options_am: Array.isArray(q.options_am) ? q.options_am : ["ሀ", "ለ", "ሐ", "መ"],
+      correct: typeof q.correct === 'number' ? q.correct : 0,
+      explanation_en: q.explanation_en || "",
+      explanation_am: q.explanation_am || q.explanation_en || ""
+    }));
+
+    res.json(cleaned);
+
+  } catch (error) {
+    console.error("Quiz Controller Error:", error);
+    res.status(500).json({ error: "Failed to generate quiz." });
+  }
+};

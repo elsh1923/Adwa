@@ -19,7 +19,7 @@ interface Leader {
 }
 
 const HeroesChat: React.FC = () => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   const leaders: Leader[] = [
     {
@@ -126,6 +126,7 @@ const HeroesChat: React.FC = () => {
         selectedLeader.id,
         geminiHistory.current,
         trimmed,
+        lang
       );
 
       // Update Gemini conversation history

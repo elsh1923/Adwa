@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import { Calendar, Shield, Sword, Award, Flag, MapPin, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface TimelineEvent {
   date: string;
@@ -11,52 +12,51 @@ interface TimelineEvent {
   color: string;
 }
 
-const TimelinePage: React.FC = () => {
+import { useState, useEffect } from 'react';
 
-  const events: TimelineEvent[] = [
-    {
-      date: 'May 2, 1889',
-      title: 'Treaty of Wuchale Signed',
-      desc: 'Signed between Emperor Menelik II and Italy. A translation discrepancy in Article XVII later became the catalyst for conflict.',
-      icon: <Award size={24} />,
-      color: '#d4af37',
-    },
-    {
-      date: 'September 1895',
-      title: 'Mobilization Proclamation',
-      desc: 'Emperor Menelik II issued the famous call to arms, mobilizing over 100,000 warriors from across Ethiopia to defend the nation.',
-      icon: <Flag size={24} />,
-      color: '#1a5c38',
-    },
-    {
-      date: 'December 7, 1895',
-      title: 'Battle of Amba Alagi',
-      desc: 'Ethiopian forces led by Ras Makonnen and Fitawrari Gebeyehu achieved a major victory, forcing Italian retreat.',
-      icon: <Sword size={24} />,
-      color: '#8b0000',
-    },
-    {
-      date: 'Jan 1896',
-      title: 'Siege of Mekelle',
-      desc: 'Empress Taytu Betul masterminded the strategy to cut off the Italian water supply at the Enda Yesus fort.',
-      icon: <MapPin size={24} />,
-      color: '#2e8b57',
-    },
-    {
-      date: 'March 1, 1896',
-      title: 'The Great Victory at Adwa',
-      desc: 'The decisive battle. Ethiopian unity and strategy crushed the Italian columns, securing lasting independence for the nation.',
-      icon: <Shield size={24} />,
-      color: '#d4af37',
-    },
-    {
-      date: 'October 26, 1896',
-      title: 'Treaty of Addis Ababa',
-      desc: 'Italy formally recognized Ethiopia\'s full and unconditional independence, abrogating the Treaty of Wuchale.',
-      icon: <CheckCircle2 size={24} />,
-      color: '#d4af37',
-    },
-  ];
+const TimelinePage: React.FC = () => {
+  const { lang, t } = useLanguage();
+  const [events, setEvents] = useState<TimelineEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchTimelineInfo = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/knowledge/timeline');
+        if (!response.ok) throw new Error();
+        const data = await response.json();
+        
+        // Map the backend JSON to the frontend object structure dynamically
+        const iconChoices = [<Award size={24} />, <Flag size={24} />, <Sword size={24} />, <MapPin size={24} />, <Shield size={24} />, <CheckCircle2 size={24} />, <Calendar size={24} />];
+        const colorChoices = ['#d4af37', '#1a5c38', '#8b0000', '#2e8b57', '#d4af37'];
+        
+        const mappedEvents = data.map((item: any, idx: number) => {
+          const title = typeof item.event === 'object' ? (item.event[lang] || item.event['en']) : (item.event || item.title || 'Significant Event');
+          const desc = typeof item.details === 'object' ? (item.details[lang] || item.details['en']) : (item.details || item.description || '');
+          const date = item.year || item.date || 'Unknown Date';
+
+          return {
+            date,
+            title,
+            desc,
+            icon: iconChoices[idx % iconChoices.length],
+            color: colorChoices[idx % colorChoices.length]
+          };
+        });
+        
+        setEvents(mappedEvents);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTimelineInfo();
+  }, [lang]);
+
+  if (loading) return <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--gold)' }}>{lang === 'am' ? 'የጊዜ መስመር ከ RAG እውቀት ማከማቻ በመጫን ላይ...' : 'Loading Timeline from RAG Knowledge Base...'}</div>;
+  if (error) return <div style={{ padding: '4rem', textAlign: 'center', color: '#ff6b6b' }}>{lang === 'am' ? 'የጊዜ መስመሩን መጫን አልተቻለም። እባክዎ የጀርባ አገልጋዩ መስራቱን ያረጋግጡ።' : 'Failed to load timeline. Please ensure the backend is running.'}</div>;
 
   return (
     <div style={{ padding: '4rem 0', minHeight: '100vh', background: 'transparent', position: 'relative' }}>
@@ -65,13 +65,13 @@ const TimelinePage: React.FC = () => {
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="section-eyebrow" style={{ fontFamily: 'inherit' }}>
-              Historical Journey
+              {t('feature.timeline.sub')}
             </div>
             <h1 className="section-title" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-              Timeline of Adwa
+              {t('feature.timeline.title')}
             </h1>
             <p style={{ color: 'var(--text-dim)', maxWidth: 660, margin: '0 auto', lineHeight: 1.8, fontFamily: 'inherit' }}>
-              From initial tensions to the absolute victory — follow the pivotal events that secured Ethiopian sovereignty.
+              {t('feature.timeline.desc')}
             </p>
           </motion.div>
         </div>

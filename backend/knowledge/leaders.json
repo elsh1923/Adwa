@@ -1,0 +1,134 @@
+[
+    {
+      "name": {
+        "en": "Menelik II",
+        "am": "ዳግማዊ ምኒልክ"
+      },
+      "title": {
+        "en": "Emperor of Ethiopia",
+        "am": "የኢትዮጵያ ንጉሠ ነገሥት"
+      },
+      "role": {
+        "en": "Supreme Commander",
+        "am": "ጠቅላይ አዛዥ"
+      },
+      "short_description": {
+        "en": "The unifying monarch who mobilized a massive diverse army and strategically led the Ethiopian forces to victory. He masterfully managed internal politics and international diplomacy to secure modern weaponry.",
+        "am": "ትልቅ እና የተለያዩ ሠራዊቶችን በማሰባሰብ የኢትዮጵያን ኃይሎች በስትራቴጂ ወደ ድል የመሩት አንድነት ፈጣሪ ንጉሠ ነገሥት። ዘመናዊ መሣሪያዎችን ለማግኘት የሀገር ውስጥ ፖለቲካን እና ዓለም አቀፍ ዲፕሎማሲን በጥበብ አስተዳድረዋል።"
+      },
+      "region_or_origin": {
+        "en": "Shewa",
+        "am": "ሸዋ"
+      }
+    },
+    {
+      "name": {
+        "en": "Taytu Betul",
+        "am": "ጣይቱ ብጡል"
+      },
+      "title": {
+        "en": "Empress of Ethiopia",
+        "am": "የኢትዮጵያ እቴጌ"
+      },
+      "role": {
+        "en": "Strategic Advisor and Commander",
+        "am": "ስትራቴጂካዊ አማካሪ እና አዛዥ"
+      },
+      "short_description": {
+        "en": "A brilliant strategist who led her own battalion and was instrumental in the siege of Mekelle by cutting off the Italian water supply. She remained a staunch opponent of colonial encroachment and a key advisor to the Emperor.",
+        "am": "የራሷን ሻለቃ የመራች እና የኢጣሊያን የውኃ አቅርቦት በማቋረጥ ለመቀሌ ከበባ መሳካት ትልቅ ሚና የተጫወተች ድንቅ ስትራቴጂስት። የቅኝ ግዛት መስፋፋት ቆራጥ ተቃዋሚ እና የንጉሠ ነገሥቱ ቁልፍ አማካሪ ነበሩ።"
+      },
+      "region_or_origin": {
+        "en": "Semien/Gonder",
+        "am": "ሰሜን/ጎንደር"
+      }
+    },
+    {
+      "name": {
+        "en": "Alula Engida",
+        "am": "አሉላ እንግዳ"
+      },
+      "title": {
+        "en": "Ras",
+        "am": "ራስ"
+      },
+      "role": {
+        "en": "Tactical Commander and Intelligence Lead",
+        "am": "ዘዴያዊ አዛዥ እና የደህንነት መሪ"
+      },
+      "short_description": {
+        "en": "Renowned as one of the greatest African military minds of the 19th century. He provided critical intelligence on Italian movements and commanded the vanguard during the initial engagements at Adwa.",
+        "am": "በ19ኛው መቶ ክፍለ ዘመን ከታዩት ታላላቅ የአፍሪካ ወታደራዊ አእምሮዎች አንዱ ተብለው የሚታወቁ። ስለ ኢጣሊያ እንቅስቃሴ ወሳኝ መረጃዎችን የሰጡ እና በዓድዋ የመጀመሪያ ደረጃ ግጥሚያዎች ወቅት ቀዳሚውን ጦር የመሩ።"
+      },
+      "region_or_origin": {
+        "en": "Tigray",
+        "am": "ትግራይ"
+      }
+    },
+    {
+      "name": {
+        "en": "Mikael of Wollo",
+        "am": "የወሎው ሚካኤል"
+      },
+      "title": {
+        "en": "Ras",
+        "am": "ራስ"
+      },
+      "role": {
+        "en": "Cavalry Commander",
+        "am": "የፈረሰኛ ጦር አዛዥ"
+      },
+      "short_description": {
+        "en": "Led the elite Oromo cavalry, which played a decisive role in the final stages of the battle. His forces were instrumental in breaking the Italian lines and pursuing retreating units.",
+        "am": "በጦርነቱ የመጨረሻ ደረጃዎች ላይ ወሳኝ ሚና የተጫወተውን ምርጡን የኦሮሞ ፈረሰኛ ጦር የመሩ። የእሳቸው ኃይሎች የኢጣሊያን መስመር በመስበር እና የሚያፈገፍጉ ክፍሎችን በማሳደድ ረገድ ትልቅ ሚና ነበራቸው።"
+      },
+      "region_or_origin": {
+        "en": "Wollo",
+        "am": "ወሎ"
+      }
+    },
+    {
+      "name": {
+        "en": "Mengesha Yohannes",
+        "am": "መንገሻ ዮሐንስ"
+      },
+      "title": {
+        "en": "Ras",
+        "am": "ራስ"
+      },
+      "role": {
+        "en": "Regional Commander",
+        "am": "የአካባቢ አዛዥ"
+      },
+      "short_description": {
+        "en": "The son of Emperor Yohannes IV, he defended his home territory and contributed significant manpower to the unified Ethiopian front. His presence symbolized the internal unity of the empire against foreign aggression.",
+        "am": "የአፄ ዮሐንስ 4ኛ ልጅ፣ የትውልድ አካባቢያቸውን የተከላከሉ እና ለአንድነቱ የኢትዮጵያ ግንባር ከፍተኛ የሰው ኃይል ያዋጡ። የእሳቸው መገኘት በባዕድ ወረራ ላይ ያለውን የሀገር ውስጥ አንድነት የሚያመለክት ነበር።"
+      },
+      "region_or_origin": {
+        "en": "Tigray",
+        "am": "ትግራይ"
+      }
+    },
+    {
+      "name": {
+        "en": "Habte Giyorgis Dinagde",
+        "am": "ሀብተ ጊዮርጊስ ዲናግዴ"
+      },
+      "title": {
+        "en": "Fitawrari",
+        "am": "ፊታውራሪ"
+      },
+      "role": {
+        "en": "Minister of War and Vanguard Commander",
+        "am": "የጦር ሚኒስትር እና የፊት አውራሪ ጦር አዛዥ"
+      },
+      "short_description": {
+        "en": "A brilliant military administrator responsible for logistics and the coordination of the vanguard. He later became Ethiopia's foremost military leader during the early 20th century.",
+        "am": "ለሎጂስቲክስ እና ለፊት አውራሪ ጦር ቅንጅት ኃላፊነት የነበራቸው ድንቅ ወታደራዊ አስተዳዳሪ። በኋላም በ20ኛው መቶ ክፍለ ዘመን መጀመሪያ ላይ የኢትዮጵያ ዋነኛ ወታደራዊ መሪ ሆነዋል።"
+      },
+      "region_or_origin": {
+        "en": "Shewa/Oromo origin",
+        "am": "ሸዋ/የኦሮሞ ተወላጅ"
+      }
+    }
+  ]

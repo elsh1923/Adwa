@@ -1,0 +1,42 @@
+[
+    {
+      "strategy_name": {
+        "en": "Terrain Advantage",
+        "am": "የመልክዓ ምድር ብልጫ"
+      },
+      "description": {
+        "en": "Ethiopian forces utilized the rugged, mountainous terrain of Adwa to obscure their numbers and trap Italian columns. The broken landscape prevented the Italians from maintaining a cohesive line of communication.",
+        "am": "የኢትዮጵያ ኃይሎች የዓድዋን ወጣ ገባ እና ተራራማ መልክዓ ምድር በመጠቀም ቁጥራቸውን ለመደበቅ እና የኢጣሊያን ሰራዊት ለማጥመድ ተጠቅመውበታል። የተቆራረጠው መልክዓ ምድር ኢጣሊያኖች ወጥ የሆነ የመገናኛ መስመር እንዳይኖራቸው አድርጓል።"
+      }
+    },
+    {
+      "strategy_name": {
+        "en": "National Mobilization",
+        "am": "ሀገራዊ ክተት"
+      },
+      "description": {
+        "en": "Menelik II issued a nationwide call to arms that transcended ethnic and regional lines. This mass mobilization created a numerical superiority that overwhelmed the technologically advanced but outnumbered Italian army.",
+        "am": "ዳግማዊ ምኒልክ የብሔር እና የክልል ድንበሮችን የተሻገረ ሀገራዊ የክተት ጥሪ አቅርበዋል። ይህ ሰፊ ንቅናቄ በቁጥር ብልጫ በመፍጠር በቴክኖሎጂ የላቀውን ነገር ግን በቁጥር አነስተኛ የሆነውን የኢጣሊያ ጦር አሸንፏል።"
+      }
+    },
+    {
+      "strategy_name": {
+        "en": "Logistical Preparation",
+        "am": "የሎጂስቲክስ ዝግጅት"
+      },
+      "description": {
+        "en": "Empress Taytu and local administrators organized a sophisticated supply chain to feed the massive army. In contrast, the Italians suffered from poor maps, failing supplies, and exhausted troops.",
+        "am": "እቴጌ ጣይቱ እና የአካባቢው አስተዳዳሪዎች ግዙፉን ሰራዊት ለመመገብ የተራቀቀ የአቅርቦት ሰንሰለት አደራጅተዋል። በተቃራኒው ኢጣሊያኖች ደካማ በሆኑ ካርታዎች፣ የአቅርቦት እጥረት እና በደከመ ሰራዊት ተቸግረው ነበር።"
+      }
+    },
+    {
+      "strategy_name": {
+        "en": "Tactical Intelligence",
+        "am": "ዘዴያዊ ደህንነት"
+      },
+      "description": {
+        "en": "Ethiopian scouts and local spies provided accurate reports on Italian movements while feeding false information to General Baratieri. This led the Italians to launch a disorganized night march into a prepared Ethiopian defense.",
+        "am": "የኢትዮጵያ ሰላዮች ስለ ኢጣሊያ እንቅስቃሴ ትክክለኛ መረጃዎችን እየሰጡ ለጄኔራል ባራቲዬሪ ግን የተሳሳተ መረጃ ይሰጡ ነበር። ይህም ኢጣሊያኖች ባልተደራጀ መልኩ የሌሊት ጉዞ እንዲያደርጉ እና በተዘጋጀው የኢትዮጵያ መከላከያ እንዲገቡ አድርጓል።"
+      }
+    }
+  ]

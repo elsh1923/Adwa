@@ -49,7 +49,7 @@ const Home: React.FC = () => {
   const STATS = [
     { value: '100K+', label: t('stats.warriors'), icon: '⚔️' },
     { value: '1896',  label: t('stats.year'),     icon: '🏆' },
-    { value: '5',     label: t('stats.experiences'), icon: '🤖' },
+    { value: '',      label: t('stats.experiences'), icon: '🤖' },
     { value: '130+',  label: t('stats.years'),    icon: '🌍' },
   ];
 
@@ -239,11 +239,13 @@ const Home: React.FC = () => {
               <motion.div key={label} variants={fadeUp}
                 style={{ textAlign: 'center', padding: '1.75rem 1rem', borderRadius: 16, background: 'rgba(18,20,24,0.6)', border: '1px solid var(--border-subtle)', transition: 'var(--transition)' }}
                 whileHover={{ borderColor: 'rgba(212,175,55,0.3)', boxShadow: '0 0 30px rgba(212,175,55,0.1)', y: -4 }}>
-                <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>{icon}</div>
-                <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 700, color: 'var(--gold)', lineHeight: 1.1 }}>
-                  <AnimatedCounter target={value} />
-                </div>
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)', marginTop: '0.3rem', fontFamily: 'inherit', letterSpacing: '0.08em' }}>
+                <div style={{ fontSize: '2rem', marginBottom: value ? '0.5rem' : '0.2rem' }}>{icon}</div>
+                {value && (
+                  <div style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 700, color: 'var(--gold)', lineHeight: 1.1 }}>
+                    <AnimatedCounter target={value} />
+                  </div>
+                )}
+                <div style={{ fontSize: value ? '0.78rem' : '1.1rem', fontWeight: value ? 'normal' : 600, color: value ? 'var(--text-dim)' : 'var(--gold)', marginTop: value ? '0.3rem' : '0.5rem', fontFamily: 'inherit', letterSpacing: '0.08em' }}>
                   {label}
                 </div>
               </motion.div>

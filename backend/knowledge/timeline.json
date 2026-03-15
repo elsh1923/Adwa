@@ -1,0 +1,57 @@
+[
+    {
+      "year": "1889",
+      "event": {
+        "en": "Treaty of Wuchale",
+        "am": "የውጫሌ ውል"
+      },
+      "details": {
+        "en": "Signed between Ethiopia and Italy; a discrepancy between the Amharic and Italian versions regarding sovereignty became the primary cause for war.",
+        "am": "በኢትዮጵያ እና በኢጣሊያ መካከል ተፈርሟል፤ በአማርኛው እና በኢጣሊያኛው ቅጂዎች መካከል ስለ ሉዓላዊነት የነበረው ልዩነት ለጦርነቱ ዋነኛ መንስኤ ሆነ።"
+      }
+    },
+    {
+      "year": "1893",
+      "event": {
+        "en": "Denunciation of the Treaty",
+        "am": "ውሉን ውድቅ ማድረግ"
+      },
+      "details": {
+        "en": "Emperor Menelik II formally denounced the Treaty of Wuchale after Italy attempted to enforce a protectorate over Ethiopia.",
+        "am": "ኢጣሊያ በኢትዮጵያ ላይ የጥበቃ አገዛዝ ለመጫን ከሞከረች በኋላ ዳግማዊ አፄ ምኒልክ የውጫሌን ውል በይፋ ውድቅ አደረጉ።"
+      }
+    },
+    {
+      "year": "1895",
+      "event": {
+        "en": "Italian Invasion and Battle of Amba Alagi",
+        "am": "የኢጣሊያ ወረራ እና የአምባ አላጌ ጦርነት"
+      },
+      "details": {
+        "en": "Italian forces advanced into Ethiopian territory; Ethiopian vanguard forces scored an initial victory at Amba Alagi in December.",
+        "am": "የኢጣሊያ ኃይሎች ወደ ኢትዮጵያ ግዛት ገቡ፤ ግንባር ቀደም የኢትዮጵያ ኃይሎች በታህሳስ ወር በአምባ አላጌ የመጀመሪያ ድል ተቀዳጁ።"
+      }
+    },
+    {
+      "year": "1896",
+      "event": {
+        "en": "Battle of Adwa (March 1)",
+        "am": "የዓድዋ ጦርነት (የካቲት 23)"
+      },
+      "details": {
+        "en": "The decisive engagement where Ethiopian forces defeated the Italian army in a single day of intense fighting.",
+        "am": "የኢትዮጵያ ኃይሎች በጠንካራ ውጊያ በአንድ ቀን ውስጥ የኢጣሊያን ጦር ያሸነፉበት ታላቁ ጦርነት።"
+      }
+    },
+    {
+      "year": "1896",
+      "event": {
+        "en": "Treaty of Addis Ababa (October)",
+        "am": "የአዲስ አበባ ውል (ጥቅምት)"
+      },
+      "details": {
+        "en": "Italy signed a peace treaty formally recognizing the absolute independence of the Ethiopian Empire.",
+        "am": "ኢጣሊያ የኢትዮጵያን ንጉሠ ነገሥት መንግሥት ሙሉ ነፃነት በይፋ የሚያውቅ የሰላም ስምምነት ፈረመች።"
+      }
+    }
+  ]

@@ -1,0 +1,52 @@
+[
+    {
+      "fact": {
+        "en": "Ethiopia was the only African nation to decisively defeat a European colonial power in the 19th century to remain independent.",
+        "am": "ኢትዮጵያ በ19ኛው መቶ ክፍለ ዘመን የአውሮፓን የቅኝ ግዛት ኃይል በቆራጥነት ድል በማድረግ ነፃነቷን ያስጠበቀች ብቸኛ የአፍሪካ ሀገር ነበረች።"
+      },
+      "category": {
+        "en": "Historical Significance",
+        "am": "ታሪካዊ ጠቀሜታ"
+      }
+    },
+    {
+      "fact": {
+        "en": "The mistranslation of Article XVII of the Treaty of Wuchale suggested Ethiopia was an Italian protectorate, sparking the conflict.",
+        "am": "የውጫሌ ውል አንቀጽ 17 የተሳሳተ ትርጉም ኢትዮጵያ የኢጣሊያ ጥብቅና ሀገር እንደሆነች የሚጠቁም ነበር፣ ይህም ግጭቱን ቀስቅሷል።"
+      },
+      "category": {
+        "en": "Diplomacy",
+        "am": "ዲፕሎማሲ"
+      }
+    },
+    {
+      "fact": {
+        "en": "General Oreste Baratieri, the Italian commander, was forced into a premature attack by pressure from the Italian Prime Minister, Francesco Crispi.",
+        "am": "የኢጣሊያ አዛዥ ጄኔራል ኦሬስቴ ባራቲዬሪ በኢጣሊያ ጠቅላይ ሚኒስትር ፍራንቸስኮ ክሪስፒ ጫና ምክንያት ያለጊዜው ጥቃት እንዲሰነዝር ተገደደ።"
+      },
+      "category": {
+        "en": "Leadership",
+        "am": "መሪነት"
+      }
+    },
+    {
+      "fact": {
+        "en": "The Ethiopian army at Adwa was one of the first African forces to utilize modern breech-loading rifles and artillery in such large quantities.",
+        "am": "በዓድዋ የነበረው የኢትዮጵያ ጦር ዘመናዊ ጠመንጃዎችን እና መድፎችን በከፍተኛ ሁኔታ ጥቅም ላይ ካዋሉ የመጀመሪያዎቹ የአፍሪካ ኃይሎች አንዱ ነበር።"
+      },
+      "category": {
+        "en": "Military Technology",
+        "am": "ወታደራዊ ቴክኖሎጂ"
+      }
+    },
+    {
+      "fact": {
+        "en": "Victory at Adwa established Ethiopia as a symbol of resistance for the African diaspora and later influenced the colors of many African flags.",
+        "am": "የዓድዋ ድል ኢትዮጵያን ለአፍሪካ ዳያስፖራ የትግል ምልክት አድርጎ ያቆማት ሲሆን በኋላም ለብዙ የአፍሪካ ሀገራት ሰንደቅ ዓላማ ቀለሞች መነሳሳት ሆኗል።"
+      },
+      "category": {
+        "en": "Legacy",
+        "am": "ቅርስ"
+      }
+    }
+  ]

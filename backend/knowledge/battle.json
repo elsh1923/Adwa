@@ -1,0 +1,54 @@
+[
+  {
+    "battle_name": {
+      "en": "Battle of Adwa",
+      "am": "የዓድዋ ጦርነት"
+    },
+    "date": {
+      "en": "March 1, 1896",
+      "am": "የካቲት 23 ቀን 1888 ዓ.ም"
+    },
+    "location": {
+      "en": "Adwa, Tigray Region, Ethiopia",
+      "am": "ዓድዋ፣ ትግራይ ክልል፣ ኢትዮጵያ"
+    },
+    "armies_involved": [
+      {
+        "en": "Ethiopian Empire",
+        "am": "የኢትዮጵያ ንጉሠ ነገሥት መንግሥት"
+      },
+      {
+        "en": "Kingdom of Italy (including colonial Ascari units)",
+        "am": "የኢጣሊያ ንጉሥ መንግሥት (የአስካሪ ቅኝ ግዛት ክፍሎችን ጨምሮ)"
+      }
+    ],
+    "commanders": {
+      "ethiopian": {
+        "en": "Emperor Menelik II, Empress Taytu Betul, Ras Alula",
+        "am": "ዳግማዊ አፄ ምኒልክ፣ እቴጌ ጣይቱ ብጡል፣ ራስ አሉላ"
+      },
+      "italian": {
+        "en": "General Oreste Baratieri",
+        "am": "ጄኔራል ኦሬስቴ ባራቲዬሪ"
+      }
+    },
+    "estimated_troop_numbers": {
+      "ethiopian": {
+        "en": "Approximately 80,000 to 120,000 (roughly 100,000 armed with rifles)",
+        "am": "ከ 80,000 እስከ 120,000 ገደማ (ወደ 100,000 የሚጠጉት ጠመንጃ የታጠቁ)"
+      },
+      "italian": {
+        "en": "Approximately 17,700 to 20,000 (well-equipped with modern artillery)",
+        "am": "ከ 17,700 እስከ 20,000 ገደማ (በዘመናዊ መድፍ በሚገባ የታጠቁ)"
+      }
+    },
+    "outcome": {
+      "en": "Decisive Ethiopian victory; total collapse and retreat of the Italian forces.",
+      "am": "አመርቂ የኢትዮጵያ ድል፤ የኢጣሊያ ጦር ሙሉ በሙሉ መፈራረስ እና ማፈግፈግ።"
+    },
+    "historical_significance": {
+      "en": "The victory preserved Ethiopia's sovereignty during the Scramble for Africa. It served as a beacon of hope for Pan-Africanism and forced European powers to recognize an African nation as an equal.",
+      "am": "ድሉ በአፍሪካ ቅርምት ወቅት የኢትዮጵያን ሉዓላዊነት አስጠብቋል። ለፓን-አፍሪካኒዝም የተስፋ ብርሃን ሆኖ ከብሏል፤ የአውሮፓ ኃይሎችም የአፍሪካን ሀገር እንደ እኩል እንዲያውቁ አስገድዷል።"
+    }
+  }
+]

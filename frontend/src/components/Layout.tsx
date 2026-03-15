@@ -7,13 +7,13 @@ import { useLanguage } from '../context/LanguageContext';
 interface LayoutProps { children: ReactNode; }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { t } = useLanguage();
+  const { lang, setLang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    document.documentElement.lang = 'en';
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -85,7 +85,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               overflow: 'hidden', border: '1.5px solid rgba(212,175,55,0.5)'
             }}>
               <img 
-                src="/image/logo.png" 
+                src="/image/logo-removebg-preview (1).png" 
                 alt="Adwa AI Logo" 
                 style={{ width: '110%', height: '110%', objectFit: 'cover' }} 
               />
@@ -128,6 +128,29 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           {/* Right side: Language switcher + CTA + Mobile toggle */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            {/* Language Switcher */}
+            <div style={{ display: 'flex', gap: '0.35rem', background: 'rgba(255,255,255,0.05)', padding: '0.3rem', borderRadius: 99, border: '1px solid var(--border-subtle)', marginRight: '0.4rem' }}>
+              {(['en', 'am'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  style={{
+                    padding: '0.4rem 0.8rem',
+                    borderRadius: 99,
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    transition: 'var(--transition)',
+                    background: lang === l ? 'var(--gold)' : 'transparent',
+                    color: lang === l ? '#000' : 'var(--text-dim)',
+                    border: 'none',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
 
             <NavLink
               to="/story"
@@ -208,7 +231,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 overflow: 'hidden', border: '1px solid rgba(212,175,55,0.4)'
               }}>
                 <img 
-                  src="/image/logo.png" 
+                  src="/image/logo-removebg-preview (1).png" 
                   alt="Adwa AI Logo" 
                   style={{ width: '110%', height: '110%', objectFit: 'cover' }} 
                 />

@@ -113,53 +113,26 @@ export interface HeroPersona {
   role: string;
 }
 
-const HERO_SYSTEM_PROMPTS: Record<string, string> = {
-  menelik: `You are Emperor Menelik II of Ethiopia (1844–1913), the King of Kings. 
-Speak with imperial dignity, wisdom, and deep love for Ethiopia. 
-DO NOT start with a salutation like "Salutation to..." or your name. 
-DO NOT introduce yourself as "I am Menelik" unless asked. 
-Jump directly into the conversation naturally. Respond in the same language the user uses. 
-Keep replies concise (2–3 paragraphs). Stay in character.`,
-
-  taytu: `You are Empress Taytu Betul of Ethiopia (c.1851–1918), the powerful and brilliant wife of Menelik II. 
-You are direct, intellectually sharp, and proud. 
-DO NOT start with any formal salutations, titles, or your name (e.g. avoid "ታዩት ብጥሩ..."). 
-DO NOT introduce yourself unless asked. Jump directly into a smooth, natural conversation. 
-Respond in the same language the user uses. Keep replies concise (2–3 paragraphs).`,
-
-  alula: `You are Ras Alula Engida (1827–1897), Ethiopia's greatest military commander. 
-You are fierce, tactical, and blunt. 
-DO NOT start with a salutation or your name. DO NOT introduce yourself. 
-Jump directly into the tactical or historical conversation. 
-Respond in the same language the user uses. Keep replies concise.`,
-
-  mengesha: `You are Ras Mengesha Yohannes (1868–1906). You are noble and courageous. 
-DO NOT start with formal salutations or your name. 
-Jump directly into the dialogue naturally. Respond in the same language the user uses. 
-Keep replies concise.`,
-
-  mikael: `You are Ras Mikael of Wollo (1850–1918). You led the legendary Wollo Oromo cavalry. 
-Your tone is bold and energetic. 
-DO NOT start with a salutation or your name. 
-Jump directly into the conversation with warrior pride. 
-Respond in same language as user. Keep replies concise.`,
-
-  habtegiyorgis: `You are Fitawrari Habte Giyorgis Dinagde (1851–1926), "Abba Mala". 
-You are wise, stoic, and analytical. 
-DO NOT start with a salutation, your title, or your name. 
-Jump directly into providing wisdom or strategy. 
-Respond in same language as user. Keep replies concise.`,
-};
+// HERO_SYSTEM_PROMPTS removed since the local RAG backend is used directly.
 
 export async function chatWithHero(
   heroId: string,
-  history: GeminiMessage[],
+  _history: GeminiMessage[],
   userMessage: string,
+  lang: string = 'en'
 ): Promise<string> {
-  const persona = HERO_SYSTEM_PROMPTS[heroId];
-  if (!persona) throw new Error(`Unknown hero: ${heroId}`);
-
-  return generateContent(persona, history, userMessage);
+  const response = await fetch('http://localhost:5000/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ hero: heroId, question: userMessage, lang })
+  });
+  
+  if (!response.ok) {
+    throw new Error('Our backend failed to respond. Make sure it is running.');
+  }
+  
+  const data = await response.json();
+  return data.answer;
 }
 
 // ─── Story Narration ─────────────────────────────────────────────────────────
@@ -181,10 +154,11 @@ Keep responses to 2–3 paragraphs.`;
 export async function explainQuizAnswer(
   question: string,
   correct: string,
+  lang: string = 'en'
 ): Promise<string> {
   const systemPrompt = `You are an AI history tutor teaching about the Battle of Adwa (1896). 
 Provide a brief, engaging, accurate explanation of why the answer is correct. 
-Respond in English. Keep response to 2–3 sentences.`;
+Respond in ${lang === 'am' ? 'Amharic' : 'English'}. Keep response to 2–3 sentences.`;
 
   return generateContent(
     systemPrompt,
@@ -193,16 +167,15 @@ Respond in English. Keep response to 2–3 sentences.`;
   );
 }
 
-
-
 // ─── Strategy Insight ─────────────────────────────────────────────────────────
 export async function getStrategyInsight(
   topic: string,
   side: 'ethiopian' | 'italian' | 'geography',
+  lang: string = 'en'
 ): Promise<string> {
   const systemPrompt = `You are a military historian specializing in African colonial history 
 and the Battle of Adwa. Provide a concise, insightful analysis of military strategies. 
-Respond in English. 2–3 sentences only.`;
+Respond in ${lang === 'am' ? 'Amharic' : 'English'}. 2–3 sentences only.`;
 
   return generateContent(
     systemPrompt,

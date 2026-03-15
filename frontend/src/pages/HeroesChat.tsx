@@ -125,8 +125,7 @@ const HeroesChat: React.FC = () => {
       const reply = await chatWithHero(
         selectedLeader.id,
         geminiHistory.current,
-        trimmed,
-        'en'
+        trimmed
       );
 
       // Update Gemini conversation history

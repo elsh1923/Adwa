@@ -1,6 +1,6 @@
 # Adwa AI: The Battle of Adwa Learning Hub 🏆
 
-Adwa AI is a state-of-the-art educational platform designed to bring the history of the Battle of Adwa to life using Artificial Intelligence. Built with a Retrieval-Augmented Generation (RAG) architecture, the platform allows users to interact with history through bilingual (English & Amharic) chat with historical leaders, AI-driven story modes, and interactive quizzes.
+Adwa AI is a state-of-the-art educational platform designed to bring the history of the Battle of Adwa to life using Artificial Intelligence. Built with a Retrieval-Augmented Generation (RAG) architecture, the platform allows users to interact with history through English-language chat with historical leaders, AI-driven story modes, and interactive quizzes.
 
 ## 🚀 Features
 
@@ -8,7 +8,7 @@ Adwa AI is a state-of-the-art educational platform designed to bring the history
 - **Consult the Leaders**: Chat directly with Emperor Menelik II, Empress Taytu Betul, Ras Alula, and others.
 - **RAG-Powered Quiz**: Test your knowledge with questions generated dynamically from historical data.
 - **Battle Strategy Explainer**: Visualize and understand the tactical genius behind the victory.
-- **Bilingual Experience**: Full support for English and Amharic throughout the UI and AI responses.
+- **Interactive Learning**: Comprehensive exploration of Adwa history through a modern, responsive UI.
 - **Premium Design**: A museum-quality digital experience with smooth animations and rich aesthetics.
 
 ## 📂 Project Structure
@@ -28,7 +28,7 @@ Adwa AI is a state-of-the-art educational platform designed to bring the history
 │   └── .env                # Frontend environment variables
 ├── docs/                   # Documentation, images, and diagrams
 ├── examples/               # RAG JSON templates & examples
-│   └── rag-bilingual/      # Templates for adding new facts
+│   └── rag-format/         # Templates for adding new facts
 ├── package.json            # Root configuration for orchestration
 └── README.md               # You are here!
 ```
@@ -76,11 +76,11 @@ npm run dev
 The AI's "brain" is fueled by JSON files in `backend/knowledge/`. To add or update historical data:
 
 1. Locate the relevant file (e.g., `battle.json`, `leaders.json`).
-2. Add a new entry following the bilingual format:
+2. Add a new entry following the standard format:
    ```json
    {
-     "en": "Historical fact in English.",
-     "am": "ታሪካዊ እውነታ በአማርኛ።"
+     "fact": "Historical fact in English.",
+     "category": "History"
    }
    ```
 3. The RAG system will automatically incorporate the new data upon server restart.

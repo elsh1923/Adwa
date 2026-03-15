@@ -90,7 +90,7 @@ const Quiz: React.FC = () => {
     setLoadingAI(true);
     try {
       // Pass preferred language to explanation service if possible
-      const reply = await explainQuizAnswer(question, options[q.correct], 'en');
+      const reply = await explainQuizAnswer(question, options[q.correct]);
       setAiExplanation(reply);
     } catch {
       setAiExplanation(null); // fallback to static

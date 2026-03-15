@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+Ethiopic:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 /* ─── Design Tokens ─── */
 :root {
@@ -41,14 +41,6 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-}
-
-/* Amharic font override */
-body.lang-am {
-  font-family: 'Noto Serif Ethiopic', 'Outfit', system-ui, sans-serif;
-}
-body.lang-am h1, body.lang-am h2, body.lang-am h3 {
-  font-family: 'Noto Serif Ethiopic', Georgia, serif;
 }
 
 /* ─── Typography ─── */

@@ -119,15 +119,14 @@ export interface HeroPersona {
 export async function chatWithHero(
   heroId: string,
   _history: GeminiMessage[],
-  userMessage: string,
-  lang: string = 'en'
+  userMessage: string
 ): Promise<string> {
   const url = `${API_BASE}/api/chat`;
   try {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ hero: heroId, question: userMessage, lang })
+      body: JSON.stringify({ hero: heroId, question: userMessage, lang: 'en' })
     });
     
     if (!response.ok) {
@@ -161,12 +160,11 @@ Keep responses to 2–3 paragraphs.`;
 // ─── Quiz Explanation ─────────────────────────────────────────────────────────
 export async function explainQuizAnswer(
   question: string,
-  correct: string,
-  lang: string = 'en'
+  correct: string
 ): Promise<string> {
   const systemPrompt = `You are an AI history tutor teaching about the Battle of Adwa (1896). 
 Provide a brief, engaging, accurate explanation of why the answer is correct. 
-Respond in ${lang === 'am' ? 'Amharic' : 'English'}. Keep response to 2–3 sentences.`;
+Respond only in English. Keep response to 2–3 sentences.`;
 
   return generateContent(
     systemPrompt,
@@ -178,12 +176,11 @@ Respond in ${lang === 'am' ? 'Amharic' : 'English'}. Keep response to 2–3 sent
 // ─── Strategy Insight ─────────────────────────────────────────────────────────
 export async function getStrategyInsight(
   topic: string,
-  side: 'ethiopian' | 'italian' | 'geography',
-  lang: string = 'en'
+  side: 'ethiopian' | 'italian' | 'geography'
 ): Promise<string> {
   const systemPrompt = `You are a military historian specializing in African colonial history 
 and the Battle of Adwa. Provide a concise, insightful analysis of military strategies. 
-Respond in ${lang === 'am' ? 'Amharic' : 'English'}. 2–3 sentences only.`;
+Respond only in English. 2–3 sentences only.`;
 
   return generateContent(
     systemPrompt,

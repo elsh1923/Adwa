@@ -1,0 +1,16 @@
+[
+  {
+    "id": "fact-001",
+    "category": "Diplomacy",
+    "fact": "The Treaty of Wuchale was signed between the Ethiopian Empire and the Kingdom of Italy.",
+    "year": 1889,
+    "importance": "Major"
+  },
+  {
+    "id": "fact-002",
+    "category": "Heroism",
+    "fact": "Empress Taytu Betul played a crucial role by cutting off the water supply to the Italian fort at Mekele.",
+    "year": 1896,
+    "importance": "Critical"
+  }
+]

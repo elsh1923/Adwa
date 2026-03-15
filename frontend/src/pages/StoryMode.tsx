@@ -121,10 +121,7 @@ const StoryMode: React.FC = () => {
                     if (isSpeaking) {
                       stop();
                     } else {
-                      const voice = (scene.title.includes('Taytu') || scene.title.includes('Mekelle') || scene.content.includes('Taytu')) 
-                        ? 'elderly-female' 
-                        : 'male';
-                      speak(scene.content, lang, voice as any);
+                      speak(scene.content, lang, 'male');
                     }
                   }}
                   style={{ position: 'absolute', bottom: '1rem', right: '1rem', background: 'rgba(212,175,55,0.1)', border: '1px solid rgba(212,175,55,0.2)', borderRadius: '50%', padding: '0.6rem', color: 'var(--gold)', cursor: 'pointer', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}

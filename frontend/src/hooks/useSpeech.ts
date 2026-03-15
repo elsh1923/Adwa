@@ -79,7 +79,7 @@ export const useSpeech = () => {
       utterance.pitch = 0.90; // Mature, maternal (clearly female)
       utterance.rate = 0.75;  // Deliberate
     } else if (profile === 'warrior') {
-      utterance.pitch = 1.30; // High, urgent battle voice
+      utterance.pitch = 0.75; // Deep, commanding battle voice
       utterance.rate = 1.05;  // Faster, energetic
     } else if (profile === 'strategic') {
       utterance.pitch = 0.88; // Deep but precise

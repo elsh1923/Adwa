@@ -67,9 +67,9 @@ npm run dev
 ```
 
 ### Individual Components
-- **Start Backend**: `npm run start-backend`
-- **Start Frontend**: `npm run start-frontend`
-- **Build Frontend**: `npm run build-frontend`
+- **Start Backend**: `npm run server`
+- **Start Frontend**: `npm run start`
+- **Build Frontend**: `npm run build`
 
 ## 📚 Updating the Knowledge Base
 

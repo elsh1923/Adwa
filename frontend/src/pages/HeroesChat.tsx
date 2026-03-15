@@ -19,7 +19,7 @@ interface Leader {
 }
 
 const HeroesChat: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   const leaders: Leader[] = [
     {
@@ -126,7 +126,7 @@ const HeroesChat: React.FC = () => {
         selectedLeader.id,
         geminiHistory.current,
         trimmed,
-        lang
+        'en'
       );
 
       // Update Gemini conversation history
@@ -325,7 +325,7 @@ const HeroesChat: React.FC = () => {
                 }}>
                   {m.content}
                   
-                  {m.role === 'assistant' && lang === 'en' && (
+                  {m.role === 'assistant' && (
                     <button 
                       onClick={() => isSpeaking ? stop() : speak(m.content, selectedLeader.voiceProfile)}
                       style={{ 

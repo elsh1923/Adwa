@@ -11,15 +11,15 @@ exports.generateQuiz = async (req, res) => {
       .map(line => {
         try {
           const obj = JSON.parse(line);
-          return JSON.stringify({ en: obj.fact || obj.description || obj.event || obj.name || "", am: obj.am || "" });
+          return JSON.stringify({ en: obj.fact || obj.description || obj.event || obj.name || "" });
         } catch { return line; }
       })
       .join('\n');
     
     const systemPrompt = `You are an AI history tutor specialized in the Battle of Adwa.
 Generate a valid JSON object containing a "questions" array of 5 multiple-choice questions.
-Each question must have: "q_en", "q_am", "options_en" (4 strings), "options_am" (4 strings), "correct" (0-3), "explanation_en", and "explanation_am".
-Use Ge'ez script for Amharic.`;
+Each question must have: "q_en", "options_en" (4 strings), "correct" (0-3), and "explanation_en".
+Respond ONLY in English. DO NOT generate any Amharic text.`;
 
     // --- AI Generation Attempt ---
     try {
@@ -53,12 +53,9 @@ Use Ge'ez script for Amharic.`;
       if (parsed && Array.isArray(parsed)) {
         const cleaned = parsed.slice(0, 5).map(q => ({
           q_en: q.q_en || "Question?",
-          q_am: q.q_am || q.q_en || "ጥያቄ?",
           options_en: Array.isArray(q.options_en) ? q.options_en : ["O1", "O2", "O3", "O4"],
-          options_am: Array.isArray(q.options_am) ? q.options_am : ["ሀ", "ለ", "ሐ", "መ"],
           correct: typeof q.correct === 'number' ? q.correct : 0,
           explanation_en: q.explanation_en || "",
-          explanation_am: q.explanation_am || q.explanation_en || ""
         }));
         return res.json(cleaned);
       }
@@ -75,16 +72,12 @@ Use Ge'ez script for Amharic.`;
         try {
           const obj = JSON.parse(line);
           const factEn = obj.fact || obj.description || obj.event || "The Battle of Adwa was a significant victory.";
-          const factAm = obj.am || factEn;
           
           return {
             q_en: `Regarding the history of Adwa: ${factEn.slice(0, 100)}... Is this related to ${obj.category || 'the battle'}?`,
-            q_am: `ስለ ዓድዋ ታሪክ፡ ${factAm.slice(0, 100)}... ይህ ከ${obj.category || 'ጦርነቱ'} ጋር የተያያዘ ነው?`,
             options_en: ["True", "False", "Not mentioned", "Irrelevant"],
-            options_am: ["እውነት", "ሐሰት", "አልተጠቀሰም", "አግባብነት የለውም"],
             correct: 0,
-            explanation_en: "This information is verified in the Adwa historical records.",
-            explanation_am: "ይህ መረጃ በዓድዋ ታሪካዊ መዝገቦች ውስጥ የተረጋገጠ ነው።"
+            explanation_en: "This information is verified in the Adwa historical records."
           };
         } catch {
           return null;

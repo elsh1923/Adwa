@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
-export type Language = 'en' | 'am';
+export type Language = 'en';
 
 interface LanguageContextType {
   lang: Language;
@@ -183,196 +183,21 @@ const translations: Record<Language, Record<string, string>> = {
     'quiz.next':      'Next Question',
     'quiz.results':   'See Results',
 
-    // Language switcher
+    // Language switcher (though not used)
     'lang.en': 'English',
-    'lang.am': 'አማርኛ',
-  },
-  am: {
-    // Nav
-    'nav.home':       'መነሻ',
-    'nav.story':      'ታሪክ',
-    'nav.chat':       'ከጀግኖች ጋር ውይይት',
-    'nav.strategy':   'ስልት',
-    'nav.timeline':   'የጊዜ መስመር',
-    'nav.quiz':       'ፈተና',
-    'nav.cta':        'ታሪኩን ጀምር',
-
-    // Footer
-    'footer.tagline': 'የኢትዮጵያን ታሪክ በብልህነት እና ታሪክ አገላለጽ ሕያው ማድረግ።',
-    'footer.explore': 'ያስሱ',
-    'footer.history': 'ታሪክ',
-    'footer.about':   'ስለ እኛ',
-    'footer.mission': 'ተልዕኳችን',
-    'footer.share':   'ታሪክዎን ያካፍሉ',
-    'footer.resources': 'የትምህርት ግብዓቶች',
-    'footer.feedback': 'አስተያየት',
-    'footer.copyright': '© 2026 የዓድዋ AI ረዳት · 130ኛውን የድል በዓል ማክበር · የካቲት 23 ቀን 1888 ዓ.ም',
-    'footer.context': 'ታሪካዊ ሁኔታ',
-    'footer.leaders': 'መሪዎቹ',
-    'footer.victory': 'ድሉ',
-    'footer.legacy':  'ውርሱ',
-
-    // Home hero
-    'home.badge':     'ታሪክ ከብልህነት ጋር ይገናኛል',
-    'home.title1':    'ዓድዋ፡ ጦርነቱ',
-    'home.title2':    'ዳግም ትዝታ',
-    'home.subtitle':  'የዓድዋን ጦርነት ከዚህ በፊት ታይቶ በማይታወቅ መልኩ ይለማመዱ — ከታሪካዊ ጀግኖች ጋር ይወያዩ፣ ዘዴያዊ ስልቶችን ያስሱ እና በሰው ሰራሽ አስተውሎት አማካኝነት በትምህርታዊ መንገድ ይማሩ።',
-    'home.cta1':      'ታሪኩን ጀምር',
-    'home.cta2':      'ከጀግኖች ጋር ይወያዩ',
-    'home.cta3':      'ፈተናውን ይውሰዱ',
-    'home.cta4':      'የጦርነት ስልቶችን ያስሱ',
-    'home.cta5':      'የዓድዋ የጊዜ መስመር',
-
-    // Home stats
-    'stats.warriors':     'የኢትዮጵያ ተዋጊዎች',
-    'stats.year':         'የድል ዓመት',
-    'stats.experiences':  'AI ተሞክሮዎች',
-    'stats.years':        'የመነሳሳት ዓመታት',
-
-    // Home features section
-    'features.eyebrow':   'ረዳቱ',
-    'features.title':     'ዓድዋን የሚለማመዱባቸው አምስት መንገዶች',
-    'features.subtitle':  'በጥለቅ የ AI ትረካዎች፣ ከታሪካዊ ታዋቂ ሰዎች ጋር በቅጽበት በሚደረጉ ውይይቶች ወይም በስትራቴጂካዊ ጥልቅ ጥናቶች — እያንዳንዱ መንገድ ስለ ኢትዮጵያ ታላቅ ድል የተሻለ ግንዛቤን ያስገኛል።',
-    'features.explore':   'ያስሱ',
-
-    // Feature cards
-    'feature.story.title':    'AI ታሪክ ሁነታ',
-    'feature.story.sub':      'ጥልቅ ትረካ',
-    'feature.story.desc':     'ወደ 1888 ኢትዮጵያ ይግቡ። ለምርጫዎችዎ እና ለጉጉትዎ ምላሽ በሚሰጥ ተለዋዋጭ የ AI ትረካ አማካኝነት የዓድዋን ጦርነት ይለማመዱ።',
-    'feature.story.badge':    'በጣም ተወዳጅ',
-    'feature.chat.title':     'ከጀግኖች ጋር ውይይት',
-    'feature.chat.sub':       'ሕያው ታሪክ',
-    'feature.chat.desc':      'በ AI አማካኝነት ሕያው ከሆኑት ዳግማዊ አፄ ምኒልክ፣ እቴጌ ጣይቱ ብጡል እና ራስ አሉላ ጋር ውይይቶችን ያድርጉ።',
-    'feature.chat.badge':     'አሳታፊ የታሪክ ጉዞ',
-    'feature.strategy.title': 'የጦርነት ስልቶች',
-    'feature.strategy.sub':   'ዘዴያዊ ብልህነት',
-    'feature.strategy.desc':  'ለኢትዮጵያ ታይቶ የማይታወቅ የአፍሪካ ድል ያስገኙትን ድንቅ ወታደራዊ አሰላለፎች፣ መልክዓ ምድራዊ ጥቅሞች እና ስትራቴጂካዊ ውሳኔዎችን ያስሱ።',
-    'feature.strategy.badge': 'ምስላዊ',
-    'feature.timeline.title': 'የጊዜ መስመር',
-    'feature.timeline.sub':   'የዘመን ጉዞ',
-    'feature.timeline.desc':  'ከቅኝ ግዛት ሙከራዎች እስከ የመጨረሻው ታላቅ ድል ድረስ ያሉ ዋና ዋና ክስተቶችን በጥሩ ሁኔታ በተሰራ ምስላዊ የጊዜ መስመር ውስጥ ያስሱ።',
-    'feature.timeline.badge': 'ያስሱ',
-    'feature.quiz.title':     'የዓድዋ ፈተና',
-    'feature.quiz.sub':       'እውቀትዎን ይፈትሹ',
-    'feature.quiz.desc':      'ስለ ዓድዋ ጦርነት በ AI በሚደገፉ ጥያቄዎች እራስዎን ይፈትሹ። ግላዊ ማብራሪያዎችን ያግኙ እና ግንዛቤዎን ያሳድጉ።',
-    'feature.quiz.badge':     'ተግዳሮት',
-
-    // Heroes section
-    'heroes.eyebrow':   'ታዋቂ ሰዎችን ያግኙ',
-    'heroes.title':     'የዓድዋ ጀግኖች',
-    'heroes.subtitle':  'በእኛ AI ስርዓት አማካኝነት ከነዚህ ታሪካዊ ሰዎች ጋር በቀጥታ ይወያዩ። ስለ ጦርነቱ፣ ስለ ተነሳሽነታቸው እና ስለ ኢትዮጵያ ቅርስ ይጠይቋቸው።',
-    'heroes.chat_btn':  'ውይይት ጀምር',
-    'heroes.all_btn':   'ከሁሉም ጀግኖች ጋር ይወያዩ',
-    'hero.menelik.name':  'ዳግማዊ አፄ ምኒልክ',
-    'hero.menelik.role':  'ጠቅላይ አዛዥ',
-    'hero.menelik.desc':  'የኢትዮጵያን ኃይሎች በቅኝ ገዥዋ ኢጣሊያ ላይ አንድ ያደረጉት ባለራዕዩ ንጉሠ ነገሥት።',
-    'hero.taytu.name':    'እቴጌ ጣይቱ ብጡል',
-    'hero.taytu.role':    'ስትራቴጂካዊ አርክቴክት',
-    'hero.taytu.desc':    "ከኢትዮጵያ ዲፕሎማሲያዊ እና ወታደራዊ ስልት በስተጀርባ ዋና አእምሮ የነበሩት እቴጌ።",
-    'hero.alula.name':    'ራስ አሉላ',
-    'hero.alula.desc':    "በዓድዋ ላይ ወታደራዊ ስልቶችን የቀረጹት የኢትዮጵያ ታላቅ ወታደራዊ አእምሮ።",
-    'hero.mengesha.name': 'ራስ መንገሻ ዮሐንስ',
-    'hero.mengesha.role': 'የትግራይ ገዥ',
-    'hero.mengesha.desc': 'የኢትዮጵያን ሉዓላዊነት ለማስጠበቅ ከዳግማዊ ምኒልክ ጎን ተሰልፈው የተዋጉት ታማኙ የትግራይ መሪ።',
-    'hero.mikael.name':   'የወሎው ራስ ሚካኤል',
-    'hero.mikael.role':   'የወሎ ጦር አዛዥ',
-    'hero.mikael.desc':   'በዓድዋ ጦርነት ወቅት ብርቱውን የወሎ ፈረሰኛ ጦር የመሩት ወሳኝ ወታደራዊ መሪ።',
-    'hero.habtegiyorgis.name': 'ፊታውራሪ ሀብተ ጊዮርጊስ',
-    'hero.habtegiyorgis.role': 'የጦር ሚኒስትር',
-    'hero.habtegiyorgis.desc': 'በብልህነታቸው "አባ መላ" ተብለው የሚታወቁት ዝነኛ ወታደራዊ አዛዥ እና ስትራቴጂስት።',
-
-    // Mission section
-    'mission.eyebrow':  'ተልዕኳችን',
-    'mission.title':    'ታሪክ ሕያው የሚሆንበት',
-    'mission.p1':       'የካቲት 23 ቀን 1888 ዓ.ም የተካሄደው የዓድዋ ጦርነት አፍሪካ በቅኝ ግዛት ላይ ያስመዘገበችው ትልቁ ወታደራዊ ድል ነበር። በዳግማዊ አፄ ምኒልክ መሪነት የተገኘው የኢትዮጵያ ድል ለመላው አህጉር እና ከዚያም በላይ የነፃነት ፋና ሆነ።',
-    'mission.p2':       'የእኛ መድረክ ይህንን የታሪክ ወሳኝ ምዕራፍ ተደራሽ፣ ጥልቅ እና አስተማሪ ለማድረግ ዘመናዊ AI ይጠቀማል — የዓድዋን ተዋጊዎች፣ መሪዎች እና ውርስ ለትውልድ እያከበረ።',
-    'mission.ai':       'በ AI የሚደገፍ ትምህርት',
-    'mission.ai_desc':  'እያንዳንዱን የትምህርት ጉዞ ከእርስዎ ፍጥነት እና ፍላጎት ጋር የሚያዛምድ ተለዋዋጭ AI።',
-    'mission.accurate': 'ታሪካዊ ትክክለኛነት',
-    'mission.accurate_desc': 'ሁሉም ይዘቶች በጥንቃቄ የተጠኑ እና ከታሪካዊ ምንጮች ጋር የተረጋገጡ።',
-    'mission.pan':      'ፓን-አፍሪካዊ ቅርስ',
-    'mission.pan_desc': 'ዓድዋን የአፍሪካ ኩራት፣ ሉዓላዊነት እና ፅናት ምልክት አድርጎ ማክበር።',
-    'mission.award':    'ተሸላሚ ንድፍ',
-    'mission.award_desc': 'ለማነሳሳት እና ለማስተማር የተነደፈ የሙዚየም ጥራት ያለው ዲጂታል ተሞክሮ።',
-
-    // Final CTA
-    'cta.title':    "በኢትዮጵያ ታላቅ ጦርነት ውስጥ ጉዞዎን ይጀምሩ",
-    'cta.subtitle': 'በሰው ሰራሽ አስተውሎት አማካኝነት የዓድዋን ጦርነት አስቀድመው የተገነዘቡ በሺዎች የሚቆጠሩ ተማሪዎችን ይቀላቀሉ።',
-
-    // Story page
-    'story.page_title': 'ትረካ',
-    'story.page_desc':  'ወደ ቀድሞው ታሪክ ይመለሱ። በዓድዋ ድል የታዩትን የታሪክ እውነታዎች፣ የቀኖች ቅደም ተከተል እና የወታደራዊ ስልቶችን ለማሰስ ጥያቄዎችን ይጠይቁ።',
-    'story.title':     'ተራኪው',
-    'story.subtitle':  'ታሪካዊ የ AI ተራኪ',
-    'story.chapter':   'ምዕራፍ',
-    'story.complete':  '% ተጠናቋል',
-    'story.prev':      'ቀዳሚ',
-    'story.next':      'ቀጣይ ምዕራፍ',
-    'story.insight_title': 'የ AI ታሪካዊ ግንዛቤ',
-    'story.perspective': 'አመለካከት',
-    'story.perspective_q': 'የአካባቢው አለቃ ቢሆኑ ኖሮ ለውጫሌ ውል ምን ዓይነት ምላሽ ይሰጡ ነበር?',
-    'story.ask_ai':    'የ AI ገጸ ባህሪን ይጠይቁ',  
-
-    // Heroes Chat page
-    'chat.title':           'መሪዎቹን አማክሩ',
-    'chat.subtitle':        'ውይይት ለመጀመር ታሪካዊ ሰውን ይምረጡ። ስለ ዝግጅታቸው፣ ስለገጠሟቸው ፈተናዎች ወይም ስለ ኢትዮጵያ ስላላቸው ራዕይ ይጠይቋቸው።',
-    'chat.placeholder':     'ጥያቄ ይጠይቁ…',
-    'chat.start_hint':      'ውይይትዎን በዚህ ይጀምሩ',
-    'chat.back':            'ተመለስ',
-    'chat.send':            'ላክ',
-    'chat.menelik.role':    'ንጉሠ ነገሥት',
-    'chat.menelik.desc':    'የኢትዮጵያ አንድነት እና ዘመናዊነት ባለቤት።',
-    'chat.taytu.role':      'ስትራቴጂካዊ አማካሪ',
-    'chat.taytu.desc':      'ብርቱዋ ዲፕሎማት እና ድንቅ ስትራቴጂካዊ አማካሪ።',
-    'chat.alula.desc':      'የሰሜኑ አንበሳ ተብለው የሚታወቁት ዝነኛ ጄኔራል ።',
-    'chat.mengesha.role':   'ተዋጊ እና መሪ',
-    'chat.mengesha.desc':   'ለዘውዱ የማይወለክ አንድነት ያሳዩ የትግራይ ቁልፍ መሪ።',
-    'chat.mikael.role':     'የፈረሰኛ ጦር አዛዥ',
-    'chat.mikael.desc':     'የኢጣሊያን መስመር የሰባበረው ዝነኛው የወሎ ኦሮሞ ፈረሰኛ ጦር መሪ።',
-    'chat.habtegiyorgis.role': 'የፊት አውራሪ ጦር አዛዥ',
-    'chat.habtegiyorgis.desc': 'በዓድዋ ግንባር ቀደም ሆኖ የመራው ድንቅ የጦር አዛዥ።',
-
-    // Strategy page
-    'strategy.title':       'የጦርነት ስልት ማብራሪያ',
-    'strategy.subtitle':    'የአንድን ሀገር እጣ ፈንታ የወሰኑትን ወታደራዊ ብልህነት እና ስህተቶች ይተንትኑ።',
-    'strategy.tab_eth':     'የኢትዮጵያ ስልት',
-    'strategy.tab_ita':     'የኢጣሊያ ስልት',
-    'strategy.tab_geo':     'መልክዓ ምድር',
-    'strategy.quote':       '"ተራሮቹ ግንቦቻችን ነበሩ፣ አንድነት ደግሞ መሣሪያችን።"',
-    'strategy.did_you_know': 'ይህንን ያውቁ ነበር?',
-    'strategy.fun_fact':    'የኢትዮጵያ ጦር ዘመናዊ ጠመንጃ የታጠቀ የመጀመሪያው የአፍሪካ ጦር አንዱ ነበር።',
-    'strategy.eth_title': 'የኢትዮጵያ ስትራቴጂካዊ ብልህነት',
-    'strategy.ita_title': 'የኢጣሊያ የተሳሳቱ ስሌቶች',
-    'strategy.geo_title': 'የዓድዋ መልክዓ ምድር',
-
-    // Quiz page
-    'quiz.title':     'የዓድዋ እውቀት መፈተሻ',
-    'quiz.question_of': 'ጥያቄ',
-    'quiz.of':        'ከ',
-    'quiz.complete':  'ፈተናው ተጠናቋል!',
-    'quiz.score':     'ውጤትዎ፡',
-    'quiz.try_again': 'እንደገና ይሞክሩ',
-    'quiz.back_home': 'ወደ መነሻ ገጽ',
-    'quiz.ai_insight': 'የ AI ግንዛቤ፡',
-    'quiz.next':      'ቀጣይ ጥያቄ',
-    'quiz.results':   'ውጤቶችን ይመልከቱ',
-
-    // Language switcher
-    'lang.en': 'English',
-    'lang.am': 'አማርኛ',
-  },
+  }
 };
 
 // ─── Provider ────────────────────────────────────────────────────────────────
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [lang, setLang] = useState<Language>('en');
+  const [lang] = useState<Language>('en');
 
   const t = (key: string): string => {
-    return translations[lang][key] ?? translations['en'][key] ?? key;
+    return translations[lang][key] ?? key;
   };
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang: () => {}, t }}>
       {children}
     </LanguageContext.Provider>
   );

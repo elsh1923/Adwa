@@ -16,7 +16,7 @@ interface TimelineEvent {
 import { useState, useEffect } from 'react';
 
 const TimelinePage: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   const [events, setEvents] = useState<TimelineEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -34,8 +34,8 @@ const TimelinePage: React.FC = () => {
         const colorChoices = ['#d4af37', '#1a5c38', '#8b0000', '#2e8b57', '#d4af37'];
         
         const mappedEvents = data.map((item: any, idx: number) => {
-          const title = typeof item.event === 'object' ? (item.event[lang] || item.event['en']) : (item.event || item.title || 'Significant Event');
-          const desc = typeof item.details === 'object' ? (item.details[lang] || item.details['en']) : (item.details || item.description || '');
+          const title = typeof item.event === 'object' ? (item.event['en']) : (item.event || item.title || 'Significant Event');
+          const desc = typeof item.details === 'object' ? (item.details['en']) : (item.details || item.description || '');
           const date = item.year || item.date || 'Unknown Date';
 
           return {
@@ -55,10 +55,10 @@ const TimelinePage: React.FC = () => {
       }
     };
     fetchTimelineInfo();
-  }, [lang]);
+  }, []);
 
-  if (loading) return <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--gold)' }}>{lang === 'am' ? 'የጊዜ መስመር ከ RAG እውቀት ማከማቻ በመጫን ላይ...' : 'Loading Timeline from RAG Knowledge Base...'}</div>;
-  if (error) return <div style={{ padding: '4rem', textAlign: 'center', color: '#ff6b6b' }}>{lang === 'am' ? 'የጊዜ መስመሩን መጫን አልተቻለም። እባክዎ የጀርባ አገልጋዩ መስራቱን ያረጋግጡ።' : 'Failed to load timeline. Please ensure the backend is running.'}</div>;
+  if (loading) return <div style={{ padding: '4rem', textAlign: 'center', color: 'var(--gold)' }}>Loading Timeline from RAG Knowledge Base...</div>;
+  if (error) return <div style={{ padding: '4rem', textAlign: 'center', color: '#ff6b6b' }}>Failed to load timeline. Please ensure the backend is running.</div>;
 
   return (
     <div style={{ padding: '4rem 0', minHeight: '100vh', background: 'transparent', position: 'relative' }}>

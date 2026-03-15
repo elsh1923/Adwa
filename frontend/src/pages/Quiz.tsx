@@ -8,18 +8,15 @@ import { API_BASE } from '../services/apiConfig';
 
 interface Question {
   q_en: string;
-  q_am: string;
   options_en: string[];
-  options_am: string[];
   correct: number;
   explanation_en: string;
-  explanation_am: string;
 }
 
 // Removed static quizData - we will generate it dynamically.
 
 const Quiz: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
 
   const [quizData, setQuizData] = useState<Question[]>([]);
   const [loadingQuiz, setLoadingQuiz] = useState(true);
@@ -44,9 +41,6 @@ const Quiz: React.FC = () => {
       
       const processed = data.map((q: any) => ({
         ...q,
-        q_am: q.q_am || q.q_en,
-        options_am: q.options_am || q.options_en,
-        explanation_am: q.explanation_am || q.explanation_en,
       }));
       setQuizData(processed);
     } catch (e: any) {
@@ -66,7 +60,7 @@ const Quiz: React.FC = () => {
       <div style={{ padding: '5rem 0', textAlign: 'center', color: 'var(--gold)' }}>
         <Loader2 size={40} style={{ animation: 'spin 1s linear infinite', margin: '0 auto 1rem' }} />
         <p style={{ fontFamily: 'Outfit, sans-serif' }}>
-           {lang === 'am' ? 'የዓድዋ እውቀት ማከማቻን በመጠቀም ጥያቄዎችን በማዘጋጀት ላይ...' : 'Generating questions from Adwa knowledge base...'}
+           Generating questions from Adwa knowledge base...
         </p>
       </div>
     );
@@ -75,16 +69,16 @@ const Quiz: React.FC = () => {
   if (fetchError || quizData.length === 0) {
     return (
       <div style={{ padding: '5rem 0', textAlign: 'center', color: '#ff6b6b' }}>
-        <p style={{ fontFamily: 'Outfit, sans-serif' }}>{lang === 'am' ? 'ጥያቄዎችን ማዘጋጀት አልተቻለም። አገልጋዩ መስራቱን ያረጋግጡ።' : 'Failed to generate the quiz. Ensure the backend is running.'}</p>
-        <button onClick={loadQuiz} className="btn-primary" style={{ marginTop: '1rem' }}>{lang === 'am' ? 'እንደገና ይሞክሩ' : 'Retry'}</button>
+        <p style={{ fontFamily: 'Outfit, sans-serif' }}>Failed to generate the quiz. Ensure the backend is running.</p>
+        <button onClick={loadQuiz} className="btn-primary" style={{ marginTop: '1rem' }}>Retry</button>
       </div>
     );
   }
 
   const q = quizData[currentStep];
-  const question = lang === 'am' ? q.q_am : q.q_en;
-  const options = lang === 'am' ? q.options_am : q.options_en;
-  const staticExplanation = lang === 'am' ? q.explanation_am : q.explanation_en;
+  const question = q.q_en;
+  const options = q.options_en;
+  const staticExplanation = q.explanation_en;
 
   const handleOptionClick = async (idx: number) => {
     if (isAnswered) return;
@@ -96,7 +90,7 @@ const Quiz: React.FC = () => {
     setLoadingAI(true);
     try {
       // Pass preferred language to explanation service if possible
-      const reply = await explainQuizAnswer(question, options[q.correct], lang);
+      const reply = await explainQuizAnswer(question, options[q.correct], 'en');
       setAiExplanation(reply);
     } catch {
       setAiExplanation(null); // fallback to static

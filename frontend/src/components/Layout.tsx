@@ -7,13 +7,13 @@ import { useLanguage } from '../context/LanguageContext';
 interface LayoutProps { children: ReactNode; }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { lang, setLang, t } = useLanguage();
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
+    document.documentElement.lang = 'en';
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -128,29 +128,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           {/* Right side: Language switcher + CTA + Mobile toggle */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            {/* Language Switcher */}
-            <div style={{ display: 'flex', gap: '0.35rem', background: 'rgba(255,255,255,0.05)', padding: '0.3rem', borderRadius: 99, border: '1px solid var(--border-subtle)', marginRight: '0.4rem' }}>
-              {(['en', 'am'] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  style={{
-                    padding: '0.4rem 0.8rem',
-                    borderRadius: 99,
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    transition: 'var(--transition)',
-                    background: lang === l ? 'var(--gold)' : 'transparent',
-                    color: lang === l ? '#000' : 'var(--text-dim)',
-                    border: 'none',
-                    fontFamily: 'inherit',
-                  }}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
+            {/* Language Switcher removed as per user request */}
 
             <NavLink
               to="/story"

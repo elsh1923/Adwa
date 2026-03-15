@@ -6,7 +6,7 @@ import { useSpeech } from '../hooks/useSpeech';
 import { API_BASE } from '../services/apiConfig';
 
 const StoryMode: React.FC = () => {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   
   // Starting story narrative greeting
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; content: string }[]>([]);
@@ -23,12 +23,10 @@ const StoryMode: React.FC = () => {
     setMessages([
       {
         role: 'assistant',
-        content: lang === 'am' 
-          ? "እንኳን ወደ የዓድዋ ጦርነት ታሪክ በደህና መጡ። በ1896 (በ1888 ዓ.ም.) በኢትዮጵያ ንጉሠ ነገሥት መንግሥት እና በኢጣሊያ ንጉሥ መንግሥት መካከል ያለው ውጥረት ከፍተኛ ደረጃ ላይ ደርሷል። ከታሪኩ የትኛውን ክፍል ማሰስ ይፈልጋሉ? ስለ መሪዎቹ፣ ስለ የጊዜ መስመሩ፣ ስለ ጦርነት ስልቶቹ ወይም ስለ አጠቃላይ እውነታዎች ሊጠይቁኝ ይችላሉ።"
-          : "Welcome to the story of the Battle of Adwa. The date is 1896, and the tension between the Ethiopian Empire and the Kingdom of Italy has reached a breaking point. What part of the history would you like to explore? You can ask me about the leaders, the timeline, the battle strategies, or general facts."
+        content: "Welcome to the story of the Battle of Adwa. The date is 1896, and the tension between the Ethiopian Empire and the Kingdom of Italy has reached a breaking point. What part of the history would you like to explore? You can ask me about the leaders, the timeline, the battle strategies, or general facts."
       }
     ]);
-  }, [lang]);
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -49,7 +47,7 @@ const StoryMode: React.FC = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Use 'story' persona from the backend
-        body: JSON.stringify({ hero: 'story', question: trimmed, lang })
+        body: JSON.stringify({ hero: 'story', question: trimmed, lang: 'en' })
       });
       
       if (!response.ok) {
@@ -60,7 +58,7 @@ const StoryMode: React.FC = () => {
       setMessages(prev => [...prev, { role: 'assistant', content: data.answer }]);
     } catch (err: any) {
       console.error(`StoryMode fetch error at ${url}:`, err);
-      setError(err.message || (lang === 'am' ? 'ታሪኩን ማምጣት አልተቻለም።' : 'Failed to retrieve story.'));
+      setError(err.message || 'Failed to retrieve story.');
     } finally {
       setLoading(false);
     }
@@ -142,7 +140,7 @@ const StoryMode: React.FC = () => {
                 }}>
                   {m.content}
                   
-                  {m.role === 'assistant' && lang === 'en' && (
+                  {m.role === 'assistant' && (
                     <button 
                       onClick={() => isSpeaking ? stop() : speak(m.content, 'male')}
                       style={{ 
@@ -206,7 +204,7 @@ const StoryMode: React.FC = () => {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
-              placeholder={lang === 'am' ? "ስለ ጦርነቱ፣ ስለ መሪዎቹ ወይም ስለ ታሪካዊ ቀኖቹ ይጠይቁ..." : "Ask the storyteller about the battle, leaders, or events..."}
+              placeholder="Ask the storyteller about the battle, leaders, or events..."
               disabled={loading}
               style={{
                 flex: 1,
@@ -239,7 +237,7 @@ const StoryMode: React.FC = () => {
                 boxShadow: loading || !input.trim() ? 'none' : '0 4px 15px rgba(212,175,55,0.4)',
                 border: 'none'
               }}
-              title={lang === 'am' ? "መልዕክት ይላኩ" : "Send your chronicle inquiry"}
+              title="Send your chronicle inquiry"
             >
               {loading
                 ? <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />

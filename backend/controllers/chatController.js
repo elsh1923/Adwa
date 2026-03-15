@@ -26,7 +26,7 @@ exports.handleChat = async (req, res) => {
       systemPrompt = HERO_PERSONAS[hero];
     }
 
-    systemPrompt += `\n\nIMPORTANT: Respond in THE SAME LANGUAGE as the user's question. Explicit preference: ${lang === 'am' ? 'Amharic' : 'English'}.`;
+    systemPrompt += `\n\nIMPORTANT: Respond only in English.`;
     
     const userPrompt = `Context:\n${context || 'No specific context found.'}\n\nQuestion:\n${question}`;
 

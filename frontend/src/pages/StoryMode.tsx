@@ -43,8 +43,9 @@ const StoryMode: React.FC = () => {
     setLoading(true);
     setError(null);
 
+    const url = `${API_BASE}/api/chat`;
     try {
-      const response = await fetch(`${API_BASE}/api/chat`, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Use 'story' persona from the backend
@@ -52,13 +53,14 @@ const StoryMode: React.FC = () => {
       });
       
       if (!response.ok) {
-        throw new Error(lang === 'am' ? 'የታሪክ ምሁራኖቻችን ለመገናኘት ችግር አጋጥሟቸዋል። እባክዎ የጀርባ አገልጋዩ መስራቱን ያረጋግጡ።' : 'Our historians are having trouble connecting. Make sure the backend is running.');
+        throw new Error(`Connection failed (${response.status}). URL: ${url}`);
       }
       
       const data = await response.json();
       setMessages(prev => [...prev, { role: 'assistant', content: data.answer }]);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : (lang === 'am' ? 'ታሪኩን ማምጣት አልተቻለም።' : 'Failed to retrieve story.'));
+    } catch (err: any) {
+      console.error(`StoryMode fetch error at ${url}:`, err);
+      setError(err.message || (lang === 'am' ? 'ታሪኩን ማምጣት አልተቻለም።' : 'Failed to retrieve story.'));
     } finally {
       setLoading(false);
     }

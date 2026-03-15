@@ -23,8 +23,9 @@ const TimelinePage: React.FC = () => {
 
   useEffect(() => {
     const fetchTimelineInfo = async () => {
+      const url = `${API_BASE}/api/knowledge/timeline`;
       try {
-        const response = await fetch(`${API_BASE}/api/knowledge/timeline`);
+        const response = await fetch(url);
         if (!response.ok) throw new Error();
         const data = await response.json();
         
@@ -48,9 +49,9 @@ const TimelinePage: React.FC = () => {
         
         setEvents(mappedEvents);
       } catch (err) {
+        console.error(`Timeline fetch error at ${url}:`, err);
         setError(true);
-      } finally {
-        setLoading(false);
+      } finally {        setLoading(false);
       }
     };
     fetchTimelineInfo();

@@ -36,11 +36,12 @@ const Quiz: React.FC = () => {
   const loadQuiz = async () => {
     setLoadingQuiz(true);
     setFetchError(false);
+    const url = `${API_BASE}/api/quiz`;
     try {
-      const resp = await fetch(`${API_BASE}/api/quiz`);
-      if (!resp.ok) throw new Error('Failed');
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`Status ${resp.status}`);
       const data = await resp.json();
-      // Ensure we treat missing amharic properly
+      
       const processed = data.map((q: any) => ({
         ...q,
         q_am: q.q_am || q.q_en,
@@ -48,7 +49,8 @@ const Quiz: React.FC = () => {
         explanation_am: q.explanation_am || q.explanation_en,
       }));
       setQuizData(processed);
-    } catch (e) {
+    } catch (e: any) {
+      console.error(`Quiz fetch error at ${url}:`, e);
       setFetchError(true);
     } finally {
       setLoadingQuiz(false);

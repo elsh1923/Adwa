@@ -17,8 +17,9 @@ const StrategyPage: React.FC = () => {
 
   useEffect(() => {
     const fetchStrategies = async () => {
+      const url = `${API_BASE}/api/knowledge/strategies`;
       try {
-        const response = await fetch(`${API_BASE}/api/knowledge/strategies`);
+        const response = await fetch(url);
         if (!response.ok) throw new Error();
         const data = await response.json();
         
@@ -29,6 +30,7 @@ const StrategyPage: React.FC = () => {
 
         setStrategies(mappedStrategies);
       } catch (err) {
+        console.error(`Strategies fetch error at ${url}:`, err);
         setError(true);
       } finally {
         setLoading(false);

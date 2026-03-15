@@ -122,18 +122,25 @@ export async function chatWithHero(
   userMessage: string,
   lang: string = 'en'
 ): Promise<string> {
-  const response = await fetch(`${API_BASE}/api/chat`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ hero: heroId, question: userMessage, lang })
-  });
-  
-  if (!response.ok) {
-    throw new Error('Our backend failed to respond. Make sure it is running.');
+  const url = `${API_BASE}/api/chat`;
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hero: heroId, question: userMessage, lang })
+    });
+    
+    if (!response.ok) {
+      console.error(`Backend error at ${url}:`, response.status, response.statusText);
+      throw new Error(`Our backend failed to respond (${response.status}). URL: ${url}`);
+    }
+    
+    const data = await response.json();
+    return data.answer;
+  } catch (err: any) {
+    console.error(`Network or fetch error at ${url}:`, err);
+    throw new Error(`Connection failed. Make sure the backend is running at: ${url}`);
   }
-  
-  const data = await response.json();
-  return data.answer;
 }
 
 // ─── Story Narration ─────────────────────────────────────────────────────────

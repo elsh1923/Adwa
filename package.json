@@ -2,6 +2,7 @@
   "name": "adwa-ai-master",
   "version": "1.0.0",
   "description": "Adwa AI: A RAG-based educational platform about the Battle of Adwa",
+  "license": "MIT",
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run server\"",
     "start": "npm run dev --prefix frontend",

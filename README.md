@@ -1,4 +1,4 @@
-# Adwa AI: The Battle of Adwa Assistance 🏆
+# Adwa AI: The Battle of Adwa AI Assistant 🏆
 
 Adwa AI is a state-of-the-art educational platform designed to bring the history of the Battle of Adwa to life using Artificial Intelligence. Built with a Retrieval-Augmented Generation (RAG) architecture, the platform allows users to interact with history through English-language chat with historical leaders, AI-driven story modes, and interactive quizzes.
 

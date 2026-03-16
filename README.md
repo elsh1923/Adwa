@@ -53,10 +53,10 @@ Adwa AI is a state-of-the-art educational platform designed to bring the history
    GROQ_API_KEY=your_groq_api_key
    PORT=5000
    ```
-   Create a `.env` file in the `frontend/` directory:
-   ```env
-   VITE_GEMINI_API_KEY=your_gemini_api_key
-   ```
+    Create a `.env` file in the `frontend/` directory:
+    ```env
+    VITE_GROQ_API_KEY=your_groq_api_key
+    ```
 
 ## 🏃 Usage Instructions
 
@@ -88,7 +88,7 @@ The AI's "brain" is fueled by JSON files in `backend/knowledge/`. To add or upda
 ## 🌐 Deployment
 
 The project is configured for deployment on platforms like Vercel (frontend) and Railway/Render (backend).
-- **Frontend URL**: [https://adwa-history.vercel.app/](https://adwa-history.vercel.app/)
+- **Frontend URL**: [https://adwa-gamma.vercel.app](https://adwa-gamma.vercel.app)
 - **API Reference**: `https://adwa-api.your-platform.com`
 
 ---

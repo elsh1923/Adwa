@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, RefreshCcw, HelpCircle, Loader2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { explainQuizAnswer } from '../services/gemini';
+import { explainQuizAnswer } from '../services/ai';
 import { API_BASE } from '../services/apiConfig';
 
 interface Question {
@@ -86,7 +86,7 @@ const Quiz: React.FC = () => {
     setIsAnswered(true);
     if (idx === q.correct) setScore(s => s + 1);
 
-    // Fetch Gemini explanation
+    // Fetch AI explanation via Groq
     setLoadingAI(true);
     try {
       // Pass preferred language to explanation service if possible
@@ -224,7 +224,7 @@ const Quiz: React.FC = () => {
               <div>
                 <p style={{ fontWeight: 700, color: 'var(--gold)', marginBottom: '0.35rem', fontSize: '0.85rem', fontFamily: 'inherit' }}>{t('quiz.ai_insight')}</p>
                 <p style={{ color: 'var(--text-dim)', lineHeight: 1.8, fontSize: '0.9rem', fontFamily: 'inherit' }}>
-                  {loadingAI ? 'Gemini is thinking…' : (aiExplanation ?? staticExplanation)}
+                  {loadingAI ? 'AI is thinking…' : (aiExplanation ?? staticExplanation)}
                 </p>
               </div>
             </div>

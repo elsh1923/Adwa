@@ -1,28 +1,26 @@
-// ─── Gemini AI Service ──────────────────────────────────────────────────────
+// ─── AI Service ──────────────────────────────────────────────────────────────
 import { API_BASE } from './apiConfig';
-// Uses Google Gemini API for dynamic content: hero chat, story narration,
-// quiz explanations, and translation of AI-generated text.
+// Uses Groq API (Llama 3.1) for dynamic content: hero chat, story narration,
+// quiz explanations, and tactical insights.
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || '';
-const GEMINI_BASE = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent';
 const GROQ_BASE = 'https://api.groq.com/openai/v1/chat/completions';
 
-export type GeminiRole = 'user' | 'model';
+export type AIRole = 'user' | 'model';
 
-export interface GeminiMessage {
-  role: GeminiRole;
+export interface AIMessage {
+  role: AIRole;
   parts: { text: string }[];
 }
 
-// ─── Groq Fallback Helper ────────────────────────────────────────────────────
+// ─── Core generation helper using Groq ───────────────────────────────────────
 async function generateWithGroq(
   systemInstruction: string,
-  history: GeminiMessage[],
+  history: AIMessage[],
   userPrompt: string,
 ): Promise<string> {
-  if (!GROQ_API_KEY || GROQ_API_KEY === 'your_groq_key_here') {
-    throw new Error('Groq fallback failed: VITE_GROQ_API_KEY is not configured.');
+  if (!GROQ_API_KEY) {
+    throw new Error('AI Service failed: VITE_GROQ_API_KEY is not configured.');
   }
 
   const messages = [
@@ -57,52 +55,15 @@ async function generateWithGroq(
   return data.choices?.[0]?.message?.content?.trim() ?? '';
 }
 
-// ─── Core generation helper with Smart Fallback ───────────────────────────────
 async function generateContent(
   systemInstruction: string,
-  history: GeminiMessage[],
+  history: AIMessage[],
   userPrompt: string,
 ): Promise<string> {
-  // 1. Try Gemini first
-  try {
-    if (!GEMINI_API_KEY) throw new Error('Gemini API key missing');
-
-    const body = {
-      system_instruction: { parts: [{ text: systemInstruction }] },
-      contents: [
-        ...history,
-        { role: 'user', parts: [{ text: userPrompt }] },
-      ],
-      generationConfig: {
-        temperature: 0.8,
-        topK: 40,
-        topP: 0.95,
-        maxOutputTokens: 1024,
-      },
-    };
-
-    const response = await fetch(`${GEMINI_BASE}?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      return data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? '';
-    }
-
-    // If we get here, Gemini returned an error (like 429)
-    console.warn(`Gemini failed with status ${response.status}. Attempting Groq fallback...`);
-  } catch (error) {
-    console.warn('Gemini error. Attempting Groq fallback...', error);
-  }
-
-  // 2. Fallback to Groq if Gemini fails or keys are missing
   try {
     return await generateWithGroq(systemInstruction, history, userPrompt);
-  } catch (fallbackError) {
-    console.error('All AI models failed:', fallbackError);
+  } catch (error) {
+    console.error('AI generation failed:', error);
     throw new Error('Our historians are currently busy. Please try again in a moment.');
   }
 }
@@ -118,7 +79,7 @@ export interface HeroPersona {
 
 export async function chatWithHero(
   heroId: string,
-  _history: GeminiMessage[],
+  _history: AIMessage[],
   userMessage: string
 ): Promise<string> {
   const url = `${API_BASE}/api/chat`;

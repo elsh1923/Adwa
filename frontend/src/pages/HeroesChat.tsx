@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, User, Bot, ArrowLeft, Loader2, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSpeech } from '../hooks/useSpeech';
-import { chatWithHero } from '../services/gemini';
-import type { GeminiMessage } from '../services/gemini';
+import { chatWithHero } from '../services/ai';
+import type { AIMessage } from '../services/ai';
 
 interface Leader {
   id: string;
@@ -96,7 +96,7 @@ const HeroesChat: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const geminiHistory = useRef<GeminiMessage[]>([]);
+  const aiHistory = useRef<AIMessage[]>([]);
 
   const { speak, stop, isSpeaking } = useSpeech();
 
@@ -108,7 +108,7 @@ const HeroesChat: React.FC = () => {
     setSelectedLeader(leader);
     setMessages([]);
     setError(null);
-    geminiHistory.current = [];
+    aiHistory.current = [];
   };
 
   const handleSend = async () => {
@@ -124,13 +124,13 @@ const HeroesChat: React.FC = () => {
     try {
       const reply = await chatWithHero(
         selectedLeader.id,
-        geminiHistory.current,
+        aiHistory.current,
         trimmed
       );
 
-      // Update Gemini conversation history
-      geminiHistory.current = [
-        ...geminiHistory.current,
+      // Update AI conversation history
+      aiHistory.current = [
+        ...aiHistory.current,
         { role: 'user',  parts: [{ text: trimmed }] },
         { role: 'model', parts: [{ text: reply }] },
       ];
@@ -253,7 +253,7 @@ const HeroesChat: React.FC = () => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <button
-              onClick={() => { setSelectedLeader(null); setMessages([]); setError(null); geminiHistory.current = []; }}
+              onClick={() => { setSelectedLeader(null); setMessages([]); setError(null); aiHistory.current = []; }}
               style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-subtle)', borderRadius: 8, padding: '0.4rem', color: 'var(--text-dim)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               title={t('chat.back')}
             >
@@ -275,7 +275,7 @@ const HeroesChat: React.FC = () => {
           {/* AI powered badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.7rem', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border-subtle)', borderRadius: 99, padding: '0.3rem 0.75rem' }}>
             <Bot size={12} />
-            Powered by Gemini
+            Powered by Groq
           </div>
         </div>
 

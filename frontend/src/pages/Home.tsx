@@ -277,8 +277,10 @@ const Home: React.FC = () => {
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{ width: 56, height: 56, borderRadius: 16, background: `linear-gradient(135deg, ${color}22, ${color}0a)`, border: `1px solid ${color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '1.5rem' }}>
-                    {emoji}
+                  <div style={{ width: 56, height: 56, borderRadius: 16, background: `linear-gradient(135deg, ${color}22, ${color}0a)`, border: `1px solid ${color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '1.5rem', overflow: 'hidden' }}>
+                    {id === 'chat' ? (
+                      <img src="/image/menelik_portrait.png" alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ) : emoji}
                   </div>
                   <div>
                     <div style={{ fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: '0.15rem', fontFamily: 'inherit' }}>{subtitle}</div>

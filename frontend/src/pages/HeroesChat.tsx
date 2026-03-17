@@ -259,8 +259,8 @@ const HeroesChat: React.FC = () => {
             >
               <ArrowLeft size={18} />
             </button>
-            <div style={{ width: 44, height: 44, borderRadius: '50%', background: `radial-gradient(circle, ${selectedLeader.color}22, ${selectedLeader.color}08)`, border: `2px solid ${selectedLeader.color}50`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem' }}>
-              {selectedLeader.emoji}
+            <div style={{ width: 44, height: 44, borderRadius: '50%', background: `radial-gradient(circle, ${selectedLeader.color}22, ${selectedLeader.color}08)`, border: `2px solid ${selectedLeader.color}50`, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <img src={selectedLeader.image} alt={selectedLeader.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div>
               <div style={{ fontFamily: 'Cormorant Garamond, serif', fontWeight: 700, fontSize: '1.1rem', color: 'var(--text)' }}>
@@ -282,8 +282,10 @@ const HeroesChat: React.FC = () => {
         {/* Messages */}
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {messages.length === 0 && (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-muted)', textAlign: 'center', gap: '0.75rem' }}>
-              <div style={{ fontSize: '3rem', opacity: 0.5 }}>{selectedLeader.emoji}</div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--text-muted)', textAlign: 'center', gap: '1.5rem' }}>
+              <div style={{ width: 100, height: 100, borderRadius: '50%', border: `2px solid ${selectedLeader.color}30`, overflow: 'hidden', opacity: 0.6 }}>
+                <img src={selectedLeader.image} alt={selectedLeader.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
               <p style={{ fontFamily: 'inherit', lineHeight: 1.7, maxWidth: 300 }}>
                 {t('chat.start_hint')} <em style={{ color: selectedLeader.color }}>{selectedLeader.name}</em>…
               </p>
@@ -358,8 +360,8 @@ const HeroesChat: React.FC = () => {
           {loading && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{ width: 32, height: 32, borderRadius: '50%', background: `${selectedLeader.color}15`, border: `1px solid ${selectedLeader.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem' }}>
-                {selectedLeader.emoji}
+              <div style={{ width: 32, height: 32, borderRadius: '50%', background: `${selectedLeader.color}15`, border: `1px solid ${selectedLeader.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                <img src={selectedLeader.image} alt={selectedLeader.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <div style={{ display: 'flex', gap: '4px', padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.04)', border: `1px solid ${selectedLeader.color}20`, borderRadius: '18px 18px 18px 4px' }}>
                 {[0, 1, 2].map(i => (
